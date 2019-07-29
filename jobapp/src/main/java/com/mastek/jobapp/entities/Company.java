@@ -3,11 +3,11 @@ package com.mastek.jobapp.entities;
 public class Company {
 	
 	private int companyId;
-	
+
 	private String companyName;
-	
+
 	private String location;
-	
+
 	private String industry;
 	
 	public Company() {
