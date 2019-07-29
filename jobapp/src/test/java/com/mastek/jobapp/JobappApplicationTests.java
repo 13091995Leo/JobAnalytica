@@ -1,6 +1,7 @@
 package com.mastek.jobapp;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +44,7 @@ public class JobappApplicationTests {
 	@Autowired
 	User user;
 	
-	@Test
+/*	@Test
 	public void addOrUpdateUserUsingService() {
 		user.setUserId(0);
 		user.setUserName("Test name");
@@ -52,6 +53,19 @@ public class JobappApplicationTests {
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
 	}
+	
+	@Test
+	public void findByUserIdUsingService() {
+		int userId = 4;
+		assertNotNull(userService.findByUserId(userId));
+	}
+	
+	@Test
+	public void deleteByUserIdUsingService() {
+		int userId = 2;
+		userService.deleteByUserId(userId);
+		assertNull(userService.findByUserId(userId));
+	} */
 	
 	@Autowired
 	CompanyService companyService;
