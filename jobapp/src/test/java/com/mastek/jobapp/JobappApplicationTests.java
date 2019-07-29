@@ -17,7 +17,7 @@ public class JobappApplicationTests {
 	
 	
 	@Autowired
-	Job job;
+	com.mastek.jobapp.entities.Job job;
 	
 	@Autowired
 	JobService jobService;
