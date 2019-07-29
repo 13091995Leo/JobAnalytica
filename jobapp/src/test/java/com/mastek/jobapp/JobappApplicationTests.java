@@ -11,7 +11,7 @@ public class JobappApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("Leo");
+		System.out.println("Leo ");
 	}
 
 }
