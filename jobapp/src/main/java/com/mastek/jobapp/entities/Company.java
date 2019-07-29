@@ -2,9 +2,9 @@ package com.mastek.jobapp.entities;
 
 public class Company {
 	
-	private int company_id;
+	private int companyId;
 	
-	private String company_name;
+	private String companyName;
 	
 	private String location;
 	
@@ -13,5 +13,38 @@ public class Company {
 	public Company() {
 		System.out.println("Company Created");
 	}
+
+	public int getCompany_id() {
+		return companyId;
+	}
+
+	public void setCompany_id(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getCompany_name() {
+		return companyName;
+	}
+
+	public void setCompany_name(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
 
 }
