@@ -52,7 +52,7 @@ public class JobService {
 	}
 	
 	@DELETE
-	@Path("/delete/{jobid}")	
+	@Path("/delete/{jobId}")	
 	public void deleteByjobId(int jobId) {
 			jobRepository.deleteById(jobId);
 			
