@@ -34,8 +34,11 @@ public class JobappApplicationTests {
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
+		System.out.println("Hello Leo can you hear me");
 	
 	}
+	
+	
 	
 	@Autowired
 	UserService userService;
