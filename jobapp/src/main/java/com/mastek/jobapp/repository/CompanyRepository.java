@@ -9,6 +9,6 @@ import com.mastek.jobapp.entities.Company;
 
 public interface CompanyRepository extends CrudRepository<Company, Integer> {
 	
-	public List<Company> findByIndustry (@Param("ind") String ind);
+	public List<Company> findByLocation (@Param("loc") String loc);
 
 }
