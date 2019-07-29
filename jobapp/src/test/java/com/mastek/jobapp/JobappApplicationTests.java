@@ -11,13 +11,6 @@ public class JobappApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("Hello");
-		System.out.println("Tim");
-		System.out.println("I am Josh");
-		System.out.println("World1");
-		System.out.println("Matt");
-		System.out.println("Matt can you read this");
-		System.out.println("No");
 	}
 
 }
