@@ -54,7 +54,7 @@ public class Job {
 	*/
 	
 	@Id
-	@Column(name = "projectId")
+	@Column(name = "JobId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getJobId() {
 		return jobId;

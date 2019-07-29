@@ -22,8 +22,17 @@ public class JobService {
 		return job;
 	}
 		
-	public void deleteByjobId(int jobId) {
-			jobRepository.deleteById(jobId);	
+	public void deleteJobById(int jobId) {
+		 try {
+	            jobRepository.deleteById(jobId);
+	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
+	            System.out.println(statement);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            String statement = "ERROR";
+	            System.out.println(statement);
+	        }
+				
 		}	
 
 }

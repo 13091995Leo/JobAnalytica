@@ -1,6 +1,7 @@
 package com.mastek.jobapp;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,10 +35,14 @@ public class JobappApplicationTests {
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
-		System.out.println("Hello Leo can you hear me");
-	
 	}
 	
+	@Test
+	public void deleteJob() {
+	int jobId = 1;
+	jobService.deleteJobById(jobId);
+	assertNull(""); ////////////////////// find statement
+	}
 	
 	
 	@Autowired
@@ -54,7 +59,6 @@ public class JobappApplicationTests {
 		user.setSpeciality("Test speciality");
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
-		
 	}
 	
 	@Autowired
@@ -64,14 +68,13 @@ public class JobappApplicationTests {
 	Company company;
 	
 	@Test
-	public void addOrUpdateCompanyUsingService() {
+	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyId(0);
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
-		System.out.println("Hello from Leo");
 	}
 
 }
