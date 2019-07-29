@@ -29,38 +29,26 @@ import org.springframework.context.annotation.Scope;
 @XmlRootElement
 public class Job implements Serializable {
 	
-	@Id
-	@Column(name = "projectId")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	@Value("-1")
 	private int jobId;
 	
-	@Column(name = "jobTitle")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Value("Default Value")
 	@FormParam("jobTitle")
 	private String jobTitle;
 	
-	@Column(name = "requirements")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Value("Default Value")
 	@FormParam("requirements")
 	private String requirements;
 	
-	@Column(name = "salary")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Value("00000000")
 	@FormParam("salary")
 	private int salary;
 	
-	@Column(name = "location")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Value("Default")
 	@FormParam("location")
 	private String location;
 	
-	@Column(name = "companyId")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Value("-1")
 	private int companyId;
 	
@@ -71,7 +59,9 @@ public class Job implements Serializable {
 	private Set<Company> team = new HashSet<>();
 	
 	
-
+	@Id
+	@Column(name = "projectId")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getJobId() {
 		return jobId;
 	}
@@ -83,7 +73,8 @@ public class Job implements Serializable {
 	}
 
 
-
+	
+	@Column(name = "jobTitle")
 	public String getJobTitle() {
 		return jobTitle;
 	}
@@ -95,7 +86,7 @@ public class Job implements Serializable {
 	}
 
 
-
+	@Column(name = "requirements")
 	public String getRequirements() {
 		return requirements;
 	}
@@ -107,7 +98,7 @@ public class Job implements Serializable {
 	}
 
 
-
+	@Column(name = "salary")
 	public int getSalary() {
 		return salary;
 	}
@@ -119,7 +110,7 @@ public class Job implements Serializable {
 	}
 
 
-
+	@Column(name = "location")
 	public String getLocation() {
 		return location;
 	}
@@ -131,7 +122,7 @@ public class Job implements Serializable {
 	}
 
 
-
+	@Column(name = "companyId")
 	public int getCompanyId() {
 		return companyId;
 	}
