@@ -2,9 +2,11 @@ package com.mastek.jobapp.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="User")
+@EntityListeners({UserLifeCycleListener.class})
 public class User {
 	
 	@Value("-1")
