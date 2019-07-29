@@ -12,7 +12,7 @@ public class JobappApplicationTests {
 	@Test
 	public void contextLoads() {
 
-		System.out.println("Leo Test Merge");
+		System.out.println("Leo Test Merge ");
 
 		System.out.println("Hello");
 
