@@ -66,7 +66,7 @@ public class Company {
 	}
 
 	@Id // Declare as Primary Key
-	@Column(name="companyNumber") // Declare name of column
+	@Column(name="companyId") // Declare name of column
 	@GeneratedValue(strategy=GenerationType.AUTO) // Auto-numbering
 	public int getCompanyId() {
 		return companyId;

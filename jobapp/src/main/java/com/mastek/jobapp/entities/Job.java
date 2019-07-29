@@ -56,9 +56,9 @@ public class Job {
 	public void setCurrentCompany(Company currentCompany) {
 		this.currentCompany = currentCompany;
 	}
-
+	
 	@Id
-	@Column(name = "projectId")
+	@Column(name = "jobId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getJobId() {
 		return jobId;
