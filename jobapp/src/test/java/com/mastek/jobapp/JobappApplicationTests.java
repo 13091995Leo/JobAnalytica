@@ -35,8 +35,11 @@ public class JobappApplicationTests {
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
 		System.out.println("Hello Leo can you hear me");
-	
+			
 	}
+	
+	
+	
 	
 	
 	
@@ -73,5 +76,7 @@ public class JobappApplicationTests {
 		assertNotNull(company);
 		System.out.println("Hello from Leo");
 	}
+	
+	
 
 }
