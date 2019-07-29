@@ -14,19 +14,19 @@ public class Company {
 		System.out.println("Company Created");
 	}
 
-	public int getCompany_id() {
+	public int getCompanyId() {
 		return companyId;
 	}
 
-	public void setCompany_id(int companyId) {
+	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
 
-	public String getCompany_name() {
+	public String getCompanyName() {
 		return companyName;
 	}
 
-	public void setCompany_name(String companyName) {
+	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
 
@@ -45,6 +45,5 @@ public class Company {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
-
 
 }
