@@ -1,5 +1,6 @@
 package com.mastek.jobapp.entities;
 
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,23 +13,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.ws.rs.FormParam;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import org.springframework.context.annotation.Scope;
+
 
 @Component
 @Scope("prototype") // One copy for each test case
@@ -36,7 +31,7 @@ import org.springframework.context.annotation.Scope;
 @Table(name="Company") // Declare table name for class
 @EntityListeners({CompanyLifecycleListener.class})
 @NamedQueries({@NamedQuery(name="Company.findByIndustry", query="select c from Company c where c.location = 'Leeds'")})
-public class Company {
+public class Company implements Serializable{
 	
 	@Value("-1")
 	private int companyId;

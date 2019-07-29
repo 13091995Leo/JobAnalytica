@@ -35,36 +35,20 @@ public class JobappApplicationTests {
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
 	}
-	
-<<<<<<< HEAD
-	@Test
-=======
-	/*@Test
 
->>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
-	public void deleteJob() {
-<<<<<<< HEAD
+
+/*	@Test
+	public void deleteJobUsingService() {
 	int jobId = 2;
-=======
-	int jobId = 3;
->>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 	jobService.deleteJobById(jobId);
 	assertNull(jobService.findByJobId(jobId));
-<<<<<<< HEAD
 	}
-=======
-	}*/
->>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
-	
+
 	@Test
 	public void findByJobIdUsingService() {
-<<<<<<< HEAD
-		int jobId =3;
-=======
-		int jobId = 2;
->>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
+		int jobId = 4;
 		assertNotNull(jobService.findByJobId(jobId));
-	}
+	}*/
 	
 	@Autowired
 	UserService userService;
@@ -72,9 +56,8 @@ public class JobappApplicationTests {
 	@Autowired
 	User user;
 	
-/*	@Test
+	@Test
 	public void addOrUpdateUserUsingService() {
-		user.setUserId(0);
 		user.setUserName("Test name");
 		user.setLocationPreference("Test location");
 		user.setSpeciality("Test speciality");
@@ -82,9 +65,9 @@ public class JobappApplicationTests {
 		assertNotNull(user);
 	}
 	
-	@Test
+/*	@Test
 	public void findByUserIdUsingService() {
-		int userId = 4;
+		int userId = 1;
 		assertNotNull(userService.findByUserId(userId));
 	}
 	
@@ -93,7 +76,7 @@ public class JobappApplicationTests {
 		int userId = 2;
 		userService.deleteByUserId(userId);
 		assertNull(userService.findByUserId(userId));
-	} */
+	}*/
 
 	@Autowired
 	CompanyService companyService;
@@ -101,33 +84,33 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
-	/*@Test
+	@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
-	}*/
+	}
 	
 	
-	@Test
+/*	@Test
 	public void findByCompanyIdUsingService() {
-		int companyId =1;
+		int companyId = 1;
 		assertNotNull(companyService.findByCompanyId(companyId));
 	}
 	
 	@Test
 	public void deleteCompany() {
-		int companyId = 10;
+		int companyId = 11;
 		companyService.deleteCompanyById(companyId);
 		assertNull(companyService.findByCompanyId(companyId));
-		}
+		}*/
 
 
 	
 	@Test
-	public void addJobsWithCompany() {
+	public void addJobsWithCompanyAndJobsForUsers() {
 		Company comp1 = new Company();
 		comp1.setCompanyName("Mastek");
 		comp1.setLocation("Leeds");
@@ -140,12 +123,6 @@ public class JobappApplicationTests {
 		job2.setJobTitle("Testing");
 		job2.setRequirements("Java");
 		
-		comp1.getJobs().add(job1);
-		comp1.getJobs().add(job2);
-		
-		job1.setCurrentCompany(comp1);
-		job2.setCurrentCompany(comp1);
-		
 		User user1 = new User();
 		user1.setUserName("James");
 		user1.setSpeciality("Python");
@@ -155,6 +132,14 @@ public class JobappApplicationTests {
 		user2.setUserName("John");
 		user2.setSpeciality("JavasScript and Java");
 		user2.setLocationPreference("Manchester");
+		
+		// Many to One
+		comp1.getJobs().add(job1);
+		comp1.getJobs().add(job2);
+		
+		// One To Many
+		job1.setCurrentCompany(comp1);
+		job2.setCurrentCompany(comp1);
 		
 		// Many To many
 		job1.getAssignments().add(user1);

@@ -1,5 +1,6 @@
 package com.mastek.jobapp.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
+
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
-public class User {
+public class User implements Serializable{
 	
 	@Value("-1")
 	private int userId;

@@ -43,3 +43,5 @@ public class UserLifeCycleListener {
 	}
 
 }
+
+// Archive this as data, on a JSON data

@@ -15,12 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.ws.rs.FormParam;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -31,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs")// declaring the table name for the class
-public class Job {
+public class Job implements Serializable{
 	
 
 	@Value("-1")
@@ -140,32 +135,6 @@ public class Job {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-
-/*	@Column(name = "companyId")
-	public int getCompanyId() {
-		return companyId;
-	}
-
-
-
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
-*/
-
-
-/*	public Set<Company> getTeam() {
-		return team;
-	}
-
-
-
-	public void setTeam(Set<Company> team) {
-		this.team = team;
-	}
-*/
-
 
 	public Job() {
 		System.out.println("Project Created");

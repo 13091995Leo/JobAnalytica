@@ -1,9 +1,5 @@
 package com.mastek.jobapp.apis;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,9 +23,7 @@ public class JobService {
 		return job;
 	}
 	
-//	@Path("/find/{jobId}")
-//	@GET
-//	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	
 	public Job findByJobId(int jobId) {
 		try {
 			return jobRepository.findById(jobId).get();
