@@ -1,5 +1,12 @@
 package com.mastek.jobapp.entities;
 
+import javax.persistence.Entity;
+
+import org.springframework.context.annotation.Scope;
+
+@Scope("prototype")
+@Entity
+
 public class Company {
 	
 	private int companyId;
