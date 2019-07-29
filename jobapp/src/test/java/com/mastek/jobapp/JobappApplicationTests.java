@@ -39,6 +39,12 @@ public class JobappApplicationTests {
 			
 	}
 	
+	@Test
+	public void findByJobIdUsingService() {
+		int jobId =1;
+		assertNotNull(jobService.findByJobId(jobId));
+	}
+	
 	
 	
 	
@@ -88,7 +94,6 @@ public class JobappApplicationTests {
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
-		System.out.println("Hello from Leo");
 	}
 	
 	
