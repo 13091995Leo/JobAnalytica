@@ -89,5 +89,10 @@ public class Company {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
+	
+	@Override
+	public String toString() {
+		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", location=" + location + ", industry=" + industry + "]";
+	}
 
 }
