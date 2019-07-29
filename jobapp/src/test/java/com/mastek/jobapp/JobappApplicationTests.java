@@ -42,7 +42,7 @@ public class JobappApplicationTests {
 	public void deleteJob() {
 	int jobId = 1;
 	jobService.deleteJobById(jobId);
-	assertNull(jobService.findByJobId(jobId)); ////////////////////// find statement
+	assertNull(jobService.findByJobId(jobId));
 	}
 
 	public void findByJobIdUsingService() {
@@ -95,8 +95,6 @@ public class JobappApplicationTests {
 		assertNotNull(company);
 	}
 	
-	
-
 	@Test
 	public void addJobsWithCompany() {
 		Company comp1 = new Company();
