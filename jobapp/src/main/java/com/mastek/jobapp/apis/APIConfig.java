@@ -13,7 +13,7 @@ public class APIConfig extends ResourceConfig {
 		// Register each service class in ResourceConfig
 		register(CompanyService.class);
 		register(UserService.class);
-		register(JobsService.class);
+		register(JobService.class);
 	}
 
 }

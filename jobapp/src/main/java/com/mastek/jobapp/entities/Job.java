@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Scope;
 //@EntityListeners({ProjectLifecycleListener.class})
 //@NamedQueries({@NamedQuery(name="Jobs.findByCompany", query="select j from Jobs j where j.jobTitle = :jobTitle")})
 @XmlRootElement
-public class Jobs implements Serializable {
+public class Job implements Serializable {
 	
 	@Id
 	@Column(name = "projectId")
@@ -156,7 +156,7 @@ public class Jobs implements Serializable {
 
 
 
-	public Jobs() {
+	public Job() {
 		System.out.println("Project Created");
 	}
 	
