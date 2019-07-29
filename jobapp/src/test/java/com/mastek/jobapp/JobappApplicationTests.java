@@ -13,6 +13,8 @@ public class JobappApplicationTests {
 	public void contextLoads() {
 		System.out.println("Hello");
 		System.out.println("Tim");
+		System.out.println("I am Josh");
+		System.out.println("World1");
 	}
 
 }
