@@ -38,4 +38,19 @@ public class CompanyService {
 			return null;
 		}
 	}
+	
+	public void deleteCompanyById(int companyId) {
+		 try {
+	            companyRepository.deleteById(companyId);
+	            String statement = "Company with Company ID = " + companyId + " sucessfully deleted";
+	            System.out.println(statement);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            String statement = "ERROR";
+	            System.out.println(statement);
+	        }
+				
+		}	
+	
+	
 }

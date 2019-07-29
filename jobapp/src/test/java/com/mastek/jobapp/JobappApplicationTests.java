@@ -37,17 +37,17 @@ public class JobappApplicationTests {
 		assertNotNull(job);
 	}
 	
-	@Test
+	/*@Test
 
 	public void deleteJob() {
-	int jobId = 1;
+	int jobId = 3;
 	jobService.deleteJobById(jobId);
 	assertNull(jobService.findByJobId(jobId));
-	}
+	}*/
 	
 	@Test
 	public void findByJobIdUsingService() {
-		int jobId =1;
+		int jobId = 2;
 		assertNotNull(jobService.findByJobId(jobId));
 	}
 	
@@ -86,7 +86,7 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
-	@Test
+	/*@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyId(0);
 		company.setCompanyName("Default company name");
@@ -94,14 +94,21 @@ public class JobappApplicationTests {
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
-	}
+	}*/
 	
 	
 	@Test
 	public void findByCompanyIdUsingService() {
-		int companyId =3;
+		int companyId =1;
 		assertNotNull(companyService.findByCompanyId(companyId));
 	}
+	
+	@Test
+	public void deleteCompany() {
+		int companyId = 10;
+		companyService.deleteCompanyById(companyId);
+		assertNull(companyService.findByCompanyId(companyId));
+		}
 
 
 	
