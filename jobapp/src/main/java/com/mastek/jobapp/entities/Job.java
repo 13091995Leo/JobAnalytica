@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -43,16 +45,18 @@ public class Job {
 	@Value("Default")
 	private String location;
 	
-/*	@Value("-1")
-	private int companyId;*/
+	private Company currentCompany;
 	
-	
-/*	//mappedBy: check the config for Many to Many association
-	@ManyToMany(mappedBy="jobPoster")
-	@XmlTransient
-	private Set<Company> team = new HashSet<>();
-	*/
-	
+	@ManyToOne
+	@JoinColumn(name="FkCompanyNumber")
+	public Company getCurrentCompany() {
+		return currentCompany;
+	}
+
+	public void setCurrentCompany(Company currentCompany) {
+		this.currentCompany = currentCompany;
+	}
+
 	@Id
 	@Column(name = "projectId")
 	@GeneratedValue(strategy=GenerationType.AUTO)

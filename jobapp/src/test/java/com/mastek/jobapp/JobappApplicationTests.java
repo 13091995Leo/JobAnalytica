@@ -35,8 +35,6 @@ public class JobappApplicationTests {
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
-		System.out.println("Hello Leo can you hear me");
-	
 	}
 	
 	
@@ -85,7 +83,29 @@ public class JobappApplicationTests {
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
-		System.out.println("Hello from Leo");
 	}
 
+	@Test
+	public void addJobsWithCompany() {
+		Company comp1 = new Company();
+		comp1.setCompanyName("Mastek");
+		comp1.setLocation("Leeds");
+		
+		Job job1 = new Job();
+		job1.setJobTitle("Dev Ops");
+		job1.setRequirements("Python");
+		
+		Job job2 = new Job();
+		job2.setJobTitle("Testing");
+		job2.setRequirements("Java");
+		
+		comp1.getJobs().add(job1);
+		comp1.getJobs().add(job2);
+		
+		job1.setCurrentCompany(comp1);
+		job2.setCurrentCompany(comp1);
+		
+		companyService.registerOrUpdateCompany(comp1);
+		}
+	
 }
