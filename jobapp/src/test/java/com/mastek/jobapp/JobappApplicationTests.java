@@ -20,8 +20,12 @@ public class JobappApplicationTests {
 		System.out.println("World1");
 		System.out.println("Matt");
 		System.out.println("Matt can you read this");
+<<<<<<< HEAD
 		System.out.println("Hello Darkness my old friend");
 
+=======
+		System.out.println("No");
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 	}
 
 }
