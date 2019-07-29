@@ -51,6 +51,7 @@ public class JobappApplicationTests {
 		user.setSpeciality("Test speciality");
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
+		
 	}
 	
 	@Autowired
@@ -67,6 +68,7 @@ public class JobappApplicationTests {
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
+		System.out.println("Hello from Leo");
 	}
 
 }
