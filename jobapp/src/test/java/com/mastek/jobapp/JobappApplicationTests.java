@@ -28,7 +28,6 @@ public class JobappApplicationTests {
 
 	@Test
 	public void addOrUpdateJobUsingService() {
-		job.setJobId(0);
 		job.setJobTitle("Test Title");
 		job.setRequirements("Test requirement");
 		job.setSalary(10.00);
@@ -38,15 +37,15 @@ public class JobappApplicationTests {
 	}
 	
 	@Test
-
 	public void deleteJob() {
-	int jobId = 1;
+	int jobId = 2;
 	jobService.deleteJobById(jobId);
 	assertNull(jobService.findByJobId(jobId));
 	}
-
+	
+	@Test
 	public void findByJobIdUsingService() {
-		int jobId =1;
+		int jobId =3;
 		assertNotNull(jobService.findByJobId(jobId));
 	}
 	
@@ -78,7 +77,7 @@ public class JobappApplicationTests {
 		userService.deleteByUserId(userId);
 		assertNull(userService.findByUserId(userId));
 	} */
-	
+
 	@Autowired
 	CompanyService companyService;
 	
@@ -87,7 +86,6 @@ public class JobappApplicationTests {
 	
 	@Test
 	public void addOrUpdateCompanyUsingService() {	
-		company.setCompanyId(0);
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
 		company.setLocation("Default location");
@@ -103,7 +101,7 @@ public class JobappApplicationTests {
 		
 		Job job1 = new Job();
 		job1.setJobTitle("Dev Ops");
-		job1.setRequirements("Python");
+		job1.setRequirements("Python and JavaScript");
 		
 		Job job2 = new Job();
 		job2.setJobTitle("Testing");
@@ -114,6 +112,21 @@ public class JobappApplicationTests {
 		
 		job1.setCurrentCompany(comp1);
 		job2.setCurrentCompany(comp1);
+		
+		User user1 = new User();
+		user1.setUserName("James");
+		user1.setSpeciality("Python");
+		user1.setLocationPreference("Leeds");
+		
+		User user2 = new User();
+		user2.setUserName("John");
+		user2.setSpeciality("JavasScript and Java");
+		user2.setLocationPreference("Manchester");
+		
+		// Many To many
+		job1.getAssignments().add(user1);
+		job1.getAssignments().add(user2);
+		job2.getAssignments().add(user2);
 		
 		companyService.registerOrUpdateCompany(comp1);
 		}

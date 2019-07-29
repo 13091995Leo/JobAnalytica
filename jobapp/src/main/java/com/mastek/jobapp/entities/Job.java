@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -22,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 
 @Component
 @Scope("prototype") //one copy for each test case
@@ -56,6 +60,24 @@ public class Job {
 	public void setCurrentCompany(Company currentCompany) {
 		this.currentCompany = currentCompany;
 	}
+	
+	
+/// Many to many relationship between job and users.
+	 private Set<User> assignments = new HashSet<>();
+	 
+	 @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	 @JoinTable(
+			name = "ASSIGNMENTS",
+			joinColumns = @JoinColumn(name = "FK_JOBID"),
+			inverseJoinColumns = @JoinColumn(name="FK_USERID")
+		)
+		public Set<User> getAssignments() {
+		return assignments;
+		}
+		public void setAssignments(Set<User> assignments) {
+		this.assignments = assignments;
+		}
+
 	
 	@Id
 	@Column(name = "jobId")

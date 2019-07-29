@@ -1,16 +1,24 @@
 package com.mastek.jobapp.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 
 @Component
 @Entity
@@ -33,6 +41,19 @@ public class User {
 	public User() {
 		System.out.println("User Created");
 	}
+	
+	// many to many relationship
+	private Set<Job> group = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	public Set<Job> getGroup() {
+		return group;
+	}
+	
+	public void setGroup(Set<Job> group) {
+		this.group = group;
+	}
+	
 
 	@Id
 	@Column(name="userId")
