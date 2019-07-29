@@ -36,16 +36,33 @@ public class JobappApplicationTests {
 		assertNotNull(job);
 	}
 	
+<<<<<<< HEAD
 	@Test
+=======
+	/*@Test
+
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 	public void deleteJob() {
+<<<<<<< HEAD
 	int jobId = 2;
+=======
+	int jobId = 3;
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 	jobService.deleteJobById(jobId);
 	assertNull(jobService.findByJobId(jobId));
+<<<<<<< HEAD
 	}
+=======
+	}*/
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 	
 	@Test
 	public void findByJobIdUsingService() {
+<<<<<<< HEAD
 		int jobId =3;
+=======
+		int jobId = 2;
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica.git
 		assertNotNull(jobService.findByJobId(jobId));
 	}
 	
@@ -84,14 +101,30 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
-	@Test
+	/*@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
+	}*/
+	
+	
+	@Test
+	public void findByCompanyIdUsingService() {
+		int companyId =1;
+		assertNotNull(companyService.findByCompanyId(companyId));
 	}
+	
+	@Test
+	public void deleteCompany() {
+		int companyId = 10;
+		companyService.deleteCompanyById(companyId);
+		assertNull(companyService.findByCompanyId(companyId));
+		}
+
+
 	
 	@Test
 	public void addJobsWithCompany() {
