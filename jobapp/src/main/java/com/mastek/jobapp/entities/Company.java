@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import org.springframework.context.annotation.Scope;
 
+@Component
 @Scope("prototype") // One copy for each test case
 @Entity	// Declare class as entity
 @Table(name="Company") // Declare table name for class

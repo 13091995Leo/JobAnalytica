@@ -19,45 +19,39 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-
+@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs")// declaring the table name for the class
-//@EntityListeners({ProjectLifecycleListener.class})
-//@NamedQueries({@NamedQuery(name="Jobs.findByCompany", query="select j from Jobs j where j.jobTitle = :jobTitle")})
-@XmlRootElement
-public class Job implements Serializable {
+public class Job {
 	
 
 	@Value("-1")
 	private int jobId;
 	
 	@Value("Default Value")
-	@FormParam("jobTitle")
 	private String jobTitle;
 	
 	@Value("Default Value")
-	@FormParam("requirements")
 	private String requirements;
 	
 	@Value("00000000")
-	@FormParam("salary")
-	private int salary;
+	private double salary;
 	
 	@Value("Default")
-	@FormParam("location")
 	private String location;
 	
-	@Value("-1")
-	private int companyId;
+/*	@Value("-1")
+	private int companyId;*/
 	
 	
-	//mappedBy: check the config for Many to Many association
+/*	//mappedBy: check the config for Many to Many association
 	@ManyToMany(mappedBy="jobPoster")
 	@XmlTransient
 	private Set<Company> team = new HashSet<>();
-	
+	*/
 	
 	@Id
 	@Column(name = "projectId")
@@ -99,14 +93,14 @@ public class Job implements Serializable {
 
 
 	@Column(name = "salary")
-	public int getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
 
 
-	public void setSalary(int salary) {
-		this.salary = salary;
+	public void setSalary(double d) {
+		this.salary = d;
 	}
 
 
@@ -122,7 +116,7 @@ public class Job implements Serializable {
 	}
 
 
-	@Column(name = "companyId")
+/*	@Column(name = "companyId")
 	public int getCompanyId() {
 		return companyId;
 	}
@@ -132,10 +126,10 @@ public class Job implements Serializable {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
+*/
 
 
-
-	public Set<Company> getTeam() {
+/*	public Set<Company> getTeam() {
 		return team;
 	}
 
@@ -144,17 +138,14 @@ public class Job implements Serializable {
 	public void setTeam(Set<Company> team) {
 		this.team = team;
 	}
-
+*/
 
 
 	public Job() {
 		System.out.println("Project Created");
 	}
 	
-	@Override
-	public String toString() {
-		return "Jobs [jobId=" + jobId + ", jobTitle=" + jobTitle + ", requirements=" + requirements + ", salary=" + salary +" companyId=" + companyId +"]";
-	}
+	
 	
 	
 	
