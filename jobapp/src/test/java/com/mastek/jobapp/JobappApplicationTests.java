@@ -35,8 +35,11 @@ public class JobappApplicationTests {
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
+		System.out.println("Hello Leo can you hear me");
 	
 	}
+	
+	
 	
 	@Autowired
 	UserService userService;
@@ -52,6 +55,7 @@ public class JobappApplicationTests {
 		user.setSpeciality("Test speciality");
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
+		
 	}
 	
 	@Test
@@ -81,6 +85,7 @@ public class JobappApplicationTests {
 		company.setLocation("Default location");
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
+		System.out.println("Hello from Leo");
 	}
 
 }
