@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
-@Table(name="USER")
+@Table(name="User")
 public class User {
 	
 	@Value("-1")
@@ -41,7 +43,6 @@ public class User {
 	}
 
 	@Column(name="userName")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public String getUserName() {
 		return userName;
 	}
@@ -51,7 +52,6 @@ public class User {
 	}
 
 	@Column(name="locationPreference")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public String getLocationPreference() {
 		return locationPreference;
 	}
@@ -61,7 +61,6 @@ public class User {
 	}
 
 	@Column(name="speciality")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public String getSpeciality() {
 		return speciality;
 	}

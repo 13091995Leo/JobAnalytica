@@ -32,8 +32,7 @@ public class JobappApplicationTests {
 		job.setLocation("London");
 		job.setCompanyId(0001);
 		job = jobService.registerOrUpdateJob(job);
-		assertNotNull(job);
-		
+		assertNotNull(job);j
 	
 		
 		/*System.out.println("Leo Test Merge ");
