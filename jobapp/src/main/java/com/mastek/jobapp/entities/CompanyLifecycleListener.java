@@ -11,7 +11,7 @@ public class CompanyLifecycleListener {
 	
 	@PrePersist
 	public void beforeInsert(Company c) {
-		System.out.println("Before Insert: " + c);
+		System.out.println("Before Insert: " + c);		
 	}
 
 	@PostPersist

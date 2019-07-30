@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.repository.JobRepository;
 
-@Component
+//@Component
 @Scope("singleton")
 @Path("/jobs/")
 public class JobService {
