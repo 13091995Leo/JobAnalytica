@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.repository.CompanyRepository;
 
-@Component
+//@Component
 @Scope("singleton")
 @Path("/companies/")
 public class CompanyService {

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.repository.JobRepository;
 
-@Component
+//@Component
 @Path("/jobs/")
 public class JobService {
 	

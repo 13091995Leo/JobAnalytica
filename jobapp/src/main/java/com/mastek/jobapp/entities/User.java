@@ -43,7 +43,7 @@ public class User implements Serializable{
 	
 	@Value("Default Speciality")
 	@FormParam("speciality")
-	private String speciality;
+	private JobSkillRole speciality;
 	
 	public User() {
 		System.out.println("User Created");
@@ -93,11 +93,11 @@ public class User implements Serializable{
 	}
 
 	@Column(name="speciality")
-	public String getSpeciality() {
+	public JobSkillRole getSpeciality() {
 		return speciality;
 	}
 
-	public void setSpeciality(String speciality) {
+	public void setSpeciality(JobSkillRole speciality) {
 		this.speciality = speciality;
 	}
 	
