@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.UserRepository;
 
-@Component
+//@Component
 @Path("/users/")
 public class UserService {
 	

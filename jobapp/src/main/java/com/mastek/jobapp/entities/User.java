@@ -43,8 +43,18 @@ public class User implements Serializable{
 	
 	@Value("Default Speciality")
 	@FormParam("speciality")
-	private String speciality;
+	private JobSkillRole speciality;
+
 	
+	@Value("Default Password")
+	@FormParam("userPassword")
+	private String userPassword;
+	
+	
+	public void setSpeciality(JobSkillRole speciality) {
+		this.speciality = speciality;
+	}
+
 	public User() {
 		System.out.println("User Created");
 	}
@@ -92,13 +102,10 @@ public class User implements Serializable{
 		this.locationPreference = locationPreference;
 	}
 
-	@Column(name="speciality")
-	public String getSpeciality() {
-		return speciality;
+
+	@Column
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
-	}
-	
 }

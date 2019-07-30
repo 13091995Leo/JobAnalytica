@@ -1,6 +1,8 @@
 package com.mastek.jobapp.apis;
 
 
+import java.util.List;
+
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -9,15 +11,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.repository.JobRepository;
 
-@Component
+//@Component
+@Scope("singleton")
 @Path("/jobs/")
 public class JobService {
 	
@@ -64,7 +69,14 @@ public class JobService {
 	            System.out.println(statement);
 	            return statement;
 	        }
-				
-		}	
+
+		}
+	
+	@GET
+	@Path("/fetchBySearchParam")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
+		return jobRepository.findBySearchParam(searchParam);
+	}
 
 }

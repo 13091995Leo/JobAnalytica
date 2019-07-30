@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobsearch.component.css']
 })
 export class JobsearchComponent implements OnInit {
+  jobid: number
+  jobTitle: string
+  requirements: string
+  salary: number
 
   constructor() { }
 
