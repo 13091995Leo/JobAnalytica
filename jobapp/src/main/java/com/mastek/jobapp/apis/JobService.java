@@ -1,27 +1,13 @@
 package com.mastek.jobapp.apis;
 
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.repository.JobRepository;
 
-
-
 @Component
-@Scope("singleton")
-@Path("/job/")
-
 public class JobService {
 	
 	@Autowired
@@ -31,31 +17,33 @@ public class JobService {
 		System.out.println("Job Service Created");
 	}
 	
-	
-	@GET
-	@Path("/list")
-	@Produces({MediaType.APPLICATION_JSON})
-	public Iterable<Job> listAllJ(){
-		return jobRepository.findAll();
-	}
-	
-	
-	@POST
-	@Path("/register")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Job registerOrUpdateJob(
-			@BeanParam Job job) {
+	public Job registerOrUpdateJob(Job job) {
 		job = jobRepository.save(job);
 		System.out.println("Job Registered "+job);
 		return job;
 	}
 	
-	@DELETE
-	@Path("/delete/{jobId}")	
-	public void deleteByjobId(int jobId) {
-			jobRepository.deleteById(jobId);
-			
+	
+	public Job findByJobId(int jobId) {
+		try {
+			return jobRepository.findById(jobId).get();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+		
+	public void deleteJobById(int jobId) {
+		 try {
+	            jobRepository.deleteById(jobId);
+	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
+	            System.out.println(statement);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            String statement = "ERROR";
+	            System.out.println(statement);
+	        }
+				
 		}	
 
 }
