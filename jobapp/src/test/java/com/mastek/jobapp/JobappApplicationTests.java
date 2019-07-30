@@ -20,7 +20,7 @@ import com.mastek.jobapp.entities.User;
 @SpringBootTest
 public class JobappApplicationTests {
 	
-/*	@Autowired
+	@Autowired
 	Job job;	
 	
 	@Autowired
@@ -37,18 +37,18 @@ public class JobappApplicationTests {
 	}
 
 
-	@Test
-	public void deleteJobUsingService() {
-	int jobId = 2;
-	jobService.deleteJobById(jobId);
-	assertNull(jobService.findByJobId(jobId));
-	}
+//	@Test
+//	public void deleteJobUsingService() {
+//	int jobId = 2;
+//	jobService.deleteJobById(jobId);
+//	assertNull(jobService.findByJobId(jobId));
+//	}
 
-	@Test
-	public void findByJobIdUsingService() {
-		int jobId = 4;
-		assertNotNull(jobService.findByJobId(jobId));
-	}
+//	@Test
+//	public void findByJobIdUsingService() {
+//		int jobId = 4;
+//		assertNotNull(jobService.findByJobId(jobId));
+//	}
 	
 	@Autowired
 	UserService userService;
@@ -65,18 +65,18 @@ public class JobappApplicationTests {
 		assertNotNull(user);
 	}
 	
-	@Test
-	public void findByUserIdUsingService() {
-		int userId = 1;
-		assertNotNull(userService.findByUserId(userId));
-	}
+//	@Test
+//	public void findByUserIdUsingService() {
+//		int userId = 1;
+//		assertNotNull(userService.findByUserId(userId));
+//	}
 	
-	@Test
-	public void deleteByUserIdUsingService() {
-		int userId = 2;
-		userService.deleteByUserId(userId);
-		assertNull(userService.findByUserId(userId));
-	}
+//	@Test
+//	public void deleteByUserIdUsingService() {
+//		int userId = 2;
+//		userService.deleteByUserId(userId);
+//		assertNull(userService.findByUserId(userId));
+//	}
 
 	@Autowired
 	CompanyService companyService;
@@ -94,18 +94,18 @@ public class JobappApplicationTests {
 	}
 	
 	
-	@Test
-	public void findByCompanyIdUsingService() {
-		int companyId = 1;
-		assertNotNull(companyService.findByCompanyId(companyId));
-	}
+//	@Test
+//	public void findByCompanyIdUsingService() {
+//		int companyId = 1;
+//		assertNotNull(companyService.findByCompanyId(companyId));
+//	}
 	
-	@Test
-	public void deleteCompany() {
-		int companyId = 11;
-		companyService.deleteCompanyById(companyId);
-		assertNull(companyService.findByCompanyId(companyId));
-		}
+//	@Test
+//	public void deleteCompany() {
+//		int companyId = 11;
+//		companyService.deleteCompanyById(companyId);
+//		assertNull(companyService.findByCompanyId(companyId));
+//		}
 
 
 	
@@ -148,5 +148,4 @@ public class JobappApplicationTests {
 		
 		companyService.registerOrUpdateCompany(comp1);
 		}
-	*/
 }
