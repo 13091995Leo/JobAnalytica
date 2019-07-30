@@ -1,1 +1,44 @@
-<p>jobsearch works!</p>
+<h2>Job Search Page</h2>
+
+<table>
+        <tr>
+            <td>Job ID:</td>
+            <td>{{jobId}}</td>
+            <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+                <td>Job Title</td>
+                <td *ngIf="!isEditable">{{jobTitle}}</td>
+                <td *ngIf="isEditable"></td>
+        </tr>
+        
+        <tr>
+                <td>Requirements:</td>
+                <td *ngIf="!isEditable">{{requirements}}</td>
+                <td *ngIf="isEditable"><input [(ngModel)]="requirements"></td>
+        </tr>
+
+        <tr>
+                <td>Salary:</td>
+                <td *ngIf="!isEditable">{{salary}}</td>
+                <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>
+        </tr>
+        
+        <tr>
+                    <td>Location:</td>
+                    <td *ngIf="!isEditable">{{location}}</td>
+                    <td *ngIf="isEditable"></td>
+        </tr>
+
+        <tr *ngFor = "let a of assignments; let i = index">
+            <td>{{a.jobId}}</td>
+            <td>{{a.jobTitle}}</td>
+            <td>{{a.requirements}}</td>
+            <td>{{a.salary}}</td>
+            <td>{{a.location}}</td>
+            <td><button (click)="deleteJob(i)">x</button></td>
+    
+        </tr> 
+    </table>
