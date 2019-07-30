@@ -44,6 +44,11 @@ public class User implements Serializable{
 	@Value("Default Speciality")
 	@FormParam("speciality")
 	private JobSkillRole speciality;
+
+	
+	@Value("Default Password")
+	@FormParam("userPassword")
+	private String userPassword;
 	
 	
 	public void setSpeciality(JobSkillRole speciality) {
@@ -96,5 +101,11 @@ public class User implements Serializable{
 	public void setLocationPreference(String locationPreference) {
 		this.locationPreference = locationPreference;
 	}
-	
+
+
+	@Column
+	public String getUserPassword() {
+		return userPassword;
+	}
+
 }

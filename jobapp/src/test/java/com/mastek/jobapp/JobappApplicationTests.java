@@ -3,6 +3,8 @@ package com.mastek.jobapp;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,16 @@ import com.mastek.jobapp.apis.JobService;
 import com.mastek.jobapp.apis.UserService;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
+import com.mastek.jobapp.entities.JobRole;
+import com.mastek.jobapp.entities.JobSkillRole;
+import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JobappApplicationTests {
-	
-/*	@Autowired
+
+	@Autowired
 	Job job;	
 	
 	@Autowired
@@ -28,8 +33,7 @@ public class JobappApplicationTests {
 
 	@Test
 	public void addOrUpdateJobUsingService() {
-		job.setJobTitle("Test Title");
-		job.setRequirements("Test requirement");
+		job.setJobTitle(JobRole.FullStackDeveloper);
 		job.setSalary(10.00);
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
@@ -37,18 +41,18 @@ public class JobappApplicationTests {
 	}
 
 
-	@Test
-	public void deleteJobUsingService() {
-	int jobId = 2;
-	jobService.deleteJobById(jobId);
-	assertNull(jobService.findByJobId(jobId));
-	}
+//	@Test
+//	public void deleteJobUsingService() {
+//	int jobId = 2;
+//	jobService.deleteJobById(jobId);
+//	assertNull(jobService.findByJobId(jobId));
+//	}
 
-	@Test
-	public void findByJobIdUsingService() {
-		int jobId = 4;
-		assertNotNull(jobService.findByJobId(jobId));
-	}
+//	@Test
+//	public void findByJobIdUsingService() {
+//		int jobId = 4;
+//		assertNotNull(jobService.findByJobId(jobId));
+//	}
 	
 	@Autowired
 	UserService userService;
@@ -60,7 +64,7 @@ public class JobappApplicationTests {
 	public void addOrUpdateUserUsingService() {
 		user.setUserName("Test name");
 		user.setLocationPreference("Test location");
-		user.setSpeciality("Test speciality");
+		user.setSpeciality(JobSkillRole.AWS);
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
 	}
@@ -116,37 +120,58 @@ public class JobappApplicationTests {
 		comp1.setLocation("Leeds");
 		
 		Job job1 = new Job();
-		job1.setJobTitle("Dev Ops");
-		job1.setRequirements("Python and JavaScript");
+		job1.setJobTitle(JobRole.DatabaseManager);
 		
 		Job job2 = new Job();
-		job2.setJobTitle("Testing");
-		job2.setRequirements("Java");
+		job2.setJobTitle(JobRole.DevOpsEngineer);
 		
 		User user1 = new User();
 		user1.setUserName("James");
-		user1.setSpeciality("Python");
+		user1.setSpeciality(JobSkillRole.AWS);
 		user1.setLocationPreference("Leeds");
 		
 		User user2 = new User();
 		user2.setUserName("John");
-		user2.setSpeciality("JavasScript and Java");
+		user2.setSpeciality(JobSkillRole.MongoDB);
 		user2.setLocationPreference("Manchester");
 		
-		// Many to One
+		Requirement req1 = new Requirement();
+		req1.setRequirement(JobSkillRole.CSS);
+		
+		Requirement req2 = new Requirement();
+		req2.setRequirement(JobSkillRole.MongoDB);
+		
+		// Many to One - jobs to company
 		comp1.getJobs().add(job1);
 		comp1.getJobs().add(job2);
 		
-		// One To Many
+		// One To Many - company to jobs
 		job1.setCurrentCompany(comp1);
 		job2.setCurrentCompany(comp1);
 		
-		// Many To many
+		// Many To many - users to jobs
 		job1.getAssignments().add(user1);
 		job1.getAssignments().add(user2);
 		job2.getAssignments().add(user2);
 		
+		// Many To many - users to jobs
+		job1.getRequirements().add(req1);
+		job1.getRequirements().add(req2);
+		
 		companyService.registerOrUpdateCompany(comp1);
 		}
-	*/
+
+		
+		@Test
+		public void checkFetchJobBySearchParam() {
+		String searchParam = "Dev Ops";
+		List<Job> job = jobService.fetchJobUsingSearchBar(searchParam);
+		for (Job job2 : job) {
+			System.out.println(job2);
+		}
+	}
+
+	
+	
+
 }
