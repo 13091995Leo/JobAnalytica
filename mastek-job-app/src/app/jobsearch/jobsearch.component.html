@@ -1,1 +1,15 @@
-<p>jobsearch works!</p>
+<h1>Specified Jobs</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Salary</th>
+    </tr>
+    <tr *ngFor="let m of matches; let i = index">
+        <td>{{m.jobTitle}}</td>
+        <td>{{m.location}}</td>
+        <td>{{salary}}</td>
+        <td><button (click)="saveJob(i)">Save</button></td>
+    </tr>
+</table>
+<button href="">Back</button>
