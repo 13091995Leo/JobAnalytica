@@ -24,9 +24,9 @@ import { JobsearchComponent } from './jobsearch/jobsearch.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

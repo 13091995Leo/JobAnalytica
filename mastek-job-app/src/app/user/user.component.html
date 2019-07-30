@@ -1,1 +1,17 @@
-<p>user works!</p>
+<h1>User Page</h1>
+
+<h2>Job Recommendations</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Salary</th>
+    </tr>
+    <tr *ngFor="let m of matches; let i = index">
+        <td>{{m.jobTitle}}</td>
+        <td>{{m.location}}</td>
+        <td>{{salary}}</td>
+        <td><button (click)="deleteJob(i)">Delete</button></td>
+    </tr>
+</table>
+<button href="">Back</button>
