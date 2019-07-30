@@ -1,6 +1,16 @@
 package com.mastek.jobapp.apis;
 
 
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +18,7 @@ import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.repository.JobRepository;
 
 @Component
+@Path("/jobs/")
 public class JobService {
 	
 	@Autowired
@@ -17,14 +28,20 @@ public class JobService {
 		System.out.println("Job Service Created");
 	}
 	
-	public Job registerOrUpdateJob(Job job) {
+	@POST
+	@Path("/register")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Job registerOrUpdateJob(@BeanParam Job job) {
 		job = jobRepository.save(job);
 		System.out.println("Job Registered "+job);
 		return job;
 	}
 	
-	
-	public Job findByJobId(int jobId) {
+	@Path("/find/{jobId}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
 			return jobRepository.findById(jobId).get();
 		} catch (Exception e) {
@@ -32,16 +49,20 @@ public class JobService {
 			return null;
 		}
 	}
-		
-	public void deleteJobById(int jobId) {
+	
+	@DELETE
+	@Path("/delete/{jobId}")
+	public String deleteJobById(@PathParam("jobId") int jobId) {
 		 try {
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
+	            return statement;
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            String statement = "ERROR";
+	            String statement = "Job with job ID = " + jobId + " does not exist";
 	            System.out.println(statement);
+	            return statement;
 	        }
 				
 		}	

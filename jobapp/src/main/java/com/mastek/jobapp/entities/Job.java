@@ -16,16 +16,20 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
-@Component
+//Used for Services only, needs to be commented out for Postman to work
+//@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs")// declaring the table name for the class
+@XmlRootElement
 public class Job implements Serializable{
 	
 
@@ -33,15 +37,19 @@ public class Job implements Serializable{
 	private int jobId;
 	
 	@Value("Default Value")
+	@FormParam("jobTitle")
 	private String jobTitle;
 	
 	@Value("Default Value")
+	@FormParam("requirements")
 	private String requirements;
 	
 	@Value("00000000")
+	@FormParam("salary")
 	private double salary;
 	
 	@Value("Default")
+	@FormParam("location")
 	private String location;
 	
 	private Company currentCompany;
@@ -60,18 +68,15 @@ public class Job implements Serializable{
 /// Many to many relationship between job and users.
 	 private Set<User> assignments = new HashSet<>();
 	 
-	 @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	 @JoinTable(
-			name = "ASSIGNMENTS",
-			joinColumns = @JoinColumn(name = "FK_JOBID"),
-			inverseJoinColumns = @JoinColumn(name="FK_USERID")
-		)
-		public Set<User> getAssignments() {
-		return assignments;
-		}
-		public void setAssignments(Set<User> assignments) {
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "ASSIGNMENTS",joinColumns = @JoinColumn(name = "FK_JOBID"),inverseJoinColumns = @JoinColumn(name="FK_USERID"))
+	@XmlTransient
+	public Set<User> getAssignments() {
+		 return assignments;
+	}
+	public void setAssignments(Set<User> assignments) {
 		this.assignments = assignments;
-		}
+	}
 
 	
 	@Id
