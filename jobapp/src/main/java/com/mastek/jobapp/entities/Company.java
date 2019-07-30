@@ -51,6 +51,10 @@ public class Company implements Serializable{
 	@FormParam("industry")
 	private String industry;
 	
+	@Value("Default Password")
+	@FormParam("companyPassword")
+	private String companyPassword;
+	
 	private Set<Job> jobs = new HashSet<>();
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="currentCompany")
@@ -105,6 +109,15 @@ public class Company implements Serializable{
 		this.industry = industry;
 	}
 	
+	@Column
+	public String getCompanyPassword() {
+		return companyPassword;
+	}
+
+	public void setCompanyPassword(String companyPassword) {
+		this.companyPassword = companyPassword;
+	}
+
 	@Override
 	public String toString() {
 		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", location=" + location + ", industry=" + industry + "]";
