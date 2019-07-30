@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,9 +28,16 @@ import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
 //@Component
+
+
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
-@Table(name="Jobs")// declaring the table name for the class
+@Table(name="Jobs") // declaring the table name for the class
+@NamedQueries({
+	@NamedQuery( name = "Job.findBySearchParam",
+			query = "select j from Job j where j.jobTitle = :searchParam "
+			)
+})
 @XmlRootElement
 public class Job implements Serializable{
 	
@@ -148,7 +157,7 @@ public class Job implements Serializable{
 	
 	
 	
-	
+	 
 	
 	
 	

@@ -3,6 +3,8 @@ package com.mastek.jobapp;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import com.mastek.jobapp.entities.User;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JobappApplicationTests {
-	
+
 	@Autowired
 	Job job;	
 	
@@ -65,18 +67,18 @@ public class JobappApplicationTests {
 		assertNotNull(user);
 	}
 	
-//	@Test
-//	public void findByUserIdUsingService() {
-//		int userId = 1;
-//		assertNotNull(userService.findByUserId(userId));
-//	}
+	@Test
+	public void findByUserIdUsingService() {
+		int userId = 1;
+		assertNotNull(userService.findByUserId(userId));
+	}
 	
-//	@Test
-//	public void deleteByUserIdUsingService() {
-//		int userId = 2;
-//		userService.deleteByUserId(userId);
-//		assertNull(userService.findByUserId(userId));
-//	}
+	@Test
+	public void deleteByUserIdUsingService() {
+		int userId = 2;
+		userService.deleteByUserId(userId);
+		assertNull(userService.findByUserId(userId));
+	}
 
 	@Autowired
 	CompanyService companyService;
@@ -94,18 +96,18 @@ public class JobappApplicationTests {
 	}
 	
 	
-//	@Test
-//	public void findByCompanyIdUsingService() {
-//		int companyId = 1;
-//		assertNotNull(companyService.findByCompanyId(companyId));
-//	}
+	@Test
+	public void findByCompanyIdUsingService() {
+		int companyId = 1;
+		assertNotNull(companyService.findByCompanyId(companyId));
+	}
 	
-//	@Test
-//	public void deleteCompany() {
-//		int companyId = 11;
-//		companyService.deleteCompanyById(companyId);
-//		assertNull(companyService.findByCompanyId(companyId));
-//		}
+	@Test
+	public void deleteCompany() {
+		int companyId = 11;
+		companyService.deleteCompanyById(companyId);
+		assertNull(companyService.findByCompanyId(companyId));
+		}
 
 
 	
@@ -148,4 +150,18 @@ public class JobappApplicationTests {
 		
 		companyService.registerOrUpdateCompany(comp1);
 		}
+
+		
+		@Test
+		public void checkFetchJobBySearchParam() {
+		String searchParam = "Dev Ops";
+		List<Job> job = jobService.fetchJobUsingSearchBar(searchParam);
+		for (Job job2 : job) {
+			System.out.println(job2);
+		}
+	}
+
+	
+	
+
 }
