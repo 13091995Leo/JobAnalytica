@@ -16,4 +16,8 @@ export class JobsearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  saveJob(index) {
+    
+  }
+
 }
