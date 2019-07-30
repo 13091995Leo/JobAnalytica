@@ -17,37 +17,44 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
-
-@Component
+// Used for Services only, needs to be commented out for Postman to work
+//@Component
 @Scope("prototype") // One copy for each test case
 @Entity	// Declare class as entity
 @Table(name="Company") // Declare table name for class
 @EntityListeners({CompanyLifecycleListener.class})
 @NamedQueries({@NamedQuery(name="Company.findByIndustry", query="select c from Company c where c.location = 'Leeds'")})
+@XmlRootElement
 public class Company implements Serializable{
 	
 	@Value("-1")
 	private int companyId;
 	
 	@Value("Default Company")
+	@FormParam("companyName")
 	private String companyName;
 	
 	@Value("Default Location")
+	@FormParam("location")
 	private String location;
 	
 	@Value("Default Industry")
+	@FormParam("industry")
 	private String industry;
 	
 	private Set<Job> jobs = new HashSet<>();
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="currentCompany")
+	@XmlTransient
 	public Set<Job> getJobs() {
 		return jobs;
 	}

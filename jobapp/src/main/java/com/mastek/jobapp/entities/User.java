@@ -15,28 +15,34 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import javax.persistence.Table;
-
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-
-@Component
+//Used for Services only, needs to be commented out for Postman to work
+//@Component
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
+@XmlRootElement
 public class User implements Serializable{
 	
 	@Value("-1")
 	private int userId;
 	
 	@Value("Default User Name")
+	@FormParam("userName")
 	private String userName;
 	
 	@Value("Default Location")
+	@FormParam("locationPreference")
 	private String locationPreference;
 	
 	@Value("Default Speciality")
+	@FormParam("speciality")
 	private String speciality;
 	
 	public User() {
@@ -47,6 +53,7 @@ public class User implements Serializable{
 	private Set<Job> group = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@XmlTransient
 	public Set<Job> getGroup() {
 		return group;
 	}
