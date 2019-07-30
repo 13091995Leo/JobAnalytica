@@ -102,7 +102,6 @@ public class User implements Serializable{
 		this.locationPreference = locationPreference;
 	}
 
-
 	@Column
 	public String getUserPassword() {
 		return userPassword;

@@ -24,7 +24,7 @@ import com.mastek.jobapp.entities.User;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JobappApplicationTests {
-
+/*
 	@Autowired
 	Job job;	
 	
@@ -41,18 +41,18 @@ public class JobappApplicationTests {
 	}
 
 
-//	@Test
-//	public void deleteJobUsingService() {
-//	int jobId = 2;
-//	jobService.deleteJobById(jobId);
-//	assertNull(jobService.findByJobId(jobId));
-//	}
+	@Test
+	public void deleteJobUsingService() {
+	int jobId = 2;
+	jobService.deleteJobById(jobId);
+	assertNull(jobService.findByJobId(jobId));
+	}
 
-//	@Test
-//	public void findByJobIdUsingService() {
-//		int jobId = 4;
-//		assertNotNull(jobService.findByJobId(jobId));
-//	}
+	@Test
+	public void findByJobIdUsingService() {
+		int jobId = 4;
+		assertNotNull(jobService.findByJobId(jobId));
+	}
 	
 	@Autowired
 	UserService userService;
@@ -170,7 +170,7 @@ public class JobappApplicationTests {
 			System.out.println(job2);
 		}
 	}
-
+*/
 	
 	
 
