@@ -1,1 +1,24 @@
-<p>job works!</p>
+
+<br><br><br><br><br><br><br><br>
+
+<h2>Job Listings</h2>
+
+<table>
+    <tr>
+        <td></td>
+        <td>{{jobId}}</td>
+        <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
+        <td></td>
+    </tr>
+    
+    <tr *ngFor = "let a of assignments; let i = index">
+        <td>{{a.jobId}}</td>
+        <td>{{a.jobTitle}}</td>
+        <td>{{a.requirements}}</td>
+	    <td>{{a.salary}}</td>
+	    <td>{{a.location}}</td>
+        <td><button (click)="deleteJob(i)">x</button></td>
+
+    </tr> 
+</table>
+
