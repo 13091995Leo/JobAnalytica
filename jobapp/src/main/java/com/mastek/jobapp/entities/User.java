@@ -107,5 +107,9 @@ public class User implements Serializable{
 	public String getUserPassword() {
 		return userPassword;
 	}
+	
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
 
 }
