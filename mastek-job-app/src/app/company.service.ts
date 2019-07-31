@@ -9,12 +9,10 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class CompanyService {
 
   rootURL:string
-
   
-  
-    constructor(private httpsvc:HttpClient) {
+  constructor(private httpsvc:HttpClient) {
 
-    this.rootURL="http://localhost:4200/companyPage"
+  this.rootURL="http://localhost:4200/companyPage"
   }
 
   updateJobOnServer(job):Observable<CompanyComponent>{
@@ -28,10 +26,8 @@ export class CompanyService {
     return this.httpsvc.post<CompanyComponent>(
     this.rootURL+"/register",
     reqBody, httpOptions)
-
+  
+  }
 
 }
-
-
-  }
 

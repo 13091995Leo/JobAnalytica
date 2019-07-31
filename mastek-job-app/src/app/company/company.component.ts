@@ -19,10 +19,7 @@ export class CompanyComponent implements OnInit {
   this.jobTitle = "IT Admin Assistant"
   this.salary = 14000
   this.location = "London"
-
-
-
-   }
+  }
 
   ngOnInit() {
   }
