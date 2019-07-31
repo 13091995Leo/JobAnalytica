@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JobComponent } from '../job/job.component';
 
 @Component({
   selector: 'app-user',
@@ -7,13 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  recommendations: JobComponent[]
+
+  savedJobs: JobComponent[]
+  selectJobId: number
+
+  constructor() {
+    this.recommendations = [{},{}]
+   }
 
   ngOnInit() {
   }
 
-  recommendations() {
-    
+  deleteJob(index) {
+    this.recommendations.splice(index, 1)
   }
+
+  updateSelectedJobId(jid) {
+    this.selectJobId = jid
+  }
+
+  loadAllJobs() {
+    this.userSvc
+  }
+
 
 }
