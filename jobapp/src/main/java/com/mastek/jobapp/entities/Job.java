@@ -137,7 +137,7 @@ public class Job implements Serializable{
 	}
 
 	public Job() {
-		System.out.println("Project Created");
+		System.out.println("Job Created");
 	}
 
 

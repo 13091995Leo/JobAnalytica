@@ -188,12 +188,13 @@ public class JobappApplicationTests {
 	        comp.setLocation(locArr[t]);
 	        comp.setCompanyPassword("******");
 	        comp.setIndustry(industryArr[t]);
-        	
-        	companyService.registerOrUpdateCompany(comp);
-	   
-	        for (int i = 0; i < 100; i++) {
+        	comp.setCompanyId(t);
+       	
+ 
+	        for (int i = 0; i < 10; i++) {
 	           
-	            i = (int) Math.floor(10*Math.random());
+	        	
+	            int v = (int) Math.floor(10*Math.random());
 	            int j = (int) Math.floor(10*Math.random());
 	            int k = (int) Math.floor(10*Math.random());
 	            int x = (int) Math.floor(10*Math.random());
@@ -212,8 +213,8 @@ public class JobappApplicationTests {
 	            job2.setSalary(k*10000);
 		  
 	            User user1 = new User();
-	            user1.setUserName(firstNameArr[i]+middleNameArr[j]+lastNameArr[k]);
-	            user1.setLocationPreference(locArr[i]);
+	            user1.setUserName(firstNameArr[v]+middleNameArr[j]+lastNameArr[k]);
+	            user1.setLocationPreference(locArr[v]);
 	            user1.setUserPassword("******");
 		           
 	            User user2 = new User();
@@ -222,7 +223,7 @@ public class JobappApplicationTests {
 	            user2.setUserPassword("******");
 	           
 	            Requirement req1 = new Requirement();
-	            req1.setRequirement(reqSpecArr[i]);
+	            req1.setRequirement(reqSpecArr[v]);
 	           
 	            Requirement req2 = new Requirement();
 	            req2.setRequirement(reqSpecArr[j]);
@@ -251,9 +252,11 @@ public class JobappApplicationTests {
 	            user1.getUserSpeciality().add(req1);
 	            user1.getUserSpeciality().add(req2);
 	            user1.getUserSpeciality().add(req3);
-	           
-	       
+	            
+		        companyService.registerOrUpdateCompany(comp);
+
 	        }
+
         }
 	}
 	
