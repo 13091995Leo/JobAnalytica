@@ -5,5 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class UserloginService {
 
-  constructor() { }
+  rootURL: String
+
+  constructor() { 
+
+    this.rootURL = "http://localhost:7700/userlogin"
+
+  }
 }
