@@ -1,4 +1,24 @@
 <h1>Company Login</h1>
-<input #inputCName>
-<input #inputCPassword>
-<input type = "submit">
+<table>
+    <tr>
+        <td>Company Name</td>
+        <td>
+            <input [(ngModel)]="name">
+        </td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td>
+            <input [(ngModel)]="password">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit">
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<button href="job.component.html">Back</button>
