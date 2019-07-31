@@ -8,7 +8,18 @@ import { Company } from '../company';
   styleUrls: ['./job.component.css']
 })
 export class JobComponent implements OnInit {
-  
+
+
+
+  jobId: number
+  jobTitle: string
+  requirements: string
+  salary: number
+  location: string
+  currentCompany: Company
+  assignments: User[]
+  isEditable:boolean
+  isProjectFormVisible: boolean
 
   isProjectFormValid: boolean
   invalidFormMessage:String
@@ -34,7 +45,9 @@ export class JobComponent implements OnInit {
       {userId:22, userName:"Triple H", locationPreference:"Cuba", speciality:"AngularJS"},  
       {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
     ]
+
   }
   }
 
-  ngOnInit()
+ngOnInit();{
+}
