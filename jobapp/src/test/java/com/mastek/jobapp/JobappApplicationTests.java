@@ -16,8 +16,6 @@ import com.mastek.jobapp.apis.JobService;
 import com.mastek.jobapp.apis.UserService;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
-import com.mastek.jobapp.entities.JobRole;
-import com.mastek.jobapp.entities.JobSkillRole;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
 
@@ -30,6 +28,12 @@ public class JobappApplicationTests {
 	
 	@Autowired
 	JobService jobService;
+	
+	@Autowired
+	CompanyService companyService;
+	
+	@Autowired
+	Company company;
 
 	@Test
 	public void addOrUpdateJobUsingService() {
@@ -172,6 +176,12 @@ public class JobappApplicationTests {
 	}
 */
 	
+
+	
+	
+		
+		
+
 	
 
 }

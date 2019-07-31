@@ -30,7 +30,7 @@ public class Requirement {
 	
 	@Value("Defaualt requirement")
 	@FormParam("requirement")
-	private JobSkillRole requirement;
+	private String requirement;
 	
 	private Set<Job> jobRequirement = new HashSet<>();
 	
@@ -56,11 +56,11 @@ public class Requirement {
 	}
 
 	@Column(name="requirement")
-	public JobSkillRole getRequirement() {
+	public String getRequirement() {
 		return requirement;
 	}
 
-	public void setRequirement(JobSkillRole requirement) {
+	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
 }
