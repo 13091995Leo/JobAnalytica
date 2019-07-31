@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Company } from '../company';
+import { JobService } from '../job.service';
 
 @Component({
   selector: 'app-job',
@@ -44,6 +45,25 @@ export class JobComponent implements OnInit {
       {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
     ]
   }
-  }
+  
+  
+  ngOnInit() {
+    //this will be called by angular after object creation
 
-  ngOnInit()
+    //subscribe observable call and wait for the response
+    this.fetchCurrentEmployeeFromService()
+    }
+    fetchCurrentJobFromService(){
+    this.jobSvc.findJobByJobId(this.jobId).subscribe(
+      //use the response to initialise the component properties
+      response => { //assign the data recived from the server as response to the current component
+        this.jobId = response.jobId
+        this.jobTitle = response.name
+        this.salary = response.salary
+        this.currentDepartment = response.currentDepartment
+        this.assignments = response.assignments
+      }
+    )
+    }
+  }
+}
