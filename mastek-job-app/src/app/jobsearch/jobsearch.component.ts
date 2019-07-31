@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JobService } from '../job.service';
 
 @Component({
   selector: 'app-jobsearch',
@@ -6,12 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobsearch.component.css']
 })
 export class JobsearchComponent implements OnInit {
-  jobid: number
-  jobTitle: string
-  requirements: string
-  salary: number
+  
 
-  constructor() { }
+
+  isJobFormValid:boolean
+  invalidFormMessage:String
+
+  selectJobId: number
+
+  constructor(private jobsvc:JobService) { }
+
+
+ 
 
   ngOnInit() {
   }
@@ -19,5 +26,7 @@ export class JobsearchComponent implements OnInit {
   saveJob(index) {
     
   }
+
+
 
 }
