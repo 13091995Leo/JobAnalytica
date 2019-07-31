@@ -6,13 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class JobService {
 
+  rootURL: String
 
-  constructor() {
+  constructor(private httpsvc:HttpClient) {
 
+    this.rootURL="http://localhost:7700/jobs"
 
   } 
 
-
+  
   
 
   
