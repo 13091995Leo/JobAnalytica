@@ -9,6 +9,16 @@ import { Company } from '../company';
 })
 export class JobComponent implements OnInit {
   
+  jobId: number
+  jobTitle: string
+  requirements: string
+  salary: number
+  location: string
+  currentCompany: Company
+  assignments: User[]
+  isEditable: boolean
+  isProjectFormVisible: String
+  
 
   isProjectFormValid: boolean
   invalidFormMessage:String
