@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JobComponent } from './job/job.component';
 import { User } from './user';
 import { Company } from './company';
-=======
->>>>>>> df4967e41624abd3d5883d0cb2c372c31a77bbba
 
 
-<<<<<<< HEAD
     Injectable({ //ensures that service can be used by multiple components on declaration in constructor
       providedIn: 'root' //its available in all components on current module
     })
@@ -80,19 +76,5 @@ import { Company } from './company';
       
     
     }
-=======
-  rootURL: String
-
-  constructor() {
-
-    
-
-  }
-
- 
-  
-
-  
->>>>>>> df4967e41624abd3d5883d0cb2c372c31a77bbba
 
   

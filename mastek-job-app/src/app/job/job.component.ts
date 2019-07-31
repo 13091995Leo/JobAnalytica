@@ -48,7 +48,6 @@ export class JobComponent implements OnInit {
     ]
   }
   
-<<<<<<< HEAD
   
   ngOnInit() {
     //this will be called by angular after object creation
@@ -69,8 +68,3 @@ export class JobComponent implements OnInit {
     )
     }
   }
-=======
-
-  ngOnInit() {}
-}
->>>>>>> df4967e41624abd3d5883d0cb2c372c31a77bbba
