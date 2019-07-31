@@ -1,0 +1,18 @@
+<h1>User Page</h1>
+
+<!-- Table to display job recommendations -->
+<h2>Job Recommendations</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Salary</th>
+    </tr>
+    <tr *ngFor="let r of recommendations; let i = index">
+        <td>{{m.jobTitle}}</td>
+        <td>{{m.location}}</td>
+        <td>{{salary}}</td>
+        <td><button (click)="deleteJob(i)">Delete</button></td>
+    </tr>
+</table>
+<button href="">Back</button>

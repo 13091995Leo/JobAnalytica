@@ -1,0 +1,61 @@
+
+<h2>Job Post</h2>
+<table>
+        <tr>
+            <td>JobId:</td>
+            <td>{{jobId}}</td>
+            <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
+            <td></td>
+        </tr>
+
+        <tr>
+                <td>Job Title:</td>
+                <td *ngIf="!isEditable">{{jobTitle}}</td>
+                <td *ngIf="isEditable">
+                <div class ="form-group">
+                    <input [(ngModel)]="jobTitle"
+                        #inputEname="ngModel"
+                        minlength="3"
+                        maxlength="48">
+        
+                    <span [hidden]="inputEname.valid || inputEname.pristine"
+                    class="alert alert-danger">
+                    Job Title should not be less than 3 characters</span>
+                </div>
+                </td>
+        </tr>
+
+        <tr>
+            <td>Salary:</td>
+            <td *ngIf="!isEditable">{{salary}}</td>
+            <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>
+        </tr>
+
+        <tr>
+            <td>Location:</td>
+            <td *ngIf="!isEditable">{{location}}</td>
+            <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
+        </tr>
+
+</table>
+
+
+
+<!--
+<form (submit)="createNewJobListing">
+    <table>
+        <tr>
+            <td>
+                <select jobTitle="jobId" #selectJobId
+                (change)="updateSelectedJobId(selectJobId.value)">
+                <option *ngFor="let j of allJobs" value="{{j.jobId}}">{{j.jobId}}::{{j.jobTitle}}</option>
+                </select>
+            </td>
+
+            <td> <input type="submit" value="Add"></td>
+            <td> <div [hidden]="isJobFormValid">
+                    {{invalidFormMessage}}
+                </div>
+        </tr>
+        </table>
+</form> -->
