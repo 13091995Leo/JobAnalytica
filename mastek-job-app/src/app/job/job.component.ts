@@ -7,24 +7,16 @@ import { JobService } from '../job.service';
   styleUrls: ['./job.component.css']
 })
 export class JobComponent implements OnInit {
-  jobTitle: string
-  location: string
-  salary: number
+  
 
   isJobFormValid:boolean
   invalidFormMessage:String
 
   selectJobId: number
 
-  constructor(private jobsvc:JobService) { 
+  constructor() { 
   
-  // this.isEditable=false
-  // this.isJobFormVisible=false
-  // this.jobId = 1
-  this.jobTitle = "IT Admin Assistant"
-  this.salary = 14000
-  this.location = "London"
-  // this.isProjectFormValid=true
+  
   
   }
 
