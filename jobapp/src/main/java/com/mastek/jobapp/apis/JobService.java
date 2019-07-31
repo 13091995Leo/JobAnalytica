@@ -2,10 +2,12 @@ package com.mastek.jobapp.apis;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,17 +19,22 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobapp.entities.Job;
+import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.repository.JobRepository;
 
-//@Component
+@Component
 @Scope("singleton")
 @Path("/jobs/")
 public class JobService {
 	
 	@Autowired
 	private JobRepository jobRepository;
+	
+	@Autowired
+	private RequirementService requirementService;
 	
 	public JobService() {
 		System.out.println("Job Service Created");
@@ -78,5 +85,22 @@ public class JobService {
 		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-
+	
+	@Transactional
+	@POST
+	@Path("/assign/requirement")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<Requirement> assignRequirement(@FormParam("jobId") int jobId, @FormParam("requirementId") int requirementId) {
+		try {
+			Job job = findByJobId(jobId);
+			Requirement req = requirementService.findByRequirementId(requirementId);
+			job.getRequirements().add(req);
+			job = registerOrUpdateJob(job);
+			return job.getRequirements();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

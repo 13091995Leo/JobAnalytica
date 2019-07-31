@@ -9,7 +9,7 @@ import { JobService } from '../job.service';
   styleUrls: ['./job.component.css']
 })
 export class JobComponent implements OnInit {
-
+  
   jobId: number
   jobTitle: string
   requirements: string
@@ -17,8 +17,9 @@ export class JobComponent implements OnInit {
   location: string
   currentCompany: Company
   assignments: User[]
-  isEditable:boolean
-  isProjectFormVisible: boolean
+  isEditable: boolean
+  isProjectFormVisible: String
+
 
   isProjectFormValid: boolean
   invalidFormMessage:String
@@ -28,6 +29,7 @@ export class JobComponent implements OnInit {
 
   allUsers:User[]
   selectedUserId:number
+
   constructor(private jobSvc:JobService) {
     this.jobId = 1
     this.jobTitle="Front End Developer"
@@ -46,6 +48,7 @@ export class JobComponent implements OnInit {
     ]
   }
   
+<<<<<<< HEAD
   
   ngOnInit() {
     //this will be called by angular after object creation
@@ -66,3 +69,8 @@ export class JobComponent implements OnInit {
     )
     }
   }
+=======
+
+  ngOnInit() {}
+}
+>>>>>>> df4967e41624abd3d5883d0cb2c372c31a77bbba
