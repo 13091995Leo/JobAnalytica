@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
 //@Component
@@ -43,7 +42,7 @@ public class User implements Serializable{
 	
 	@Value("Default Speciality")
 	@FormParam("speciality")
-	private JobSkillRole speciality;
+	private String speciality;
 
 	
 	@Value("Default Password")
@@ -51,7 +50,7 @@ public class User implements Serializable{
 	private String userPassword;
 	
 	
-	public void setSpeciality(JobSkillRole speciality) {
+	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
 	}
 
