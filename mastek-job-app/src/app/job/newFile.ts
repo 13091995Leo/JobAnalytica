@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Company } from '../company';
-import { JobService } from '../job.service';
 
 @Component({
   selector: 'app-job',
@@ -9,7 +8,9 @@ import { JobService } from '../job.service';
   styleUrls: ['./job.component.css']
 })
 export class JobComponent implements OnInit {
-  
+
+
+
   jobId: number
   jobTitle: string
   requirements: string
@@ -17,9 +18,8 @@ export class JobComponent implements OnInit {
   location: string
   currentCompany: Company
   assignments: User[]
-  isEditable: boolean
-  isProjectFormVisible: String
-
+  isEditable:boolean
+  isProjectFormVisible: boolean
 
   isProjectFormValid: boolean
   invalidFormMessage:String
@@ -29,7 +29,6 @@ export class JobComponent implements OnInit {
 
   allUsers:User[]
   selectedUserId:number
-
   constructor(private jobSvc:JobService) {
     this.jobId = 1
     this.jobTitle="Front End Developer"
@@ -46,8 +45,9 @@ export class JobComponent implements OnInit {
       {userId:22, userName:"Triple H", locationPreference:"Cuba", speciality:"AngularJS"},  
       {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
     ]
-  }
-  
 
-  ngOnInit() {}
+  }
+  }
+
+ngOnInit();{
 }

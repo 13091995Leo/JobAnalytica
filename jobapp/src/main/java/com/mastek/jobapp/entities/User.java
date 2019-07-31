@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import javax.persistence.Table;
@@ -20,9 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-//@Component
+@Component
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
@@ -49,9 +52,21 @@ public class User implements Serializable{
 	@FormParam("userPassword")
 	private String userPassword;
 	
+	private Set<Requirement> userSpeciality = new HashSet<>();
 	
+
 	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
+		this.speciality = speciality;}
+
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name="userSpeciality",joinColumns=@JoinColumn(name="FK_USERID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
+	@XmlTransient
+	public Set<Requirement> getUserSpeciality() {
+		return userSpeciality;
+	}
+
+	public void setUserSpeciality(Set<Requirement> userSpeciality) {
+		this.userSpeciality = userSpeciality;
 	}
 
 	public User() {
