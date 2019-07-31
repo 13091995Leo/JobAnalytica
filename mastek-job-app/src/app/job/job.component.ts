@@ -29,6 +29,7 @@ export class JobComponent implements OnInit {
 
   allUsers:User[]
   selectedUserId:number
+
   constructor(private jobSvc:JobService) {
     this.jobId = 1
     this.jobTitle="Front End Developer"
