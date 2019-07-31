@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Company } from '../company';
+import { JobService } from '../job.service';
 
 @Component({
   selector: 'app-job',
@@ -18,7 +19,7 @@ export class JobComponent implements OnInit {
   assignments: User[]
   isEditable: boolean
   isProjectFormVisible: String
-  
+
 
   isProjectFormValid: boolean
   invalidFormMessage:String
@@ -45,6 +46,7 @@ export class JobComponent implements OnInit {
       {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
     ]
   }
-  }
+  
 
-  ngOnInit()
+  ngOnInit() {}
+}

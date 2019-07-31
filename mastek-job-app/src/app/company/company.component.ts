@@ -11,14 +11,14 @@ export class CompanyComponent implements OnInit {
   jobTitle: string
   location: string
   salary: number
+  isEditable:boolean
 
   constructor(private jobsvc:JobService) {
-
+  this.isEditable=true
   this.jobId = 1
   this.jobTitle = "IT Admin Assistant"
   this.salary = 14000
   this.location = "London"
-  // this.isProjectFormValid=true
 
 
 
