@@ -51,7 +51,7 @@ export class JobComponent implements OnInit {
     //this will be called by angular after object creation
 
     //subscribe observable call and wait for the response
-    this.fetchCurrentEmployeeFromService()
+    this.fetchCurrentJobFromService()
     }
     fetchCurrentJobFromService(){
     this.jobSvc.findJobByJobId(this.jobId).subscribe(
@@ -60,10 +60,9 @@ export class JobComponent implements OnInit {
         this.jobId = response.jobId
         this.jobTitle = response.name
         this.salary = response.salary
-        this.currentDepartment = response.currentDepartment
+        this.currentCompany = response.currentCompany
         this.assignments = response.assignments
       }
     )
     }
   }
-}
