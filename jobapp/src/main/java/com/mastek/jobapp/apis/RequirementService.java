@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.repository.RequirementRepository;
 
-//@Component
+@Component
 @Path("/requirements/")
 public class RequirementService {
 
