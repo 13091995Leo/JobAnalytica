@@ -58,7 +58,7 @@ export class JobComponent implements OnInit {
       //use the response to initialise the component properties
       response => { //assign the data recived from the server as response to the current component
         this.jobId = response.jobId
-        this.jobTitle = response.name
+        this.jobTitle = response.jobTitle
         this.salary = response.salary
         this.currentCompany = response.currentCompany
         this.assignments = response.assignments
