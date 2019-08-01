@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserloginService } from '../userlogin.service';
 
 @Component({
   selector: 'app-userlogin',
@@ -13,7 +14,7 @@ export class UserloginComponent implements OnInit {
 
   invalidFormMessage: String
 
-  constructor() {
+  constructor(private userSvc:UserloginService) {
      
   }
 

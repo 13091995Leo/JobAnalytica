@@ -1,15 +1,26 @@
 <h1>Specified Jobs</h1>
-<table>
+
+<input type="text" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
+<!-- <form >
+    <div>
+      <input type="text" placeholder="Search" ng-model = "searchBox">
+      <button type="submit" ><i>Search</i></button>
+    </div>
+</form> -->
+&nbsp;
+
+<table >
     <tr>
-        <th>Title</th>
-        <th>Location</th>
-        <th>Salary</th>
+        <th>Job Title: </th>
+        <th>Salary: </th>
+        <th>Location: </th>
     </tr>
-    <tr *ngFor="let m of matches; let i = index">
-        <td>{{m.jobTitle}}</td>
-        <td>{{m.location}}</td>
-        <td>{{salary}}</td>
-        <td><button (click)="saveJob(i)">Save</button></td>
+    <tbody>
+    <tr *ngFor = "let j of jobsObj | filter:searchText">
+        <td >{{j.jobTitle}}</td>
+        <td >{{j.salary}}</td>
+        <td >{{j.location}}</td>
     </tr>
+    </tbody>
+    
 </table>
-<button href="">Back</button>
