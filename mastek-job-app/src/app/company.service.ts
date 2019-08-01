@@ -38,11 +38,11 @@ loadAllJobsFromServer():Observable<Company[]>{
       this.rootURL+"/displayAllJobs"
     )
   }
-  assignJobToCompany(companyId, jobId):Observable<Company>{
+  assignJobToCompany(jobId):Observable<Company>{
     const httpOptions = {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-    var reqBody = "companyId="+companyId+"&jobId="+jobId
+    var reqBody = "jobId="+jobId
 
     // post(URL.body.httpOptionswithHeaders)
     return this.httpsvc.post<Company>(
