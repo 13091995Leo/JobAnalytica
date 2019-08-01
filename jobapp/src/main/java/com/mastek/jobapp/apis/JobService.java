@@ -83,8 +83,15 @@ public class JobService {
 	@GET
 	@Path("/fetchBySearchParam")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
+	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
+	}
+	
+	@GET
+	@Path("/fetchAverageJobSalaryByJobTitle")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public String[] fetchAverageJobSalaryByJobTitle(@QueryParam("jobTitle") String jobTitle){
+		return  jobRepository.findAverageJobSalaryByJobTitle(jobTitle);
 	}
 	
 	@Transactional
