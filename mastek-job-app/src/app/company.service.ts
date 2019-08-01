@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CompanyComponent } from './company/company.component';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Company } from './company';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class CompanyService {
     const httpOptions = {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-    var reqBody = "jobid"+job.jobid+"&jobtitle="+
+    var reqBody = "jobtitle="+
     job.jobtitle+"&salary="+job.salary
 
     // post(URL.body.httpOptionswithHeaders)
@@ -27,6 +28,12 @@ export class CompanyService {
     this.rootURL+"/register",
     reqBody, httpOptions)
   
+  }
+
+  loadAllJobsFromServer():Observable<Company[]>{
+    return this.httpsvc.get<Company[]>(
+      "http://localhost:7700/job/list"
+    )
   }
 
 }

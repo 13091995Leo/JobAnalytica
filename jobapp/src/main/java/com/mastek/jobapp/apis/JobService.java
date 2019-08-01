@@ -50,9 +50,9 @@ public class JobService {
 		return job;
 	}
 	
-	@Path("/find/{jobId}")
 	@GET
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Path("/find/{jobId}")
+	@Produces({MediaType.APPLICATION_JSON})
 	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
 			return jobRepository.findById(jobId).get();
@@ -82,7 +82,7 @@ public class JobService {
 	@GET
 	@Path("/fetchBySearchParam")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
+	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
 	
