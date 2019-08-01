@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import javax.persistence.Table;
@@ -24,6 +26,7 @@ import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
 //@Component
+
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
@@ -43,16 +46,27 @@ public class User implements Serializable{
 	
 	@Value("Default Speciality")
 	@FormParam("speciality")
-	private JobSkillRole speciality;
+	private String speciality;
 
 	
 	@Value("Default Password")
 	@FormParam("userPassword")
 	private String userPassword;
 	
+	private Set<Requirement> userSpeciality = new HashSet<>();
 	
-	public void setSpeciality(JobSkillRole speciality) {
-		this.speciality = speciality;
+
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;}
+
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name="userSpeciality",joinColumns=@JoinColumn(name="FK_USERID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
+	public Set<Requirement> getUserSpeciality() {
+		return userSpeciality;
+	}
+
+	public void setUserSpeciality(Set<Requirement> userSpeciality) {
+		this.userSpeciality = userSpeciality;
 	}
 
 	public User() {
@@ -62,8 +76,7 @@ public class User implements Serializable{
 	// many to many relationship
 	private Set<Job> group = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@XmlTransient
+	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	public Set<Job> getGroup() {
 		return group;
 	}
@@ -101,7 +114,6 @@ public class User implements Serializable{
 	public void setLocationPreference(String locationPreference) {
 		this.locationPreference = locationPreference;
 	}
-
 
 	@Column
 	public String getUserPassword() {

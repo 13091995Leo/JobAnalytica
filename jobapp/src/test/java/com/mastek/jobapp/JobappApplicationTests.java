@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,27 +14,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mastek.jobapp.apis.CompanyService;
 import com.mastek.jobapp.apis.JobService;
+import com.mastek.jobapp.apis.RequirementService;
 import com.mastek.jobapp.apis.UserService;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
-import com.mastek.jobapp.entities.JobRole;
-import com.mastek.jobapp.entities.JobSkillRole;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JobappApplicationTests {
-/*
-	@Autowired
+
+/*	@Autowired
 	Job job;	
 	
 	@Autowired
 	JobService jobService;
+	
+	@Autowired
+	Requirement requirement;
+	
+	@Autowired
+	RequirementService requirementService;
 
 	@Test
 	public void addOrUpdateJobUsingService() {
-		job.setJobTitle(JobRole.FullStackDeveloper);
+		job.setJobTitle("Full Stack Developer");
 		job.setSalary(10.00);
 		job.setLocation("Test Location");
 		job = jobService.registerOrUpdateJob(job);
@@ -52,7 +58,7 @@ public class JobappApplicationTests {
 	public void findByJobIdUsingService() {
 		int jobId = 4;
 		assertNotNull(jobService.findByJobId(jobId));
-	}
+	}	*/
 	
 	@Autowired
 	UserService userService;
@@ -60,11 +66,11 @@ public class JobappApplicationTests {
 	@Autowired
 	User user;
 	
-	@Test
+/*	@Test
 	public void addOrUpdateUserUsingService() {
 		user.setUserName("Test name");
 		user.setLocationPreference("Test location");
-		user.setSpeciality(JobSkillRole.AWS);
+		user.setSpeciality("AWS");
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
 	}
@@ -80,7 +86,7 @@ public class JobappApplicationTests {
 		int userId = 2;
 		userService.deleteByUserId(userId);
 		assertNull(userService.findByUserId(userId));
-	}
+	}	*/
 
 	@Autowired
 	CompanyService companyService;
@@ -88,7 +94,7 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
-	@Test
+/*	@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
@@ -120,26 +126,26 @@ public class JobappApplicationTests {
 		comp1.setLocation("Leeds");
 		
 		Job job1 = new Job();
-		job1.setJobTitle(JobRole.DatabaseManager);
+		job1.setJobTitle("Database Manager");
 		
 		Job job2 = new Job();
-		job2.setJobTitle(JobRole.DevOpsEngineer);
+		job2.setJobTitle("Dev Ops Engineer");
 		
 		User user1 = new User();
 		user1.setUserName("James");
-		user1.setSpeciality(JobSkillRole.AWS);
+		user1.setSpeciality("AWS");
 		user1.setLocationPreference("Leeds");
 		
 		User user2 = new User();
 		user2.setUserName("John");
-		user2.setSpeciality(JobSkillRole.MongoDB);
+		user2.setSpeciality("MongoDB");
 		user2.setLocationPreference("Manchester");
 		
 		Requirement req1 = new Requirement();
-		req1.setRequirement(JobSkillRole.CSS);
+		req1.setRequirement("CSS");
 		
 		Requirement req2 = new Requirement();
-		req2.setRequirement(JobSkillRole.MongoDB);
+		req2.setRequirement("MongoDB");
 		
 		// Many to One - jobs to company
 		comp1.getJobs().add(job1);
@@ -169,9 +175,99 @@ public class JobappApplicationTests {
 		for (Job job2 : job) {
 			System.out.println(job2);
 		}
-	}
-*/
-	
-	
+	}*/
 
+/*	@Test
+    public void addThousandDataEntries() {
+		String firstNameArr[] = {"Matt ","Tom ","John ","Hollie ","Rosie ","Joe ","Fran ","Fred ","Freya ","Sam "};
+		String middleNameArr[] = {"Mika ","Bailey ","Jules ","Alex ","Kyle ","River ","Harper ","Charlie ","Drew ","Logan"};
+		String lastNameArr[] = {"Jeffries","Humpfries","Jones","Williams","Jameson","Reed","Brown","Stark","King","Smithers"};
+        String compArr[] = {"Oscorp","WGG Solutions","Mastek","Atkins","GCS","Datasys","Softerim ltd.","Acure Rilan", "Gregory Inc.", "WGT Org."};
+        String locArr[] = {"Leeds","Bradford","Manchester","London","Birmingham","Oxford","Cardiff","Hull","Essex","Cornwall"};
+        String reqSpecArr[] = {"Java ","JavaScript","Dev Ops","Python","MySQL","PHP","HTML","MongoDB","Angular","CSS"};
+        String jobTitleArr[] = {"Java Developer","JavaScript Developer","Senior Dev Ops Specialist","Python Developer","MySQL Specialist","Senior PHP Developer",
+                "HTML Developer","MongoDB Specialist","Angular Specialist","CSS Assisstant"};
+        String industryArr[] = {"Defence","IT","Energy","Public Sector","Chemical","Mining","Healthcare","Retail","Social Media","Confectionary"};
+        
+        for (int t = 0; t<10; t++) {
+        	
+        	Company comp = new Company();
+	        comp.setCompanyName(compArr[t]);
+	        comp.setLocation(locArr[t]);
+	        comp.setCompanyPassword("******");
+	        comp.setIndustry(industryArr[t]);
+        	comp.setCompanyId(t);
+       	
+ 
+	        for (int i = 0; i < 10; i++) {
+	           
+	        	
+	            int v = (int) Math.floor(10*Math.random());
+	            int j = (int) Math.floor(10*Math.random());
+	            int k = (int) Math.floor(10*Math.random());
+	            int x = (int) Math.floor(10*Math.random());
+	            int y = (int) Math.floor(10*Math.random());
+	            int z = (int) Math.floor(10*Math.random());
+		        
+		           
+		        Job job1 = new Job();
+	            job1.setJobTitle(jobTitleArr[j]);
+	            job1.setLocation(locArr[j]);
+	            job1.setSalary(j*10000);
+		           
+	            Job job2 = new Job();
+	            job2.setJobTitle(jobTitleArr[k]);
+	            job2.setLocation(locArr[k]);
+	            job2.setSalary(k*10000);
+		  
+	            User user1 = new User();
+	            user1.setUserName(firstNameArr[v]+middleNameArr[j]+lastNameArr[k]);
+	            user1.setLocationPreference(locArr[v]);
+	            user1.setUserPassword("******");
+		           
+	            User user2 = new User();
+	            user2.setUserName(firstNameArr[x]+middleNameArr[y]+lastNameArr[z]);
+	            user2.setLocationPreference(locArr[j]);
+	            user2.setUserPassword("******");
+	           
+	            Requirement req1 = new Requirement();
+	            req1.setRequirement(reqSpecArr[v]);
+	           
+	            Requirement req2 = new Requirement();
+	            req2.setRequirement(reqSpecArr[j]);
+	            
+	            Requirement req3 = new Requirement();
+	            req3.setRequirement(reqSpecArr[k]);
+	           
+	            // Many to One - jobs to company
+	            comp.getJobs().add(job1);
+	            comp.getJobs().add(job2);
+		           
+	            // One To Many - company to jobs
+	            job1.setCurrentCompany(comp);
+	            job2.setCurrentCompany(comp);
+	           
+	            // Many To many - users to jobs
+	            job1.getAssignments().add(user1);
+	            job1.getAssignments().add(user2);
+	            job2.getAssignments().add(user2);
+	           
+	            // Many To many - jobs to requirements
+	            job1.getRequirements().add(req1);
+	            job1.getRequirements().add(req2);
+	            
+	            // Many To many - users to specialities
+	            user1.getUserSpeciality().add(req1);
+	            user1.getUserSpeciality().add(req2);
+	            user1.getUserSpeciality().add(req3);
+	            
+		        companyService.registerOrUpdateCompany(comp);
+
+	        }
+
+        }
+	}
+	*/
 }
+
+

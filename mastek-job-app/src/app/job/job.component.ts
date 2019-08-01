@@ -19,7 +19,7 @@ export class JobComponent implements OnInit {
   assignments: User[]
   isEditable: boolean
   isProjectFormVisible: String
-  
+
 
   isProjectFormValid: boolean
   invalidFormMessage:String
@@ -48,8 +48,23 @@ export class JobComponent implements OnInit {
     // ]
   }
   
+  
   ngOnInit() {
+    //this will be called by angular after object creation
 
+    //subscribe observable call and wait for the response
+    this.fetchCurrentJobFromService()
+    }
+    fetchCurrentJobFromService(){
+    this.jobSvc.findJobByJobId(this.jobId).subscribe(
+      //use the response to initialise the component properties
+      response => { //assign the data recived from the server as response to the current component
+        this.jobId = response.jobId
+        this.jobTitle = response.jobTitle
+        this.salary = response.salary
+        this.currentCompany = response.currentCompany
+        this.assignments = response.assignments
+      }
+    )
+    }
   }
-}
-

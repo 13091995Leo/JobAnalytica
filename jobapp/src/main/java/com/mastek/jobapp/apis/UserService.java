@@ -1,9 +1,12 @@
 package com.mastek.jobapp.apis;
 
+import java.util.Set;
+
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,16 +16,22 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mastek.jobapp.entities.Job;
+import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.UserRepository;
 
-//@Component
+@Component
 @Path("/users/")
 public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RequirementService specialityService;
 	
 	public UserService() {
 		System.out.println("User Service Created");
@@ -66,6 +75,42 @@ public class UserService {
 		}
 	}
 	
+//	@Path("/findByName/{userId}")
+//	@GET
+//	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+//	public User findByName(@PathParam("userName") String userName) {
+//		try {
+//			return userRepository.findByUserName(userName).get();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+	
+	@Transactional
+	@POST
+	@Path("/assign/speciality")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<Requirement> assignSpeciality(@FormParam("userId") int userId, @FormParam("specialityId") int specialityId) {
+		try {
+			User user = findByUserId(userId);
+			Requirement spec = specialityService.findByRequirementId(specialityId);
+			user.getUserSpeciality().add(spec);
+			user = registerOrUpdateUser(user);
+			return user.getUserSpeciality();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@GET
+	@Path("/displayAllUsers")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public Iterable<User> fetchAllUsers(){
+		return userRepository.findAll();
+	}
 	
 	
 }
