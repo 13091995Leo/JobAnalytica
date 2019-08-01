@@ -37,7 +37,50 @@
             <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
         </tr>
 
+        <tr>
+            <td><button (click)="addJob">Add New Job</button></td>
+        </tr>
 </table>
+
+<h2>Job Post</h2>
+    <table>
+        <tr>
+            <th>Job Id</th>
+            <th>Job Title</th>
+            <th>Salary</th>
+            <th>Location</th>
+            <th><button (click)="showJobForm()">+</button></th>
+        </tr>
+
+        <tr *ngFor = "let j of assignments; let i = index">
+            <td>{{j.jobId}}</td>
+            <td>{{j.jobTitle}}</td>
+            <td>{{j.salary}}</td>
+            <td>{{j.location}}</td>
+            <td><button (click)="deleteJob(i)">x</button></td>
+        </tr>
+ 
+    </table>
+
+    <form *ngIf="isJobFormVisible" (submit)="assignNewJob()">
+            <table>
+                <tr>
+                    <td>
+                        <select name="jobId" #selectJobId 
+                        (change)="updateSelectedJobId(selectJobId.value)"> 
+                    <option *ngFor="let j of allJobs" value="{{j.jobId}}">{{j.jobId}}::{{j.jobTitle}}</option>
+                    </select>
+                </td>
+                    <td> <input type ="submit" value="Add"></td>
+                    <td> <div [hidden]="isJobFormValid">
+                        {{invalidFormMessage}}
+                    </div>
+                    </td>
+                </tr>
+            </table>
+    
+    
+        </form>
 
 
 
