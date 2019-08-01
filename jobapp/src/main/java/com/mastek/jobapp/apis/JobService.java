@@ -86,6 +86,12 @@ public class JobService {
 		return jobRepository.findBySearchParam(searchParam);
 	}
 	
+	@GET
+	@Path("/displayAllJobs")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public Iterable<Job> fetchAllJobs(){
+		return jobRepository.findAll();
+	}
 	
 	@Transactional
 	@POST
@@ -104,4 +110,11 @@ public class JobService {
 			return null;
 		}
 	}
-}
+/*	
+	@GET
+	@Path("/fetchByRequirement")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
+        return jobRepository.findByRequirement(requirements);
+    }
+*/}
