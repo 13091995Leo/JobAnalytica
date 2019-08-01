@@ -85,13 +85,19 @@ public class JobService {
 	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-	
 
+	
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public String[] fetchAverageJobSalaryByJobTitle(@QueryParam("jobTitle") String jobTitle){
-		return  jobRepository.findAverageJobSalaryByJobTitle(jobTitle);
+		return  jobRepository.findAverageJobSalaryByJobTitle(jobTitle);}
+
+	@GET
+	@Path("/displayAllJobs")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Iterable<Job> fetchAllJobs(){
+		return jobRepository.findAll();
 	}
 	
 	@Transactional
@@ -111,4 +117,11 @@ public class JobService {
 			return null;
 		}
 	}
-}
+/*	
+	@GET
+	@Path("/fetchByRequirement")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
+        return jobRepository.findByRequirement(requirements);
+    }
+*/}

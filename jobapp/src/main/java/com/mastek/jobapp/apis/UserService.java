@@ -105,5 +105,12 @@ public class UserService {
 		}
 	}
 	
+	@GET
+	@Path("/displayAllUsers")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public Iterable<User> fetchAllUsers(){
+		return userRepository.findAll();
+	}
+	
 	
 }

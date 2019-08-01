@@ -25,7 +25,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-@Component
+//@Component
+
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
