@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="requirements")// declaring the table name for the class
@@ -30,18 +30,30 @@ public class Requirement {
 	
 	@Value("Defaualt requirement")
 	@FormParam("requirement")
-	private JobSkillRole requirement;
+	private String requirement;
 	
 	private Set<Job> jobRequirement = new HashSet<>();
+	
+	private Set<User> userSpeciality = new HashSet<>();
 	
 	@ManyToMany(mappedBy="requirements",fetch=FetchType.LAZY)
 	@XmlTransient
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
 	}
-	
+
 	public void setJobRequirement(Set<Job> jobRequirement) {
 		this.jobRequirement = jobRequirement;
+	}
+	
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
+	@XmlTransient
+	public Set<User> getUserSpeciality() {
+		return userSpeciality;
+	}
+
+	public void setUserSpeciality(Set<User> userSpeciality) {
+		this.userSpeciality = userSpeciality;
 	}
 
 	@Id
@@ -56,11 +68,11 @@ public class Requirement {
 	}
 
 	@Column(name="requirement")
-	public JobSkillRole getRequirement() {
+	public String getRequirement() {
 		return requirement;
 	}
 
-	public void setRequirement(JobSkillRole requirement) {
+	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
 }

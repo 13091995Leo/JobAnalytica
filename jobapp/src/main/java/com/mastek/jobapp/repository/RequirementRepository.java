@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.jobapp.entities.Requirement;
 
-//@Component
+@Component
 public interface RequirementRepository extends CrudRepository<Requirement, Integer>{
 
 }
