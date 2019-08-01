@@ -27,14 +27,17 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-@Component
+//@Component
+
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs") // declaring the table name for the class
 @NamedQueries({
 	@NamedQuery( name = "Job.findBySearchParam",
-			query = "select j from Job j where j.jobTitle = :searchParam "
-			)
+			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') " //JPA Query language
+			), // LIKE CONCAT('%' , :searchParam , '%')
+	@NamedQuery(name = "Job.findAverageJobSalaryByJobTitle",
+			query = "select avg(j.salary) from Job j where job_title = :jobTitle")
 })
 @XmlRootElement
 public class Job implements Serializable{
@@ -70,7 +73,7 @@ public class Job implements Serializable{
 /// Many to many relationship between jobs and requirements.
 	private Set<Requirement> requirements = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="JOB_REQUIREMENTS",joinColumns=@JoinColumn(name="FK_JOBID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
 	@XmlTransient
 	public Set<Requirement> getRequirements() {
@@ -129,7 +132,6 @@ public class Job implements Serializable{
 	public String getLocation() {
 		return location;
 	}
-
 
 
 	public void setLocation(String location) {

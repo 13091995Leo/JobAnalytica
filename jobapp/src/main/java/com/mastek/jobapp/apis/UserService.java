@@ -75,6 +75,18 @@ public class UserService {
 		}
 	}
 	
+//	@Path("/findByName/{userId}")
+//	@GET
+//	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+//	public User findByName(@PathParam("userName") String userName) {
+//		try {
+//			return userRepository.findByUserName(userName).get();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+	
 	@Transactional
 	@POST
 	@Path("/assign/speciality")
@@ -91,6 +103,13 @@ public class UserService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@GET
+	@Path("/displayAllUsers")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public Iterable<User> fetchAllUsers(){
+		return userRepository.findAll();
 	}
 	
 	

@@ -10,16 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
+
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="requirements")// declaring the table name for the class
@@ -36,12 +40,12 @@ public class Requirement {
 	
 	private Set<User> userSpeciality = new HashSet<>();
 	
-	@ManyToMany(mappedBy="requirements",fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER)
 	@XmlTransient
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
 	}
-
+	
 	public void setJobRequirement(Set<Job> jobRequirement) {
 		this.jobRequirement = jobRequirement;
 	}
