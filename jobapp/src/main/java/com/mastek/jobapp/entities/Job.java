@@ -33,8 +33,8 @@ import org.springframework.stereotype.Component;
 @Table(name="Jobs") // declaring the table name for the class
 @NamedQueries({
 	@NamedQuery( name = "Job.findBySearchParam",
-			query = "select j from Job j where j.jobTitle = :searchParam "
-			)
+			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') "
+			) // LIKE CONCAT('%' , :searchParam , '%')
 })
 @XmlRootElement
 public class Job implements Serializable{
@@ -128,7 +128,6 @@ public class Job implements Serializable{
 	public String getLocation() {
 		return location;
 	}
-
 
 
 	public void setLocation(String location) {
