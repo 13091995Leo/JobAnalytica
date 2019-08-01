@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.jobapp.entities.Job;
 
-@Component
+//@Component
 public interface JobRepository extends CrudRepository<Job, Integer> {
 	
 	@Autowired
 	public List<Job> findBySearchParam(@Param("searchParam") String searchParam);
+
 }

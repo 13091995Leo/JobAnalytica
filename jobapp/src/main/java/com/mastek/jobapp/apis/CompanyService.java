@@ -96,4 +96,11 @@ public class CompanyService {
 		}
 	}
 	
+	
+	@GET
+	@Path("/displayAllCompanies")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+		public Iterable<Company> fetchAllCompanies(){
+		return companyRepository.findAll();
+	}
 }
