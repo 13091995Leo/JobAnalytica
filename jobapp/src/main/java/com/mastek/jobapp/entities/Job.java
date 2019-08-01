@@ -70,7 +70,7 @@ public class Job implements Serializable{
 /// Many to many relationship between jobs and requirements.
 	private Set<Requirement> requirements = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="JOB_REQUIREMENTS",joinColumns=@JoinColumn(name="FK_JOBID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
 	@XmlTransient
 	public Set<Requirement> getRequirements() {
