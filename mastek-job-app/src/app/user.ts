@@ -1,3 +1,6 @@
 export interface User {
-    // Hi
+    userId: number
+    userName: String
+    password: String
+    locationPref: String
 }
