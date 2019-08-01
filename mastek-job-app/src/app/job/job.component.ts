@@ -36,16 +36,16 @@ export class JobComponent implements OnInit {
     this.requirements="Java, HTML, MySQL"
     this.salary=35000
 
-    this.currentCompany ={
-      companyId: 12,
-      companyName: "Pepsicocacola",
-      location: "Afghanistan"
-    }
+    // this.currentCompany ={
+    //   companyId: 12,
+    //   companyName: "Pepsicocacola",
+    //   location: "Afghanistan"
+    // }
 
-    this.assignments = [
-      {userId:22, userName:"Triple H", locationPreference:"Cuba", speciality:"AngularJS"},  
-      {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
-    ]
+    // this.assignments = [
+    //   {userId:22, userName:"Triple H", locationPreference:"Cuba", speciality:"AngularJS"},  
+    //   {userId:23, userName:"Kim Jong Un", locationPreference:"North Korea", speciality:"Lambda"}
+    // ]
   }
   
   ngOnInit() {
