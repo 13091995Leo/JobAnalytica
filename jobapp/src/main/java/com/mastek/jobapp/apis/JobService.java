@@ -50,9 +50,9 @@ public class JobService {
 		return job;
 	}
 	
-	@Path("/find/{jobId}")
 	@GET
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Path("/find/{jobId}")
+	@Produces({MediaType.APPLICATION_JSON})
 	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
 			return jobRepository.findById(jobId).get();
@@ -82,8 +82,22 @@ public class JobService {
 	@GET
 	@Path("/fetchBySearchParam")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
+	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
+	}
+
+	
+	@GET
+	@Path("/fetchAverageJobSalaryByJobTitle")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public String[] fetchAverageJobSalaryByJobTitle(@QueryParam("jobTitle") String jobTitle){
+		return  jobRepository.findAverageJobSalaryByJobTitle(jobTitle);}
+
+	@GET
+	@Path("/displayAllJobs")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Iterable<Job> fetchAllJobs(){
+		return jobRepository.findAll();
 	}
 	
 	@Transactional
@@ -103,4 +117,11 @@ public class JobService {
 			return null;
 		}
 	}
-}
+/*	
+	@GET
+	@Path("/fetchByRequirement")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
+        return jobRepository.findByRequirement(requirements);
+    }
+*/}

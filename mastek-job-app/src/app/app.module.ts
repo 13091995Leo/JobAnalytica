@@ -13,6 +13,9 @@ import { CompanyComponent } from './company/company.component';
 import { JobsearchComponent } from './jobsearch/jobsearch.component';
 import { FeatComponent } from './feat/feat.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { FeatComponent } from './feat/feat.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
