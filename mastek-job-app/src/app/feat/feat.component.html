@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Job Statistic Charts</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');    
+        let jobChart = new Chart(myChart, {
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+                labels:["Java Developer","JavaScript Developer","Senior Dev Ops Specialist","Python Developer","MySQL Specialist","Senior PHP Developer"],
+                datasets:[{
+                    label: "Jobs", 
+                    data:[
+                        100, 200, 300, 400, 500, 600
+                    ]
+                }]
+            },
+            options:{}
+            
+
+        })
+    </script>
+    
+</body>
+</html>
+
+
+<!-- <h2>Job Statistics</h2>
+
+<table>
+    <tr>
+        <td>Job Title</td>
+        <td *ngIf="!isEditable">{{jobId}}</td>
+    </tr>
+    <tr>
+        <td>Rank</td>
+    </tr>
+    <tr>
+        <td>Median Salary</td>
+    </tr>
+    <tr>
+        <td>Job Role</td>
+    </tr>
+    <tr>
+        <td>Total Jobs Posted</td>
+    </tr>
+    <tr>
+        <td>Live Jobs</td>
+    </tr>
+</table> -->
+

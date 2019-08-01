@@ -6,6 +6,7 @@ import { CompanyComponent } from './company/company.component';
 import { CompanyloginComponent } from './companylogin/companylogin.component';
 import { UserComponent } from './user/user.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
+import { FeatComponent } from './feat/feat.component';
 
 const routes: Routes = [
   { path: 'job', component: JobComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'companyPage', component: CompanyComponent},
   { path: 'companyLogin', component: CompanyloginComponent},
   { path: 'userPage', component: UserComponent},
-  { path: 'userLogin', component: UserloginComponent}
+  { path: 'userLogin', component: UserloginComponent},
+  { path: 'feat', component: FeatComponent}
 ];
 
 @NgModule({
