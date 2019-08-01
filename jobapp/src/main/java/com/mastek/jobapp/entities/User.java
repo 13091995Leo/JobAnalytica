@@ -60,7 +60,6 @@ public class User implements Serializable{
 
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="userSpeciality",joinColumns=@JoinColumn(name="FK_USERID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
-	@XmlTransient
 	public Set<Requirement> getUserSpeciality() {
 		return userSpeciality;
 	}
@@ -76,8 +75,7 @@ public class User implements Serializable{
 	// many to many relationship
 	private Set<Job> group = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@XmlTransient
+	@ManyToMany(mappedBy = "assignments", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	public Set<Job> getGroup() {
 		return group;
 	}

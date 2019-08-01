@@ -87,6 +87,7 @@ public class JobService {
 		return jobRepository.findBySearchParam(searchParam);
 	}
 	
+
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

@@ -173,7 +173,7 @@ public class JobappApplicationTests {
 		}
 */
 	
-	@Autowired
+/*	@Autowired
 	CompanyService companyService;
 	
 	@Autowired
@@ -191,6 +191,7 @@ public class JobappApplicationTests {
                 "HTML Developer","MongoDB Specialist","Angular Specialist","CSS Assisstant"};
         String industryArr[] = {"Defence","IT","Energy","Public Sector","Chemical","Mining","Healthcare","Retail","Social Media","Confectionary"};
         
+
         for (int t = 1; t<11; t++) {
  
 	        for (int i = 0; i < 100; i++) {
@@ -263,7 +264,7 @@ public class JobappApplicationTests {
 	        }
 
         }
-	}
+	}*/
 	
 }
 

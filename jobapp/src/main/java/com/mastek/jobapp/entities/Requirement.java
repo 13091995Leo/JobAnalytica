@@ -36,7 +36,7 @@ public class Requirement {
 	
 	private Set<User> userSpeciality = new HashSet<>();
 	
-	@ManyToMany(mappedBy="requirements",fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER)
 	@XmlTransient
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
