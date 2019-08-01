@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../job.service';
+import { JobsearchService } from '../jobsearch.service';
 
 @Component({
   selector: 'app-jobsearch',
@@ -8,24 +9,33 @@ import { JobService } from '../job.service';
 })
 export class JobsearchComponent implements OnInit {
   
+  searchParam : String
 
+  jobId : number
+  jobTitle: String
+  location : String
+  requirements: String
+  salary: number
 
-  isJobFormValid:boolean
-  invalidFormMessage:String
+  jobsObj : JobsearchComponent[]
 
-  selectJobId: number
-
-  constructor(private jobsvc:JobService) { }
-
-
- 
+  constructor(private jsrchSvc:JobsearchService) { 
+    this.searchParam = ""
+  }
 
   ngOnInit() {
+    this.fetchJobsBySearchParam()
   }
 
-  saveJob(index) {
-    
+  fetchJobsBySearchParam(){
+    this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
   }
+
+ 
 
 
 
