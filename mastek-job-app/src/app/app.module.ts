@@ -12,6 +12,9 @@ import { CompanyloginComponent } from './companylogin/companylogin.component';
 import { CompanyComponent } from './company/company.component';
 import { JobsearchComponent } from './jobsearch/jobsearch.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,8 @@ import { JobsearchComponent } from './jobsearch/jobsearch.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
