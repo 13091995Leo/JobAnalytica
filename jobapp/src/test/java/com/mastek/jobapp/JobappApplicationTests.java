@@ -188,7 +188,6 @@ public class JobappApplicationTests {
 	        comp.setLocation(locArr[t]);
 	        comp.setCompanyPassword("******");
 	        comp.setIndustry(industryArr[t]);
-        	comp.setCompanyId(t);
        	
  
 	        for (int i = 0; i < 10; i++) {

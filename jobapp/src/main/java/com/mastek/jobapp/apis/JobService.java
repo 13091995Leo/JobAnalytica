@@ -82,9 +82,10 @@ public class JobService {
 	@GET
 	@Path("/fetchBySearchParam")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-		public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
+	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
+	
 	
 	@Transactional
 	@POST
