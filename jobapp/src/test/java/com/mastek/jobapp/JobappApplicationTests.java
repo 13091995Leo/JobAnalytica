@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mastek.jobapp.apis.CompanyService;
 import com.mastek.jobapp.apis.JobService;
+import com.mastek.jobapp.apis.RequirementService;
 import com.mastek.jobapp.apis.UserService;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
@@ -23,13 +25,19 @@ import com.mastek.jobapp.entities.User;
 @SpringBootTest
 public class JobappApplicationTests {
 
-	@Autowired
+/*	@Autowired
 	Job job;	
 	
 	@Autowired
 	JobService jobService;
+	
+	@Autowired
+	Requirement requirement;
+	
+	@Autowired
+	RequirementService requirementService;
 
-/*	@Test
+	@Test
 	public void addOrUpdateJobUsingService() {
 		job.setJobTitle("Full Stack Developer");
 		job.setSalary(10.00);
@@ -169,7 +177,7 @@ public class JobappApplicationTests {
 		}
 	}*/
 
-	@Test
+/*	@Test
     public void addThousandDataEntries() {
 		String firstNameArr[] = {"Matt ","Tom ","John ","Hollie ","Rosie ","Joe ","Fran ","Fred ","Freya ","Sam "};
 		String middleNameArr[] = {"Mika ","Bailey ","Jules ","Alex ","Kyle ","River ","Harper ","Charlie ","Drew ","Logan"};
@@ -259,7 +267,7 @@ public class JobappApplicationTests {
 
         }
 	}
-	
+	*/
 }
 
 

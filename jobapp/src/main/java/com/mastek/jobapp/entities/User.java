@@ -25,7 +25,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-@Component
+//@Component
+
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})
@@ -51,7 +52,6 @@ public class User implements Serializable{
 	
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="userSpeciality",joinColumns=@JoinColumn(name="FK_USERID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
-	@XmlTransient
 	public Set<Requirement> getUserSpeciality() {
 		return userSpeciality;
 	}
