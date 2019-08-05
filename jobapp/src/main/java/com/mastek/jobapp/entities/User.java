@@ -26,7 +26,6 @@ import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
 //@Component
-
 @Entity
 @Table(name="User")
 @EntityListeners({UserLifeCycleListener.class})

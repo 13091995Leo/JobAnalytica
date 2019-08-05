@@ -3,6 +3,7 @@ import { Company } from '../company';
 import { CompanyService } from '../company.service';
 import { Job } from '../job';
 
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -54,37 +55,18 @@ export class CompanyComponent implements OnInit {
         this.jobTitle=response.jobTitle
         this.salary=response.salary
         this.location=response.location
-        this.assignments=response.assignments
+        this.allJobs=response.allJobs
       }
     )
   }
 
+
   deleteJob(index){
     //deletes 1 element from the index specified 
-    this.assignments.splice(index,1)
+    this.allJobs.splice(index,1)
    }
 
-//    addNewJob(jbid,jbtitle,sal,loc){
-//     if(isNaN(jbid))
-//   {
-//     this.isJobFormValid=false
-//     this.invalidFormMessage="Job ID must be a number"
-//   }
 
-//   else if(jbtitle.length<2){
-//     this.isJobFormValid=false
-//     this.invalidFormMessage="Job Title must be greater than 2 characters"
-//   }
-
-//   else{
-//     this.assignments.push({
-//     jobId:jbid,jobTitle:jbtitle,salary:sal,location:loc 
-//     })
-//     this.isJobFormVisible=false
-//     this.isJobFormValid=true
-//     this.invalidFormMessage=""
-//       }
-// }
 
 updateSelectedJobId(jbid){
   this.selectJobId=jbid
@@ -122,9 +104,6 @@ assignNewJob(){
           this.loadAllJobs()
           
         }
-          // updateSelection(jobId){
-          //   this.selectJobId=jobId
-          // }
         
         updateJobDetails(){
             this.companysvc.updateJobOnServer({

@@ -50,6 +50,7 @@
             <td>{{j.currentCompany.companyName}}</td>
             <td>{{j.currentCompany.location}}</td>
             <td>{{j.currentCompany.industry}}</td>
+            <td><button (click)="addJobToUser(j.jobId)">Save</button></td>
         </tr>
         <hr>
     </tbody>

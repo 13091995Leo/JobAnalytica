@@ -33,6 +33,9 @@ public class UserService {
 	@Autowired
 	private RequirementService specialityService;
 	
+	@Autowired
+	private JobService jobService;
+	
 	public UserService() {
 		System.out.println("User Service Created");
 	}
@@ -111,6 +114,5 @@ public class UserService {
 		public Iterable<User> fetchAllUsers(){
 		return userRepository.findAll();
 	}
-	
 	
 }
