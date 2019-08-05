@@ -25,7 +25,10 @@ import com.mastek.jobapp.entities.User;
 @SpringBootTest
 public class JobappApplicationTests {
 
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 	@Autowired
 	Job job;	
 	
@@ -38,6 +41,7 @@ public class JobappApplicationTests {
 	@Autowired
 	RequirementService requirementService;
 
+<<<<<<< HEAD
 
 	@Test
 	public void addOrUpdateJobUsingService() {
@@ -47,20 +51,38 @@ public class JobappApplicationTests {
 		job = jobService.registerOrUpdateJob(job);
 		assertNotNull(job);
 	}
+=======
+//	@Test
+//	public void addOrUpdateJobUsingService() {
+//		job.setJobTitle("Full Stack Developer");
+//		job.setSalary(10.00);
+//		job.setLocation("Test Location");
+//		job = jobService.registerOrUpdateJob(job);
+//		assertNotNull(job);
+//	}
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 
 
-	@Test
-	public void deleteJobUsingService() {
-	int jobId = 2;
-	jobService.deleteJobById(jobId);
-	assertNull(jobService.findByJobId(jobId));
-	}
+//	@Test
+//	public void deleteJobUsingService() {
+//	int jobId = 2;
+//	jobService.deleteJobById(jobId);
+//	assertNull(jobService.findByJobId(jobId));
+//	}
 
+<<<<<<< HEAD
 	@Test
 	public void findByJobIdUsingService() {
 		int jobId = 4;
 		assertNotNull(jobService.findByJobId(jobId));
 	}	
+=======
+//	@Test
+//	public void findByJobIdUsingService() {
+//		int jobId = 4;
+//		assertNotNull(jobService.findByJobId(jobId));
+//	}	
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 	
 	@Autowired
 	UserService userService;
@@ -68,6 +90,7 @@ public class JobappApplicationTests {
 	@Autowired
 	User user;
 	
+<<<<<<< HEAD
 	@Test
 	public void addOrUpdateUserUsingService() {
 		user.setUserName("Test name");
@@ -76,19 +99,38 @@ public class JobappApplicationTests {
 		user = userService.registerOrUpdateUser(user);
 		assertNotNull(user);
 	}
+=======
+//	@Test
+//	public void addOrUpdateUserUsingService() {
+//		user.setUserName("Test name");
+//		user.setLocationPreference("Test location");
+//		user.setSpeciality("AWS");
+//		user = userService.registerOrUpdateUser(user);
+//		assertNotNull(user);
+//	}
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 	
-	@Test
-	public void findByUserIdUsingService() {
-		int userId = 1;
-		assertNotNull(userService.findByUserId(userId));
-	}
+//	@Test
+//	public void findByUserIdUsingService() {
+//		int userId = 1;
+//		assertNotNull(userService.findByUserId(userId));
+//	}
 	
+<<<<<<< HEAD
 	@Test
 	public void deleteByUserIdUsingService() {
 		int userId = 2;
 		userService.deleteByUserId(userId);
 		assertNull(userService.findByUserId(userId));
 	}	
+=======
+//	@Test
+//	public void deleteByUserIdUsingService() {
+//		int userId = 2;
+//		userService.deleteByUserId(userId);
+//		assertNull(userService.findByUserId(userId));
+//	}	
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 
 	@Autowired
 	CompanyService companyService;
@@ -96,6 +138,7 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
+<<<<<<< HEAD
 	@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyName("Default company name");
@@ -104,71 +147,92 @@ public class JobappApplicationTests {
 		company = companyService.registerOrUpdateCompany(company);
 		assertNotNull(company);
 	}
+=======
+//	@Test
+//	public void addOrUpdateCompanyUsingService() {	
+//		company.setCompanyName("Default company name");
+//		company.setIndustry("Default industry");
+//		company.setLocation("Default location");
+//		company = companyService.registerOrUpdateCompany(company);
+//		assertNotNull(company);
+//	}
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 	
 	
-	@Test
-	public void findByCompanyIdUsingService() {
-		int companyId = 1;
-		assertNotNull(companyService.findByCompanyId(companyId));
-	}
+//	@Test
+//	public void findByCompanyIdUsingService() {
+//		int companyId = 1;
+//		assertNotNull(companyService.findByCompanyId(companyId));
+//	}
 	
-	@Test
-	public void deleteCompany() {
-		int companyId = 11;
-		companyService.deleteCompanyById(companyId);
-		assertNull(companyService.findByCompanyId(companyId));
-		}
+//	@Test
+//	public void deleteCompany() {
+//		int companyId = 11;
+//		companyService.deleteCompanyById(companyId);
+//		assertNull(companyService.findByCompanyId(companyId));
+//		}
 
 
 	
-	@Test
-	public void addJobsWithCompanyAndJobsForUsers() {
-		Company comp1 = new Company();
-		comp1.setCompanyName("Mastek");
-		comp1.setLocation("Leeds");
-		
-		Job job1 = new Job();
-		job1.setJobTitle("Database Manager");
-		
-		Job job2 = new Job();
-		job2.setJobTitle("Dev Ops Engineer");
-		
-		User user1 = new User();
-		user1.setUserName("James");
-		user1.setSpeciality("AWS");
-		user1.setLocationPreference("Leeds");
-		
-		User user2 = new User();
-		user2.setUserName("John");
-		user2.setSpeciality("MongoDB");
-		user2.setLocationPreference("Manchester");
-		
-		Requirement req1 = new Requirement();
-		req1.setRequirement("CSS");
-		
-		Requirement req2 = new Requirement();
-		req2.setRequirement("MongoDB");
-		
-		// Many to One - jobs to company
-		comp1.getJobs().add(job1);
-		comp1.getJobs().add(job2);
-		
-		// One To Many - company to jobs
-		job1.setCurrentCompany(comp1);
-		job2.setCurrentCompany(comp1);
-		
-		// Many To many - users to jobs
-		job1.getAssignments().add(user1);
-		job1.getAssignments().add(user2);
-		job2.getAssignments().add(user2);
-		
-		// Many To many - users to jobs
-		job1.getRequirements().add(req1);
-		job1.getRequirements().add(req2);
-		
-		companyService.registerOrUpdateCompany(comp1);
-		}
+//	@Test
+//	public void addJobsWithCompanyAndJobsForUsers() {
+//		Company comp1 = new Company();
+//		comp1.setCompanyName("Mastek");
+//		comp1.setLocation("Leeds");
+//		
+//		Job job1 = new Job();
+//		job1.setJobTitle("Database Manager");
+//		
+//		Job job2 = new Job();
+//		job2.setJobTitle("Dev Ops Engineer");
+//		
+//		User user1 = new User();
+//		user1.setUserName("James");
+//		user1.setSpeciality("AWS");
+//		user1.setLocationPreference("Leeds");
+//		
+//		User user2 = new User();
+//		user2.setUserName("John");
+//		user2.setSpeciality("MongoDB");
+//		user2.setLocationPreference("Manchester");
+//		
+//		Requirement req1 = new Requirement();
+//		req1.setRequirement("CSS");
+//		
+//		Requirement req2 = new Requirement();
+//		req2.setRequirement("MongoDB");
+//		
+//		// Many to One - jobs to company
+//		comp1.getJobs().add(job1);
+//		comp1.getJobs().add(job2);
+//		
+//		// One To Many - company to jobs
+//		job1.setCurrentCompany(comp1);
+//		job2.setCurrentCompany(comp1);
+//		
+//		// Many To many - users to jobs
+//		job1.getAssignments().add(user1);
+//		job1.getAssignments().add(user2);
+//		job2.getAssignments().add(user2);
+//		
+//		// Many To many - users to jobs
+//		job1.getRequirements().add(req1);
+//		job1.getRequirements().add(req2);
+//		
+//		companyService.registerOrUpdateCompany(comp1);
+//		}
+//
+//		
+//		@Test
+//		public void checkFetchJobBySearchParam() {
+//		String searchParam = "Dev Ops";
+//		List<Job> job = jobService.fetchJobUsingSearchBar(searchParam);
+//		for (Job job2 : job) {
+//			System.out.println(job2);
+//		}
+//	}
 
+<<<<<<< HEAD
 		
 
 	
@@ -266,4 +330,97 @@ public class JobappApplicationTests {
         
 */
 
+=======
+//	@Test
+//    public void addThousandDataEntries() {
+//		String firstNameArr[] = {"Matt ","Tom ","John ","Hollie ","Rosie ","Joe ","Fran ","Fred ","Freya ","Sam "};
+//		String middleNameArr[] = {"Mika ","Bailey ","Jules ","Alex ","Kyle ","River ","Harper ","Charlie ","Drew ","Logan"};
+//		String lastNameArr[] = {"Jeffries","Humpfries","Jones","Williams","Jameson","Reed","Brown","Stark","King","Smithers"};
+//        String compArr[] = {"Oscorp","WGG Solutions","Mastek","Atkins","GCS","Datasys","Softerim ltd.","Acure Rilan", "Gregory Inc.", "WGT Org."};
+//        String locArr[] = {"Leeds","Bradford","Manchester","London","Birmingham","Oxford","Cardiff","Hull","Essex","Cornwall"};
+//        String reqSpecArr[] = {"Java ","JavaScript","Dev Ops","Python","MySQL","PHP","HTML","MongoDB","Angular","CSS"};
+//        String jobTitleArr[] = {"Java Developer","JavaScript Developer","Senior Dev Ops Specialist","Python Developer","MySQL Specialist","Senior PHP Developer",
+//                "HTML Developer","MongoDB Specialist","Angular Specialist","CSS Assisstant"};
+//        String industryArr[] = {"Defence","IT","Energy","Public Sector","Chemical","Mining","Healthcare","Retail","Social Media","Confectionary"};
+//        
+//        for (int t = 0; t<10; t++) {
+//        	
+//        	Company comp = new Company();
+//	        comp.setCompanyName(compArr[t]);
+//	        comp.setLocation(locArr[t]);
+//	        comp.setCompanyPassword("******");
+//	        comp.setIndustry(industryArr[t]);
+//        	comp.setCompanyId(t);
+//       	
+// 
+//	        for (int i = 0; i < 10; i++) {
+//	           
+//	        	
+//	            int v = (int) Math.floor(10*Math.random());
+//	            int j = (int) Math.floor(10*Math.random());
+//	            int k = (int) Math.floor(10*Math.random());
+//	            int x = (int) Math.floor(10*Math.random());
+//	            int y = (int) Math.floor(10*Math.random());
+//	            int z = (int) Math.floor(10*Math.random());
+//		        
+//		           
+//		        Job job1 = new Job();
+//	            job1.setJobTitle(jobTitleArr[j]);
+//	            job1.setLocation(locArr[j]);
+//	            job1.setSalary(j*10000);
+//		           
+//	            Job job2 = new Job();
+//	            job2.setJobTitle(jobTitleArr[k]);
+//	            job2.setLocation(locArr[k]);
+//	            job2.setSalary(k*10000);
+//		  
+//	            User user1 = new User();
+//	            user1.setUserName(firstNameArr[v]+middleNameArr[j]+lastNameArr[k]);
+//	            user1.setLocationPreference(locArr[v]);
+//	            user1.setUserPassword("******");
+//		           
+//	            User user2 = new User();
+//	            user2.setUserName(firstNameArr[x]+middleNameArr[y]+lastNameArr[z]);
+//	            user2.setLocationPreference(locArr[j]);
+//	            user2.setUserPassword("******");
+//	           
+//	            Requirement req1 = new Requirement();
+//	            req1.setRequirement(reqSpecArr[v]);
+//	           
+//	            Requirement req2 = new Requirement();
+//	            req2.setRequirement(reqSpecArr[j]);
+//	            
+//	            Requirement req3 = new Requirement();
+//	            req3.setRequirement(reqSpecArr[k]);
+//	           
+//	            // Many to One - jobs to company
+//	            comp.getJobs().add(job1);
+//	            comp.getJobs().add(job2);
+//		           
+//	            // One To Many - company to jobs
+//	            job1.setCurrentCompany(comp);
+//	            job2.setCurrentCompany(comp);
+//	           
+//	            // Many To many - users to jobs
+//	            job1.getAssignments().add(user1);
+//	            job1.getAssignments().add(user2);
+//	            job2.getAssignments().add(user2);
+//	           
+//	            // Many To many - jobs to requirements
+//	            job1.getRequirements().add(req1);
+//	            job1.getRequirements().add(req2);
+//	            
+//	            // Many To many - users to specialities
+//	            user1.getUserSpeciality().add(req1);
+//	            user1.getUserSpeciality().add(req2);
+//	            user1.getUserSpeciality().add(req3);
+//	            
+//		        companyService.registerOrUpdateCompany(comp);
+//
+//	        }
+//
+//        }
+//	}
+	
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 }

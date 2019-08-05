@@ -14,7 +14,7 @@ import { Company } from './company';
       //declare Http Client object to connect to service
       constructor(private httpsvc:HttpClient) { 
         // initialise the URL
-        this.rootURL="http://localhost:7700/jobs"
+        this.rootURL="http://localhost:7705/jobs"
       }
       // we use Observable to manage HTTP Communication as helper class
     
@@ -36,7 +36,7 @@ import { Company } from './company';
     
       }
     
-      loadAllCompanysFromServer():Observable<User[]>{
+      loadAllCompanysFromServer():Observable<Company[]>{
         return this.httpsvc.get<Company[]>("http://localhost:7700/company/list")
       }
     
