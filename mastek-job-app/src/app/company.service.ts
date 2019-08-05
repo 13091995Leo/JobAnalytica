@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CompanyComponent } from './company/company.component';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap} from '.rxjs/operators';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Company } from './company';
 
