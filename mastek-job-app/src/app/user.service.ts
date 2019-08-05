@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JobComponent } from './job/job.component';
 import { UserComponent } from './user/user.component';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,12 @@ export class UserService {
 
   constructor(private httpsvc:HttpClient) { 
     this.rootURL="http://localhost:7705/users"
+  }
+
+  loadAllUsersFromServer():Observable<User[]> {
+    return this.httpsvc.get<User[]>(
+      "http://localhost7705/users/displayAllUsers"
+    )
   }
 
   findUserByUserId(userId):Observable<UserComponent> {
