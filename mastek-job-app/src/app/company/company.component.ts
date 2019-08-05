@@ -34,7 +34,6 @@ export class CompanyComponent implements OnInit {
   this.jobTitle = "IT Admin Assistant"
   this.salary = 14000
   this.location = "London"
-  // this.job=new Job(101,"asdfghj","asdfghj",99999)
 
   // this.allJobs = [
   //   {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
@@ -57,56 +56,18 @@ export class CompanyComponent implements OnInit {
         this.jobTitle=response.jobTitle
         this.salary=response.salary
         this.location=response.location
-        this.assignments=response.assignments
+        this.allJobs=response.allJobs
       }
     )
   }
 
-  // this.consumeRestAPIService.postJob(this.job)
-  // .subscribe((status)=>
-  // {
-  //   this.postStatus=status;
-  // }
-  // )
-
-  // saveJob(jobForm: NgForm): void {
-  //   this._companyService.save(this.job).subscribe(
-  //     (data: Job) => {
-  //       // log the employee object after the post is completed
-  //       console.log(data);
-  //       jobForm.reset();
-  //       this._router.navigate(['list']);
-  //     },
-  //     (error: any) => { console.log(error); }
-  //   );
-  // }
 
   deleteJob(index){
     //deletes 1 element from the index specified 
-    this.assignments.splice(index,1)
+    this.allJobs.splice(index,1)
    }
 
-//    addNewJob(jbid,jbtitle,sal,loc){
-//     if(isNaN(jbid))
-//   {
-//     this.isJobFormValid=false
-//     this.invalidFormMessage="Job ID must be a number"
-//   }
 
-//   else if(jbtitle.length<2){
-//     this.isJobFormValid=false
-//     this.invalidFormMessage="Job Title must be greater than 2 characters"
-//   }
-
-//   else{
-//     this.assignments.push({
-//     jobId:jbid,jobTitle:jbtitle,salary:sal,location:loc 
-//     })
-//     this.isJobFormVisible=false
-//     this.isJobFormValid=true
-//     this.invalidFormMessage=""
-//       }
-// }
 
 updateSelectedJobId(jbid){
   this.selectJobId=jbid
@@ -144,9 +105,6 @@ assignNewJob(){
           this.loadAllJobs()
           
         }
-          // updateSelection(jobId){
-          //   this.selectJobId=jobId
-          // }
         
         updateJobDetails(){
             this.companysvc.updateJobOnServer({
