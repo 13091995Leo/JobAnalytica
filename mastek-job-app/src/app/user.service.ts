@@ -18,7 +18,7 @@ export class UserService {
 
   loadAllUsersFromServer():Observable<User[]> {
     return this.httpsvc.get<User[]>(
-      "http://localhost7705/users/displayAllUsers"
+      "http://localhost:7705/users/displayAllUsers"
     )
   }
 

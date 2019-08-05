@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
 
   allUsers: User[]
   userSpeciality: Requirement[]
+  selectUserId: number
 
   recommendations: Job[]
 
@@ -62,15 +63,23 @@ export class UserComponent implements OnInit {
 
   toggleEdits() {
     this.isEditable = !this.isEditable
+    this.loadAllUsers()
   }
 
-  // loadAllUsers() {
-  //   this.userSvc.loadAllUsersFromServer().subscribe(
-  //     response => {
-  //       this.allUsers = response
-  //     }
-  //   )
-  // }
+  loadAllUsers() {
+    this.userSvc.loadAllUsersFromServer().subscribe(
+      response => {
+        this.allUsers = response
+      }
+    )
+  }
+
+  updateUserSelection(id) {
+    this.selectUserId = id
+    // localStorage.setItem("userId", String(id))
+    this.userId = id
+    this.fetchCurrentUserFromService()
+  }
 
   updateUserDetails() {
     this.userSvc.updateUserOnServer({

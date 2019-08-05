@@ -4,10 +4,14 @@
 <table>
     <tr>
         <td>User ID: </td>
-        <td>{{userId}}</td>
-        <!-- <select id="user-select" #selectUser [(ngModel)]="currentUser" (change)="updateUser(selectUser.value)">
-            <option *ngFor="let user of allUsers" value="{{dept.deptno}}">{{user.userId}}::{{user.userName}}</option>
-         </select> -->
+        <td *ngIf="!isEditable">{{userId}}</td>
+        <td *ngIf="isEditable">
+            <select id="user-select" #selectUser [(ngModel)]="userId" (change)="updateUserSelection(selectUser.value)">
+                <option *ngFor="let user of allUsers" value="{{user.userId}}">{{user.userId}}::{{user.userName}}</option>
+            </select>
+        </td>
+        <td><button (click)="toggleEdits()">{{(isEditable)?"Select User":"Change User"}}</button></td>
+
     </tr>
     <tr>
         <td>User Name: </td>
