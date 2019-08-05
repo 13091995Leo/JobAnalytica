@@ -25,7 +25,8 @@ import com.mastek.jobapp.entities.User;
 @SpringBootTest
 public class JobappApplicationTests {
 
-/*	@Autowired
+/*
+	@Autowired
 	Job job;	
 	
 	@Autowired
@@ -36,6 +37,7 @@ public class JobappApplicationTests {
 	
 	@Autowired
 	RequirementService requirementService;
+
 
 	@Test
 	public void addOrUpdateJobUsingService() {
@@ -58,7 +60,7 @@ public class JobappApplicationTests {
 	public void findByJobIdUsingService() {
 		int jobId = 4;
 		assertNotNull(jobService.findByJobId(jobId));
-	}	*/
+	}	
 	
 	@Autowired
 	UserService userService;
@@ -66,7 +68,7 @@ public class JobappApplicationTests {
 	@Autowired
 	User user;
 	
-/*	@Test
+	@Test
 	public void addOrUpdateUserUsingService() {
 		user.setUserName("Test name");
 		user.setLocationPreference("Test location");
@@ -86,7 +88,7 @@ public class JobappApplicationTests {
 		int userId = 2;
 		userService.deleteByUserId(userId);
 		assertNull(userService.findByUserId(userId));
-	}	*/
+	}	
 
 	@Autowired
 	CompanyService companyService;
@@ -94,7 +96,7 @@ public class JobappApplicationTests {
 	@Autowired
 	Company company;
 	
-/*	@Test
+	@Test
 	public void addOrUpdateCompanyUsingService() {	
 		company.setCompanyName("Default company name");
 		company.setIndustry("Default industry");
@@ -168,16 +170,15 @@ public class JobappApplicationTests {
 		}
 
 		
-		@Test
-		public void checkFetchJobBySearchParam() {
-		String searchParam = "Dev Ops";
-		List<Job> job = jobService.fetchJobUsingSearchBar(searchParam);
-		for (Job job2 : job) {
-			System.out.println(job2);
-		}
-	}*/
 
-/*	@Test
+	
+	@Autowired
+	CompanyService companyService;
+	
+	@Autowired
+	Company company;
+	
+	@Test
     public void addThousandDataEntries() {
 		String firstNameArr[] = {"Matt ","Tom ","John ","Hollie ","Rosie ","Joe ","Fran ","Fred ","Freya ","Sam "};
 		String middleNameArr[] = {"Mika ","Bailey ","Jules ","Alex ","Kyle ","River ","Harper ","Charlie ","Drew ","Logan"};
@@ -189,18 +190,10 @@ public class JobappApplicationTests {
                 "HTML Developer","MongoDB Specialist","Angular Specialist","CSS Assisstant"};
         String industryArr[] = {"Defence","IT","Energy","Public Sector","Chemical","Mining","Healthcare","Retail","Social Media","Confectionary"};
         
-        for (int t = 0; t<10; t++) {
-        	
-        	Company comp = new Company();
-	        comp.setCompanyName(compArr[t]);
-	        comp.setLocation(locArr[t]);
-	        comp.setCompanyPassword("******");
-	        comp.setIndustry(industryArr[t]);
-        	comp.setCompanyId(t);
-       	
+
+        for (int t = 1; t<11; t++) {
  
-	        for (int i = 0; i < 10; i++) {
-	           
+	        for (int i = 0; i < 100; i++) {
 	        	
 	            int v = (int) Math.floor(10*Math.random());
 	            int j = (int) Math.floor(10*Math.random());
@@ -209,6 +202,12 @@ public class JobappApplicationTests {
 	            int y = (int) Math.floor(10*Math.random());
 	            int z = (int) Math.floor(10*Math.random());
 		        
+	            Company comp = new Company();
+		        comp.setCompanyName(compArr[t-1]);
+		        comp.setLocation(locArr[t-1]);
+		        comp.setCompanyPassword("******");
+		        comp.setIndustry(industryArr[t-1]);
+	        	comp.setCompanyId(t);
 		           
 		        Job job1 = new Job();
 	            job1.setJobTitle(jobTitleArr[j]);
@@ -238,18 +237,18 @@ public class JobappApplicationTests {
 	            
 	            Requirement req3 = new Requirement();
 	            req3.setRequirement(reqSpecArr[k]);
-	           
-	            // Many to One - jobs to company
-	            comp.getJobs().add(job1);
-	            comp.getJobs().add(job2);
-		           
+	            
 	            // One To Many - company to jobs
 	            job1.setCurrentCompany(comp);
 	            job2.setCurrentCompany(comp);
 	           
+	            // Many to One - jobs to company
+	            comp.getJobs().add(job1);
+	            comp.getJobs().add(job2);
+
+	           
 	            // Many To many - users to jobs
 	            job1.getAssignments().add(user1);
-	            job1.getAssignments().add(user2);
 	            job2.getAssignments().add(user2);
 	           
 	            // Many To many - jobs to requirements
@@ -258,16 +257,13 @@ public class JobappApplicationTests {
 	            
 	            // Many To many - users to specialities
 	            user1.getUserSpeciality().add(req1);
-	            user1.getUserSpeciality().add(req2);
-	            user1.getUserSpeciality().add(req3);
+	            user2.getUserSpeciality().add(req2);
 	            
-		        companyService.registerOrUpdateCompany(comp);
-
+	            companyService.registerOrUpdateCompany(comp);
 	        }
 
-        }
-	}
-	*/
+     
+        
+*/
+
 }
-
-

@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -50,8 +51,7 @@ public class Requirement {
 		this.jobRequirement = jobRequirement;
 	}
 	
-	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
-	@XmlTransient
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.EAGER)
 	public Set<User> getUserSpeciality() {
 		return userSpeciality;
 	}
