@@ -34,12 +34,12 @@ export class CompanyComponent implements OnInit {
   this.salary = 14000
   this.location = "London"
 
-  this.assignments = [
-    {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
-    {jobId:16, jobTitle: "Junior Java Developer", salary: 30000, location:"London"},
-    {jobId:3884, jobTitle: "Admin Assistant", salary: 20000, location:"Leeds"}
+  // this.allJobs = [
+  //   {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
+  //   {jobId:16, jobTitle: "Junior Java Developer", salary: 30000, location:"London"},
+  //   {jobId:3884, jobTitle: "Admin Assistant", salary: 20000, location:"Leeds"}
 
-  ]
+  // ]
 
   }
 
@@ -65,27 +65,27 @@ export class CompanyComponent implements OnInit {
     this.assignments.splice(index,1)
    }
 
-   addNewJob(jbid,jbtitle,sal,loc){
-    if(isNaN(jbid))
-  {
-    this.isJobFormValid=false
-    this.invalidFormMessage="Job ID must be a number"
-  }
+//    addNewJob(jbid,jbtitle,sal,loc){
+//     if(isNaN(jbid))
+//   {
+//     this.isJobFormValid=false
+//     this.invalidFormMessage="Job ID must be a number"
+//   }
 
-  else if(jbtitle.length<2){
-    this.isJobFormValid=false
-    this.invalidFormMessage="Job Title must be greater than 2 characters"
-  }
+//   else if(jbtitle.length<2){
+//     this.isJobFormValid=false
+//     this.invalidFormMessage="Job Title must be greater than 2 characters"
+//   }
 
-  else{
-    this.assignments.push({
-    jobId:jbid,jobTitle:jbtitle,salary:sal,location:loc 
-    })
-    this.isJobFormVisible=false
-    this.isJobFormValid=true
-    this.invalidFormMessage=""
-      }
-}
+//   else{
+//     this.assignments.push({
+//     jobId:jbid,jobTitle:jbtitle,salary:sal,location:loc 
+//     })
+//     this.isJobFormVisible=false
+//     this.isJobFormValid=true
+//     this.invalidFormMessage=""
+//       }
+// }
 
 updateSelectedJobId(jbid){
   this.selectJobId=jbid
@@ -93,7 +93,7 @@ updateSelectedJobId(jbid){
 
 assignNewJob(){
   this.companysvc.assignJobToCompany(
-    this.jobId,this.selectJobId)
+    this.jobId)
       .subscribe(
         response =>{
           this.fetchCurrentJobFromService()
