@@ -36,7 +36,7 @@ import { Company } from './company';
     
       }
     
-      loadAllCompanysFromServer():Observable<User[]>{
+      loadAllCompanysFromServer():Observable<Company[]>{
         return this.httpsvc.get<Company[]>("http://localhost:7700/company/list")
       }
     
