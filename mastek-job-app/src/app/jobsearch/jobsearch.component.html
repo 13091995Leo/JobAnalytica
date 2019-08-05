@@ -1,6 +1,6 @@
 <h1>Specified Jobs</h1>
 
-<input type="text" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
+<input type="text" placeholder="Search" [(ngModel)]="searchText" >
 <!-- <form >
     <div>
       <input type="text" placeholder="Search" ng-model = "searchBox">
@@ -16,7 +16,7 @@
         <th>Location: </th>
     </tr>
     <tbody>
-    <tr *ngFor = "let j of jobsObj | filter:searchText">
+    <tr *ngFor = "let j of jobsObj | filter:searchText | slice:0:40    ;">
         <td >{{j.jobTitle}}</td>
         <td >{{j.salary}}</td>
         <td >{{j.location}}</td>

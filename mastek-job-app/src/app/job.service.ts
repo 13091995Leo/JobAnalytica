@@ -37,7 +37,7 @@ import { Company } from './company';
       }
     
       loadAllCompanysFromServer():Observable<User[]>{
-        return this.httpsvc.get<Company[]>("http://localhost:7700/company/list")
+        return this.httpsvc.get<User[]>("http://localhost:7700/company/list")
       }
     
       assignJobToUser(jobId, userId):Observable<User[]>{

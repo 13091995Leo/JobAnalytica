@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCurrentUserFromService()
-    localStorage.setItem("userId", "7")
+    localStorage.setItem("userId", "3")
     // localStorage.setItem("userName", "Hollie Jules Reed")
     // localStorage.setItem("locationPref", "London")
   }

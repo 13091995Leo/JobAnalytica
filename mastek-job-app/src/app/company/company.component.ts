@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company';
 import { CompanyService } from '../company.service';
+import { Job } from '../job';
 
 @Component({
   selector: 'app-company',
@@ -14,7 +15,7 @@ export class CompanyComponent implements OnInit {
   location: string
   salary: number
   isEditable:boolean
-  assignments: Company[]
+  assignments: Job[]
   isJobFormVisible:boolean
 
   isJobFormValid:boolean
@@ -37,7 +38,6 @@ export class CompanyComponent implements OnInit {
     {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
     {jobId:16, jobTitle: "Junior Java Developer", salary: 30000, location:"London"},
     {jobId:3884, jobTitle: "Admin Assistant", salary: 20000, location:"Leeds"}
-
   ]
 
   }
