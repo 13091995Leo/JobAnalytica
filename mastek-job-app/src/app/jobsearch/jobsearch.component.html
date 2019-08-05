@@ -7,6 +7,7 @@
       <button type="submit" ><i>Search</i></button>
     </div>
 </form> -->
+
 &nbsp;
 
 <table >
@@ -16,10 +17,12 @@
         <th>Location: </th>
     </tr>
     <tbody>
-    <tr *ngFor = "let j of jobsObj | filter:searchText | slice:0:40">
+    <tr *ngFor = "let j of jobsObj | filter:searchText ">
         <td >{{j.jobTitle}}</td>
         <td >{{j.salary}}</td>
         <td >{{j.location}}</td>
+        <!-- <td><button (click)="addJobToUser(j.jobId)" (click)="toggleEdits()">{{(isEditable)?"Save":"Saved"}}</button></td> -->
+        <td><button (click)="addJobToUser(j.jobId)">Save</button></td>
     </tr>
     </tbody>
     

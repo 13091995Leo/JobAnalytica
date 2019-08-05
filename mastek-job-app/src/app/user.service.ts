@@ -62,6 +62,19 @@ export class UserService {
     )
   }
 
+  removeJobFromUser(userId, jobId):Observable<JobComponent[]> {
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "userId=" + userId + "&jobId=" +jobId
+    return this.httpsvc.post<JobComponent[]>(
+      "http://localhost:7705/jobs/remove/users", reqBody, httpOptions
+    )
+  }
   
+  findJobByRequirementId() {
 
+  }
 }

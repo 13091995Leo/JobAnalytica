@@ -19,6 +19,8 @@ export class JobsearchComponent implements OnInit {
 
   jobsObj : JobsearchComponent[]
 
+  isEditable: boolean
+
   constructor(private jsrchSvc:JobsearchService) { 
     this.searchParam = ""
   }
@@ -27,11 +29,23 @@ export class JobsearchComponent implements OnInit {
     this.fetchJobsBySearchParam()
   }
 
+  toggleEdits() {
+    this.isEditable = !this.isEditable
+  }
+
   fetchJobsBySearchParam(){
     this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
       response => {
         this.jobsObj = response
       }
+    )
+  }
+
+  addJobToUser(jid) {
+    this.jsrchSvc.assignJobToUser(Number(localStorage.getItem("userId")),jid).subscribe(
+      // response => {
+      //   this.fetchCurrentUsersFromService()
+      // }
     )
   }
 

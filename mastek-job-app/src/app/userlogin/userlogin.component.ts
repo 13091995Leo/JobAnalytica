@@ -22,4 +22,10 @@ export class UserloginComponent implements OnInit {
     
   }
 
+  selectUserId(name) {
+    this.userId = name
+    localStorage.setItem("userId", String(name))
+
+  }
+
 }
