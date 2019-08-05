@@ -5,6 +5,9 @@
     <tr>
         <td>User ID: </td>
         <td>{{userId}}</td>
+        <!-- <select id="user-select" #selectUser [(ngModel)]="currentUser" (change)="updateUser(selectUser.value)">
+            <option *ngFor="let dept of allDepartments" value="{{dept.deptno}}">{{dept.deptno}}::{{dept.name}}</option>
+         </select> -->
     </tr>
     <tr>
         <td>User Name: </td>
