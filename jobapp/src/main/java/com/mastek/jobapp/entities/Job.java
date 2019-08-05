@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
 //@Component
-
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs") // declaring the table name for the class

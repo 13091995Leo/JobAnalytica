@@ -11,7 +11,8 @@ import { UserComponent } from './user/user.component';
 import { CompanyloginComponent } from './companylogin/companylogin.component';
 import { CompanyComponent } from './company/company.component';
 import { JobsearchComponent } from './jobsearch/jobsearch.component';
-
+import { FeatComponent } from './feat/feat.component';
+import { CompanyService } from './company.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -23,7 +24,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UserComponent,
     CompanyloginComponent,
     CompanyComponent,
-    JobsearchComponent
+    JobsearchComponent,
+    FeatComponent
   ],
   imports: [
     BrowserModule,

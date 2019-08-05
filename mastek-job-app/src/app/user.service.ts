@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JobComponent } from './job/job.component';
 import { UserComponent } from './user/user.component';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,12 @@ export class UserService {
 
   constructor(private httpsvc:HttpClient) { 
     this.rootURL="http://localhost:7705/users"
+  }
+
+  loadAllUsersFromServer():Observable<User[]> {
+    return this.httpsvc.get<User[]>(
+      "http://localhost:7705/users/displayAllUsers"
+    )
   }
 
   findUserByUserId(userId):Observable<UserComponent> {
@@ -55,6 +62,19 @@ export class UserService {
     )
   }
 
+  removeJobFromUser(userId, jobId):Observable<JobComponent[]> {
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "userId=" + userId + "&jobId=" +jobId
+    return this.httpsvc.post<JobComponent[]>(
+      "http://localhost:7705/jobs/remove/users", reqBody, httpOptions
+    )
+  }
   
+  findJobByRequirementId() {
 
+  }
 }

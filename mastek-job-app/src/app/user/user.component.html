@@ -4,7 +4,14 @@
 <table>
     <tr>
         <td>User ID: </td>
-        <td>{{userId}}</td>
+        <td *ngIf="!isEditable">{{userId}}</td>
+        <td *ngIf="isEditable">
+            <select id="user-select" #selectUser [(ngModel)]="userId" (change)="updateUserSelection(selectUser.value)">
+                <option *ngFor="let user of allUsers" value="{{user.userId}}">{{user.userId}}::{{user.userName}}</option>
+            </select>
+        </td>
+        <td><button (click)="toggleEdits()">{{(isEditable)?"Select User":"Change User"}}</button></td>
+
     </tr>
     <tr>
         <td>User Name: </td>
@@ -34,7 +41,7 @@
         <td>{{g.jobTitle}}</td>
         <td>{{g.location}}</td>
         <td>{{g.salary}}</td>
-        <td><button (click)="deleteSaveJob(i)">Delete</button></td>
+        <td><button (click)="deleteSaveJob(i, g.jobId)">Delete</button></td>
     </tr>
 </table>
 

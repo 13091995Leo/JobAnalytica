@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //@Component
-
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="requirements")// declaring the table name for the class
