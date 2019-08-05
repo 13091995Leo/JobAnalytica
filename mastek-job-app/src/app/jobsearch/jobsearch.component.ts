@@ -8,34 +8,61 @@ import { JobsearchService } from '../jobsearch.service';
   styleUrls: ['./jobsearch.component.css']
 })
 export class JobsearchComponent implements OnInit {
-  
-  searchParam : String
 
-  jobId : number
+  searchParam: String
+
+  jobId: number
   jobTitle: String
-  location : String
-  requirements: String
+  location: String
   salary: number
 
-  jobsObj : JobsearchComponent[]
+  jobsObj: JobsearchComponent[]
+  filterBySalaryParam: number;
+  filterByLocationParam: String;
+  filterByCompanyNameParam: String;
 
-  constructor(private jsrchSvc:JobsearchService) { 
-    this.searchParam = ""
+  constructor(private jsrchSvc: JobsearchService) {
+    this.searchParam = "Search Jobs"
+    this.salary = 0
+    this.location = ""
   }
 
   ngOnInit() {
     this.fetchJobsBySearchParam()
   }
 
-  fetchJobsBySearchParam(){
+  fetchJobsBySearchParam() {
     this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+
+  }
+
+  filterBySalary() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterBySalaryParam).subscribe(
       response => {
         this.jobsObj = response
       }
     )
   }
 
- 
+  filterByLocation() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterByLocationParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+  }
+
+  filterByCompanyName() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterByCompanyNameParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+  }
 
 
 
