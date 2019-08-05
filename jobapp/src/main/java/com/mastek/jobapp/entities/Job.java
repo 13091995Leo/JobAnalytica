@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 @Table(name="Jobs") // declaring the table name for the class
 @NamedQueries({
 	@NamedQuery( name = "Job.findBySearchParam",
-			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') " //JPA Query language
+			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') or j.location like concat('%', :searchParam, '%') or j.salary like concat('%', :searchParam, '%')" //JPA Query language
 			), // LIKE CONCAT('%' , :searchParam , '%')
 	@NamedQuery(name = "Job.findAverageJobSalaryByJobTitle",
 			query = "select avg(j.salary) from Job j where job_title = :jobTitle")
