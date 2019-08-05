@@ -3,6 +3,7 @@ import { Company } from '../company';
 import { CompanyService } from '../company.service';
 import { Job } from '../job';
 
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -33,6 +34,7 @@ export class CompanyComponent implements OnInit {
   this.jobTitle = "IT Admin Assistant"
   this.salary = 14000
   this.location = "London"
+  // this.job=new Job(101,"asdfghj","asdfghj",99999)
 
   // this.allJobs = [
   //   {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
@@ -59,6 +61,25 @@ export class CompanyComponent implements OnInit {
       }
     )
   }
+
+  // this.consumeRestAPIService.postJob(this.job)
+  // .subscribe((status)=>
+  // {
+  //   this.postStatus=status;
+  // }
+  // )
+
+  // saveJob(jobForm: NgForm): void {
+  //   this._companyService.save(this.job).subscribe(
+  //     (data: Job) => {
+  //       // log the employee object after the post is completed
+  //       console.log(data);
+  //       jobForm.reset();
+  //       this._router.navigate(['list']);
+  //     },
+  //     (error: any) => { console.log(error); }
+  //   );
+  // }
 
   deleteJob(index){
     //deletes 1 element from the index specified 

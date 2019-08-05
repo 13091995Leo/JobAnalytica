@@ -62,10 +62,11 @@
  
     </table>
 
-    <form *ngIf="isJobFormVisible" (submit)="assignNewJob()">
+    <!-- <form *ngIf="isJobFormVisible" (submit)="assignNewJob()"> -->
+        <br>
             <table>
-                <tr>
-                    <td>
+                <!-- <tr> -->
+                    <!-- <td>
                         <select name="jobId" #selectJobId 
                         (change)="updateSelectedJobId(selectJobId.value)"> 
                     <option *ngFor="let j of allJobs" value="{{j.jobId}}">{{j.jobId}}::{{j.jobTitle}}</option>
@@ -75,8 +76,8 @@
                     <td> <div [hidden]="isJobFormValid">
                         {{invalidFormMessage}}
                     </div>
-                    </td>
-                </tr>
+                    </td> -->
+                <!-- </tr> -->
                 <tr>
                         <td>JobId:</td>
                         <td>{{jobId}}</td>
@@ -113,11 +114,13 @@
                         <td><button (click)="addJob">Add New Job</button></td>
                 </tr>
 
+                
+
 
             </table>
     
     
-        </form>
+        <!-- </form> -->
 
 
 
