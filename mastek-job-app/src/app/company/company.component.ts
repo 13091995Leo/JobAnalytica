@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company';
 import { CompanyService } from '../company.service';
+import { Job } from '../job';
 
 @Component({
   selector: 'app-company',
@@ -14,7 +15,7 @@ export class CompanyComponent implements OnInit {
   location: string
   salary: number
   isEditable:boolean
-  assignments: Company[]
+  assignments: Job[]
   isJobFormVisible:boolean
 
   isJobFormValid:boolean

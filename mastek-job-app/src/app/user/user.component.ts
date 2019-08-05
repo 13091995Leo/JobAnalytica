@@ -3,6 +3,7 @@ import { JobComponent } from '../job/job.component';
 import { UserService } from '../user.service';
 import { Job } from '../job';
 import { Requirement } from '../requirement';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user',
@@ -16,6 +17,8 @@ export class UserComponent implements OnInit {
   userName: String
   userPassword: String
   locationPreference: String
+
+  allUsers: User[]
   userSpeciality: Requirement[]
 
   recommendations: Job[]
@@ -60,6 +63,14 @@ export class UserComponent implements OnInit {
   toggleEdits() {
     this.isEditable = !this.isEditable
   }
+
+  // loadAllUsers() {
+  //   this.userSvc.loadAllUsersFromServer().subscribe(
+  //     response => {
+  //       this.allUsers = response
+  //     }
+  //   )
+  // }
 
   updateUserDetails() {
     this.userSvc.updateUserOnServer({
