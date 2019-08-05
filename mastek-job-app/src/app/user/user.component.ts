@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCurrentUserFromService()
-    localStorage.setItem("userId", "21")
+    localStorage.setItem("userId", "27")
     // localStorage.setItem("userName", "Hollie Jules Reed")
     // localStorage.setItem("locationPref", "London")
   }
