@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
+import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.JobRepository;
 
 @Component
@@ -35,6 +36,8 @@ public class JobService {
 	
 	@Autowired
 	private RequirementService requirementService;
+	
+	@Autowired UserService userService;
 	
 	public JobService() {
 		System.out.println("Job Service Created");
@@ -118,6 +121,48 @@ public class JobService {
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	@Transactional
+	@POST
+	@Path("/assign/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> assignJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().add(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	@POST
+	@Path("/remove/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> removeJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().remove(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+/*	
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 	@GET
 	@Path("/fetchJobsByCompanyId")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

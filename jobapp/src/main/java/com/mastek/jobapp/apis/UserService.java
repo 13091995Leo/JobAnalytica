@@ -33,6 +33,9 @@ public class UserService {
 	@Autowired
 	private RequirementService specialityService;
 	
+	@Autowired
+	private JobService jobService;
+	
 	public UserService() {
 		System.out.println("User Service Created");
 	}
@@ -112,7 +115,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+<<<<<<< HEAD
 
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 }

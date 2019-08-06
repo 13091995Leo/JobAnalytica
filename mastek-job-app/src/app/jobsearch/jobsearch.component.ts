@@ -8,23 +8,32 @@ import { JobsearchService } from '../jobsearch.service';
   styleUrls: ['./jobsearch.component.css']
 })
 export class JobsearchComponent implements OnInit {
-  
-  searchParam : String
 
-  jobId : number
+  searchParam: String
+
+  jobId: number
   jobTitle: String
-  location : String
-  requirements: String
+  location: String
   salary: number
 
-  jobsObj : JobsearchComponent[]
+  jobsObj: JobsearchComponent[]
+  filterBySalaryParam: number;
+  filterByLocationParam: String;
+  filterByCompanyNameParam: String;
+  isEditable: boolean;
 
-  constructor(private jsrchSvc:JobsearchService) { 
-    this.searchParam = ""
+  constructor(private jsrchSvc: JobsearchService) {
+    this.searchParam = "Search Jobs"
+    this.salary = 0
+    this.location = ""
   }
 
   ngOnInit() {
     this.fetchJobsBySearchParam()
+  }
+
+  toggleEdits() {
+    this.isEditable = !this.isEditable
   }
 
   fetchJobsBySearchParam(){
@@ -32,6 +41,38 @@ export class JobsearchComponent implements OnInit {
       response => {
         this.jobsObj = response
       }
+    )
+
+  }
+
+  filterBySalary() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterBySalaryParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+  }
+
+  filterByLocation() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterByLocationParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+  }
+
+  filterByCompanyName() {
+    this.jsrchSvc.findJobsBySearchParam(this.filterByCompanyNameParam).subscribe(
+      response => {
+        this.jobsObj = response
+      }
+    )
+  }
+  addJobToUser(jid) {
+    this.jsrchSvc.assignJobToUser(Number(localStorage.getItem("userId")),jid).subscribe(
+      // response => {
+      //   this.fetchCurrentUsersFromService()
+      // }
     )
   }
 

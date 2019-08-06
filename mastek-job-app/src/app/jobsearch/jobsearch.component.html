@@ -1,26 +1,59 @@
 <h1>Specified Jobs</h1>
 
-<input type="text" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
-<!-- <form >
-    <div>
-      <input type="text" placeholder="Search" ng-model = "searchBox">
-      <button type="submit" ><i>Search</i></button>
-    </div>
-</form> -->
-&nbsp;
+<input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''">
+<button (click)="fetchJobsBySearchParam(searchParam)">Search</button>
+<hr>
 
-<table >
-    <tr>
-        <th>Job Title: </th>
-        <th>Salary: </th>
-        <th>Location: </th>
-    </tr>
+<div>
+    <select [(ngModel)]="filterBySalaryParam">
+        <option *ngFor="let j of jobsObj " value="{{j.salary}}">{{j.salary}}</option>
+    </select>
+    <button (click)="filterBySalary(filterBySalaryParam)">Filter By Salary</button>
+</div>
+
+<div>
+    <select [(ngModel)]="filterByLocationParam">
+        <option *ngFor="let j of jobsObj " value="{{j.location}}">{{j.location}}</option>
+    </select>
+    <button (click)="filterBySalary(filterBySalaryParam); filterByLocation(filterByLocationParam);  ">Filter By
+        Location</button>
+</div>
+
+<div>
+        <select [(ngModel)]="filterByCompanyNameParam">
+            <option *ngFor="let j of jobsObj " value="{{j.currentCompany.companyName}}">{{j.currentCompany.companyName}}</option>
+        </select>
+        <button (click)="filterByLocation(filterByLocationParam); filterByCompanyName(filterByCompanyNameParam);">Filter By
+            Company</button>
+</div>
+
+
+<hr>
+
+<h2>Search Results</h2>
+
+<table>
     <tbody>
-    <tr *ngFor = "let j of jobsObj | filter:searchText | slice:0:40">
-        <td >{{j.jobTitle}}</td>
-        <td >{{j.salary}}</td>
-        <td >{{j.location}}</td>
-    </tr>
+        <tr>
+            <th>JOB TITLE </th>
+            <th>SALARY </th>
+            <th>LOCATION</th>
+            <th>COMPANY</th>
+            <th>LOCATION</th>
+            <th>INDUSTRY</th>
+
+        </tr>
+        <tr *ngFor="let j of jobsObj ">
+            <td>{{j.jobTitle}}</td>
+            <td>{{j.salary}}</td>
+            <td>{{j.location}}</td>
+            <td>{{j.currentCompany.companyName}}</td>
+            <td>{{j.currentCompany.location}}</td>
+            <td>{{j.currentCompany.industry}}</td>
+            <td><button (click)="addJobToUser(j.jobId)">Save</button></td>
+        </tr>
+        <hr>
     </tbody>
-    
+
+
 </table>

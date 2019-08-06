@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
 
   allUsers: User[]
   userSpeciality: Requirement[]
+  selectUserId: number
 
   recommendations: Job[]
 
@@ -41,7 +42,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCurrentUserFromService()
-    localStorage.setItem("userId", "27")
+    // localStorage.setItem("userId", "21")
     // localStorage.setItem("userName", "Hollie Jules Reed")
     // localStorage.setItem("locationPref", "London")
   }
@@ -62,15 +63,23 @@ export class UserComponent implements OnInit {
 
   toggleEdits() {
     this.isEditable = !this.isEditable
+    this.loadAllUsers()
   }
 
-  // loadAllUsers() {
-  //   this.userSvc.loadAllUsersFromServer().subscribe(
-  //     response => {
-  //       this.allUsers = response
-  //     }
-  //   )
-  // }
+  loadAllUsers() {
+    this.userSvc.loadAllUsersFromServer().subscribe(
+      response => {
+        this.allUsers = response
+      }
+    )
+  }
+
+  updateUserSelection(id) {
+    this.selectUserId = id
+    // localStorage.setItem("userId", String(id))
+    this.userId = id
+    this.fetchCurrentUserFromService()
+  }
 
   updateUserDetails() {
     this.userSvc.updateUserOnServer({
@@ -86,8 +95,13 @@ export class UserComponent implements OnInit {
     this.recommendations.splice(index, 1)
   }
 
-  deleteSaveJob(index) {
+  deleteSaveJob(index, jid) {
     this.group.splice(index, 1)
+    this.userSvc.removeJobFromUser(Number(localStorage.getItem("userId")), jid).subscribe(
+      response => {
+        this.fetchCurrentUserFromService()
+      }
+    )
   }
 
   updateSelectedJobId(jid) {
@@ -102,12 +116,14 @@ export class UserComponent implements OnInit {
     )
   }
 
-  // loadAllJobs() {
-  //   this.userSvc.loadAllJobsFromServer().subscribe(
-  //     response => {
-  //       this.group = response
-  //     }
-  //   )
-  // }
+  loadJobsByRequirement(reqId) {
+    
+  }
+
+  getRecommendedJobs() {
+    for (let u of this.userSpeciality) {
+      this.loadJobsByRequirement(u.requirementId)
+    }
+  }
 
 }
