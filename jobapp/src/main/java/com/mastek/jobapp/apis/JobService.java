@@ -37,8 +37,6 @@ public class JobService {
 	@Autowired
 	private RequirementService requirementService;
 	
-	@Autowired UserService userService;
-	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -121,49 +119,11 @@ public class JobService {
 		}
 	}
 	
-	@Transactional
-	@POST
-	@Path("/assign/users")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Set<User> assignJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
-		try {
-			Job job = findByJobId(jobId);
-			User user = userService.findByUserId(userId);
-			job.getAssignments().add(user);
-			job = registerOrUpdateJob(job);
-			return job.getAssignments();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	@Transactional
-	@POST
-	@Path("/remove/users")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Set<User> removeJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
-		try {
-			Job job = findByJobId(jobId);
-			User user = userService.findByUserId(userId);
-			job.getAssignments().remove(user);
-			job = registerOrUpdateJob(job);
-			return job.getAssignments();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-/*	
 	@GET
-	@Path("/fetchByRequirement")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
-        return jobRepository.findByRequirement(requirements);
-    }
-*/}
+	@Path("/fetchJobsByCompanyId")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
+		return jobRepository.fetchJobByCompanyId(companyId);
+	}
+
+}

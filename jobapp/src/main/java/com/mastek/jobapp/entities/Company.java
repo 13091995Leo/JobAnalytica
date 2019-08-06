@@ -37,6 +37,7 @@ import org.springframework.stereotype.Component;
 public class Company implements Serializable{
 	
 	@Value("-1")
+	@FormParam("companyId")
 	private int companyId;
 	
 	@Value("Default Company")
@@ -57,7 +58,8 @@ public class Company implements Serializable{
 	
 	private Set<Job> jobs = new HashSet<>();
 	
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="currentCompany")
+	// Needs changing back to LAZY after test
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="currentCompany")
 	@XmlTransient
 	public Set<Job> getJobs() {
 		return jobs;

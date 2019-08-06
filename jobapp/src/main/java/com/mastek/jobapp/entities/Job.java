@@ -36,7 +36,9 @@ import org.springframework.stereotype.Component;
 			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') or j.location like concat('%', :searchParam, '%') or j.salary like concat('%', :searchParam, '%')" //JPA Query language
 			), // LIKE CONCAT('%' , :searchParam , '%')
 	@NamedQuery(name = "Job.findAverageJobSalaryByJobTitle",
-			query = "select avg(j.salary) from Job j where job_title = :jobTitle")
+			query = "select avg(j.salary) from Job j where job_title = :jobTitle"),
+	@NamedQuery(name = "Job.fetchJobByCompanyId",
+			query = "select j FROM Job j where fk_company_number = :companyId")
 })
 @XmlRootElement
 public class Job implements Serializable{
@@ -57,6 +59,7 @@ public class Job implements Serializable{
 	private String location;
 
 /// Many to One relationship between jobs and company	
+	@FormParam("companyId")
 	private Company currentCompany;
 	
 	@ManyToOne
