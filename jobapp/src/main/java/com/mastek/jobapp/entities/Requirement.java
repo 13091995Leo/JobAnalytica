@@ -3,6 +3,7 @@ package com.mastek.jobapp.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class Requirement {
 	
 	private Set<User> userSpeciality = new HashSet<>();
 	
-	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
 	}
@@ -49,7 +50,8 @@ public class Requirement {
 		this.jobRequirement = jobRequirement;
 	}
 	
-	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
+	@XmlTransient
 	public Set<User> getUserSpeciality() {
 		return userSpeciality;
 	}

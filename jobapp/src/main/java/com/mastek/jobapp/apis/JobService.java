@@ -117,11 +117,12 @@ public class JobService {
 			return null;
 		}
 	}
-/*	
+	
 	@GET
-	@Path("/fetchByRequirement")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
-        return jobRepository.findByRequirement(requirements);
-    }
-*/}
+	@Path("/fetchJobsByCompanyId")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
+		return jobRepository.fetchJobByCompanyId(companyId);
+	}
+
+}
