@@ -43,7 +43,7 @@
             <th>INDUSTRY</th>
 
         </tr>
-        <tr *ngFor="let j of jobsObj ">
+        <tr *ngFor="let j of jobsObj | slice:0:10">
             <td>{{j.jobTitle}}</td>
             <td>{{j.salary}}</td>
             <td>{{j.location}}</td>

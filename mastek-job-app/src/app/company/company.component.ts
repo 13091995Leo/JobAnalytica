@@ -61,9 +61,10 @@ export class CompanyComponent implements OnInit {
   }
 
 
-  deleteJob(index){
+  deleteJob(index, jid){
     //deletes 1 element from the index specified 
     this.allJobs.splice(index,1)
+    this.companysvc.deleteJobOnServer(jid).subscribe()
    }
 
 

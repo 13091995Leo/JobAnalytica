@@ -43,20 +43,13 @@ public class User implements Serializable{
 	@FormParam("locationPreference")
 	private String locationPreference;
 	
-	@Value("Default Speciality")
-	@FormParam("speciality")
-	private String speciality;
 
-	
 	@Value("Default Password")
 	@FormParam("userPassword")
 	private String userPassword;
 	
 	private Set<Requirement> userSpeciality = new HashSet<>();
 	
-
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;}
 
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="userSpeciality",joinColumns=@JoinColumn(name="FK_USERID"),inverseJoinColumns=@JoinColumn(name="FK_REQUIREMENTID"))
