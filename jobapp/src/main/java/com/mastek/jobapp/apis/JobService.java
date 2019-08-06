@@ -57,7 +57,6 @@ public class JobService {
 	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
 			Job job = jobRepository.findById(jobId).get();
-			job.getRequirements().size();
 			return job;
 		} catch (Exception e) {
 			e.printStackTrace();
