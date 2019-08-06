@@ -3,6 +3,7 @@ package com.mastek.jobapp.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,7 +41,7 @@ public class Requirement {
 	
 	private Set<User> userSpeciality = new HashSet<>();
 	
-	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
 	}

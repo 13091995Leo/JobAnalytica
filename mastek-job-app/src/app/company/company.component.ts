@@ -35,12 +35,11 @@ export class CompanyComponent implements OnInit {
   this.salary = 14000
   this.location = "London"
 
-  // this.allJobs = [
-  //   {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
-  //   {jobId:16, jobTitle: "Junior Java Developer", salary: 30000, location:"London"},
-  //   {jobId:3884, jobTitle: "Admin Assistant", salary: 20000, location:"Leeds"}
-
-  // ]
+  this.assignments = [
+    {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
+    {jobId:16, jobTitle: "Junior Java Developer", salary: 30000, location:"London"},
+    {jobId:3884, jobTitle: "Admin Assistant", salary: 20000, location:"Leeds"}
+  ]
 
   }
 
@@ -62,9 +61,10 @@ export class CompanyComponent implements OnInit {
   }
 
 
-  deleteJob(index){
+  deleteJob(index, jid){
     //deletes 1 element from the index specified 
     this.allJobs.splice(index,1)
+    this.companysvc.deleteJobOnServer(jid).subscribe()
    }
 
 

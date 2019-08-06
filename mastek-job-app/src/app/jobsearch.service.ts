@@ -8,6 +8,7 @@ import { JobComponent } from './job/job.component';
 @Injectable({
   providedIn: 'root'
 })
+
 export class JobsearchService {
 
   rootURL : String

@@ -18,4 +18,7 @@ public interface JobRepository extends CrudRepository<Job, Integer> {
 
 	public String[] findAverageJobSalaryByJobTitle(@Param("jobTitle") String jobTitle);
 
+	@Autowired
+	public List<Job> fetchJobByCompanyId(@Param("companyId") String companyId);
+
 }
