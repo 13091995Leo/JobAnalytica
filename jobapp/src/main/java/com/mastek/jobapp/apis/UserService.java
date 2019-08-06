@@ -115,10 +115,7 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-<<<<<<< HEAD
 
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/13091995Leo/JobAnalytica
 }
