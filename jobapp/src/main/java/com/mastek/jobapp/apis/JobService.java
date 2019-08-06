@@ -56,7 +56,9 @@ public class JobService {
 	@Produces({MediaType.APPLICATION_JSON})
 	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
-			return jobRepository.findById(jobId).get();
+			Job job = jobRepository.findById(jobId).get();
+			job.getRequirements().size();
+			return job;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

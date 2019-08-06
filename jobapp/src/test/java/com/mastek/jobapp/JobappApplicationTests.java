@@ -50,6 +50,8 @@ public class JobappApplicationTests {
 	
 	@Autowired
 	User user;
+	
+
 
 /*	@Test
 	public void addOrUpdateJobUsingService() {
@@ -175,6 +177,7 @@ public class JobappApplicationTests {
 		}
 	}*/
 	
+
 	
 /*	@Test
     public void addCompaniesAndRequirements() {
