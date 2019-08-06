@@ -124,8 +124,8 @@ loadAllJobsFromServer():Observable<Company[]>{
 
   deleteJobOnServer(jobId):Observable<CompanyComponent[]>{
     return this.httpsvc.delete<CompanyComponent[]>(
-    this.rootURL+"/delete/"+jobId)
-  }
+      this.rootURL+"/delete/"+jobId)
+    }
 
   
 
