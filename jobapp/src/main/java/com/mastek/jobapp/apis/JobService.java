@@ -36,6 +36,9 @@ public class JobService {
 	@Autowired
 	private RequirementService requirementService;
 	
+	@Autowired
+	private UserService userService;
+	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -123,6 +126,44 @@ public class JobService {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
 		return jobRepository.fetchJobByCompanyId(companyId);
+	}
+	
+	@Transactional
+	@POST
+	@Path("/assign/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> assignJobsToUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().add(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	@POST
+	@Path("/remove/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> removeJobsFromUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().remove(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
