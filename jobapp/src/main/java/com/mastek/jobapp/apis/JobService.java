@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
-import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.JobRepository;
 
 @Component
@@ -56,8 +55,7 @@ public class JobService {
 	@Produces({MediaType.APPLICATION_JSON})
 	public Job findByJobId(@PathParam("jobId") int jobId) {
 		try {
-			Job job = jobRepository.findById(jobId).get();
-			return job;
+			return jobRepository.findById(jobId).get();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

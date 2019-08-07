@@ -1,7 +1,5 @@
 package com.mastek.jobapp.apis;
 
-import java.util.List;
-import java.util.Set;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -17,9 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
-import com.mastek.jobapp.repository.JobRepository;
 import com.mastek.jobapp.repository.RequirementRepository;
 
 @Component
@@ -79,15 +75,4 @@ public class RequirementService {
 		return requirementRepository.findAll();
 	}
 	
-/*	@Path("/findJobs")
-	@GET
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Set<Job> findJobsByRequirementId() {
-		try {
-			return requirement.getJobRequirement();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}*/
 }

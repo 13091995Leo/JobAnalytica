@@ -179,7 +179,7 @@ public class JobappApplicationTests {
 	
 
 	
-/*	@Test
+	@Test
     public void addCompaniesAndRequirements() {
 		
     String reqSpecArr[] = {"Java ","JavaScript","Dev Ops","Python","MySQL","PHP","HTML","MongoDB","Angular","CSS"};
@@ -275,17 +275,17 @@ public class JobappApplicationTests {
 	        job2.getAssignments().add(user2);
 		           
 	        // Many To many - jobs to requirements
-//	        job1.getRequirements().add(req1);
-//	        job1.getRequirements().add(req2);
+	        job1.getRequirements().add(req1);
+	        job1.getRequirements().add(req2);
 	           
 	        // Many To many - users to specialities
 	        user1.getUserSpeciality().add(req1);
 	        user1.getUserSpeciality().add(req2);
 	        
 	        companyService.registerOrUpdateCompany(comp);
-//	        requirementService.registerOrUpdateRequirement(req1);
-//	        requirementService.registerOrUpdateRequirement(req2);	        	        
+	        requirementService.registerOrUpdateRequirement(req1);
+	        requirementService.registerOrUpdateRequirement(req2);	        	        
         }
-	}*/
+	}
 	
 }

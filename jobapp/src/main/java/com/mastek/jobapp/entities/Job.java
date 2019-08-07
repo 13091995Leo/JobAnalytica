@@ -44,6 +44,7 @@ import org.springframework.stereotype.Component;
 public class Job implements Serializable{
 
 	@Value("-1")
+	@FormParam("jobId")
 	private int jobId;
 	
 	@Value("Default Value")
