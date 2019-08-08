@@ -32,6 +32,7 @@ import org.springframework.stereotype.Component;
 public class Requirement {
 	
 	@Value("-1")
+	@FormParam("requirementId")
 	private int requirementId;
 	
 	@Value("Defaualt requirement")
@@ -51,7 +52,7 @@ public class Requirement {
 		this.jobRequirement = jobRequirement;
 	}
 	
-	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@XmlTransient
 	public Set<User> getUserSpeciality() {
 		return userSpeciality;

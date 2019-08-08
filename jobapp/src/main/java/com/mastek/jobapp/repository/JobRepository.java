@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.jobapp.entities.Job;
 
-//@Component
 public interface JobRepository extends CrudRepository<Job, Integer> {
 	
 	@Autowired
