@@ -108,12 +108,32 @@ public class UserService {
 		}
 	}
 	
+	@Transactional
+	@POST
+	@Path("/remove/speciality")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<Requirement> removeSpeciality(@FormParam("userId") int userId, @FormParam("specialityId") int specialityId) {
+		try {
+			User user = findByUserId(userId);
+			Requirement spec = specialityService.findByRequirementId(specialityId);
+			user.getUserSpeciality().remove(spec);
+			user = registerOrUpdateUser(user);
+			return user.getUserSpeciality();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@GET
 	@Path("/displayAllUsers")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 		public Iterable<User> fetchAllUsers(){
 		return userRepository.findAll();
 	}
+	
+	
 	
 
 	

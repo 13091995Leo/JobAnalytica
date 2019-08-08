@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 @Table(name="requirements")// declaring the table name for the class
 @XmlRootElement
 public class Requirement {
+	
 	@Value("-1")
 	private int requirementId;
 	
