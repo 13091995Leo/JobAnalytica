@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
+import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.JobRepository;
 
 @Component

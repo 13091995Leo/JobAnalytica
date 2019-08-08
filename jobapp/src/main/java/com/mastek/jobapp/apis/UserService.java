@@ -118,29 +118,15 @@ public class UserService {
 		try {
 			user = findByUserId(userId);
 			
-			//int jobArr[user.getGroup().len];
-			
 			for(Job job:user.getGroup()) {
-				jobService.
+				jobService.removeJobsFromUser(userId, job.getJobId());
 			}
-			
-			//int jobArr[] = user.getGroup();
 			
 			Set<Requirement> userSpecialities = user.getUserSpeciality();
 			user.getUserSpeciality().removeAll(userSpecialities);
 			
 			registerOrUpdateUser(user);
-			
-			
-			job = jobService.findByJobId(jobId);
-			Set<User> useJobs = job.getAssignments();
-			
-			
-			Set<Job> userJobs = user.getGroup();
-			user.getGroup().removeAll(userJobs);
-			
-			registerOrUpdateUser(user);
-			
+						
 			userRepository.deleteById(userId);
 						
 			String statement = "User with User ID = " + userId + " sucessfully deleted";
