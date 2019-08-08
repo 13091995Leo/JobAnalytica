@@ -68,8 +68,9 @@ export class JobsearchComponent implements OnInit {
       }
     )
   }
+
   addJobToUser(jid) {
-    this.jsrchSvc.assignJobToUser(Number(localStorage.getItem("userId")),jid).subscribe(
+    this.jsrchSvc.assignJobToUser(Number(sessionStorage.getItem("userId")),jid).subscribe(
       // response => {
       //   this.fetchCurrentUsersFromService()
       // }
