@@ -40,6 +40,8 @@ public class JobService {
 	@Autowired
 	private UserService userService;
 	
+	private Requirement requirement;
+	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -89,7 +91,6 @@ public class JobService {
 	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-
 	
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")

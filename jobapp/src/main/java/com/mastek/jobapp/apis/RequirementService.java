@@ -1,6 +1,8 @@
 package com.mastek.jobapp.apis;
 
 
+import java.util.Set;
+
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.repository.RequirementRepository;
 
@@ -25,6 +28,8 @@ public class RequirementService {
 	@Autowired
 	private RequirementRepository requirementRepository;
 
+	private Requirement requirement;
+	
 	public RequirementService() {
 		System.out.println("Requirement Service Created");
 	}
@@ -47,7 +52,30 @@ public class RequirementService {
 			return requirementRepository.findById(requirementId).get();
 		} catch (Exception e) {
 			e.printStackTrace();
-		return null;
+			return null;
+		}
+	}
+	
+	@Path("/meanSalaryByRequirement/{requirementId}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public String[] meanSalaryByRequirement(@PathParam("requirementId") int requirementId) {
+		try {
+			requirement = findByRequirementId(requirementId);
+			String reqName = requirement.getRequirement();
+			Set<Job> jobs = requirement.getJobRequirement();
+			int count = jobs.size();
+			double totalSalary = 0.0;
+			for (Job job : jobs) {
+				totalSalary += job.getSalary();
+			}
+			double meanSalary = totalSalary/count;
+			String[] returnStatement = {"Average salary for " + reqName + " is £" + meanSalary};
+			return returnStatement;
+		} catch (Exception e) {
+			e.printStackTrace();
+			String[] returnStatement = {"ERROR"};
+			return returnStatement;
 		}
 	}
 		
