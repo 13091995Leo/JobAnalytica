@@ -1,47 +1,45 @@
-<!-- <h1>User Login</h1>
-<table>
-    <tr>
-        <td>User Name</td>
-        <td>
-            <input [(ngModel)]="name"#inputEName="ngModel">
-        </td>
-    </tr>
-    <tr>
-        <td>Password</td>
-        <td>
-            <input [(ngModel)]="password"#inputEPassword="ngModel">
-        </td>
-    </tr> -->
-    <!-- <tr>
-        <td>
-            <button (click)="getUserId(name)">Login</button>
-        </td>
-    </tr>
-</table>
-<br>
-<br>
-<br>
-<button href="http://localhost:7700/jobs">Back</button> -->
-
-
-
-
-
 <div class="container">
   <h2>User Login</h2>
   <form action="/action_page.php">
-    <div class="form-group">
-      <label for="name">User Name:</label>
-      <input type="name" class="form-control" id="name" placeholder="Enter Username" name="name" [(ngModel)]="name" #inputUName>
-      <!-- <span [hidden]="inputUName.valid || inputUName.pristine" class="alert alert-danger">Name should not have less than 6 characters</span> -->
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="password" #inputUPassword>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" name="remember"> Remember me</label>
-    </div>
-    <a routerLink="/userPage"><button type="submit" class="btn btn-default" (click)="selectUserId(inputUName.value)">Submit</button></a>
+    <button class="btn btn-default" (click)="toggleEdits()">{{(isEditable)?"Login":"Register"}}</button>
+    
+    <!-- Login -->
+    <form *ngIf="!isEditable">
+      <div class="form-group">
+        <label for="name">User Name:</label>
+        <input type="name" class="form-control" id="name" placeholder="Enter Username" name="name" [(ngModel)]="name" #inputUName>
+        <!-- <span [hidden]="inputUName.valid || inputUName.pristine" class="alert alert-danger">Name should not have less than 6 characters</span> -->
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="password" #inputUPassword>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+      <div class="form-group">
+        <a routerLink="/userPage"><button type="submit" class="btn btn-default" (click)="selectUserId(inputUName.value)">Submit</button></a>
+      </div>
+    </form>
+
+    <!-- Register -->
+    <form *ngIf="isEditable">
+      <div class="form-group">
+        <label for="newName">Enter Name:</label>
+        <input type="name" class="form-control" id="newname" placeholder="Enter Name" name="newname" [(ngModel)]="newname" #inputNName>
+      </div>
+      <div class="form-group">
+          <label for="newLocPref">Enter Location Preference:</label>
+          <input type="name" class="form-control" id="locpref" placeholder="Enter Location Preference" name="newlocpref" [(ngModel)]="newlocpref" #inputNLocPref>
+      </div>
+      <div class="form-group">
+        <label for="newPwd">Enter Password:</label>
+        <input type="password" class="form-control" id="newPwd" placeholder="Enter Password" name="newPwd" [(ngModel)]="newpassword" #inputNPassword>
+      </div>
+      <div class="form-group">
+        <a routerLink="/userPage"><button type="submit" class="btn btn-default" (click)="addNewUser(inputNName.value, inputNLocPref.value, inputNPassword.value)">Register</button></a>
+      </div>
+    </form>
   </form>
 </div>
+

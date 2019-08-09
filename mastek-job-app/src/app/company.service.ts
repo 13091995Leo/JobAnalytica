@@ -89,7 +89,7 @@ export class CompanyService {
 
   findJobByJobId(jobId):Observable<CompanyComponent>{
     return this.httpsvc.get<CompanyComponent>(
-                 this.rootURL+"/users/find/"+jobId)
+                 this.rootURL+"/find/"+jobId)
   }
 
  updateJobOnServer(job):Observable<CompanyComponent>{
@@ -122,7 +122,10 @@ loadAllJobsFromServer():Observable<Company[]>{
   
   }
 
-  
+  deleteJobOnServer(jobId):Observable<CompanyComponent[]>{
+    return this.httpsvc.delete<CompanyComponent[]>(
+      this.rootURL+"/delete/"+jobId)
+    }
 
   
 

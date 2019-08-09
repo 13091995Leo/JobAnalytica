@@ -10,22 +10,48 @@
                 <option *ngFor="let user of allUsers" value="{{user.userId}}">{{user.userId}}::{{user.userName}}</option>
             </select>
         </td>
-        <td><button (click)="toggleEdits()">{{(isEditable)?"Select User":"Change User"}}</button></td>
-
+        <!-- <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit User"}}</button></td> -->
+        <td><button (click)="editClick()" *ngIf="!isEditable">Edit User</button></td>
+        <!-- <td><button (click)="saveClick(uName.value, locPref.value)" *ngIf="isEditable">Save</button></td> -->
+        <td><button (click)="toggleEdits()" *ngIf="isEditable">Save</button></td>
+        <td><a routerLink="/userLogin"><button (click)="deleteUser()" *ngIf="isEditable">Delete User</button></a></td>
     </tr>
     <tr>
         <td>User Name: </td>
-        <td>{{userName}}</td>
+        <td *ngIf="!isEditable">{{userName}}</td>
+        <td *ngIf="isEditable">
+            <!-- <form action="/action_page.php"> -->
+                <!-- <div class="form-control"> -->
+                    <input type="name" [(ngModel)]="uName" value={{userName}} #inputUName>
+                <!-- </div> -->
+            <!-- </form> -->
+        </td>
     </tr>
     <tr>
         <td>Location Preference: </td>
-        <td>{{locationPreference}}</td>
+        <td *ngIf="!isEditable">{{locationPreference}}</td>
+        <td *ngIf="isEditable">
+            <!-- <form action="/action_page.php">
+                <div class="form-control"> -->
+                    <input type="name" [(ngModel)]="locPref" value="{{locationPreference}}" #inputLocPref>
+                <!-- </div>
+            </form> -->
+        </td>
     </tr>
     <tr>
-        <td>Skills:</td>
+        <th>Skills:</th>
     </tr>
     <tr *ngFor="let s of userSpeciality, let i of index">
         <td>{{s.requirement}}</td>
+        <td *ngIf="isEditable"><button (click)="deleteSkillFromUser(s.requirementId)">X</button></td>
+    </tr>
+    <tr *ngIf="isEditable">
+        <td>
+            <select id="requirement-select" #selectRequirement [(ngModel)]="requirementId">
+                <option *ngFor="let r of allRequirements | slice:0:10" value="{{r.requirementId}}">{{r.requirement}}</option>
+            </select>
+        </td>
+        <td><button (click)="addSkillToUser(selectRequirement.value)">Add Skill</button></td>
     </tr>
 </table>
 
@@ -57,6 +83,6 @@
         <td>{{r.jobTitle}}</td>
         <td>{{r.location}}</td>
         <td>{{r.salary}}</td>
-        <td><button (click)="deleteRecJob(i)">Delete</button></td>
+        <td><button (click)="addJobToUser(r.jobId)">Save</button></td>
     </tr>
 </table>

@@ -34,6 +34,10 @@ public class CompanyService {
 	@Autowired
 	private JobService jobService;
 	
+	private Company company;
+	
+	private Job job;
+	
 	public CompanyService() {
 		System.out.println("Company Service Created");
 	}
@@ -59,7 +63,7 @@ public class CompanyService {
 			return null;
 		}
 	}
-	
+
 	@DELETE
 	@Path("/delete/{companyId}")
 	public String deleteCompanyById(@PathParam("companyId") int companyId) {

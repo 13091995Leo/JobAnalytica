@@ -3,6 +3,7 @@ package com.mastek.jobapp.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -22,13 +24,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="requirements")// declaring the table name for the class
 @XmlRootElement
 public class Requirement {
+	
 	@Value("-1")
+	@FormParam("requirementId")
 	private int requirementId;
 	
 	@Value("Defaualt requirement")
@@ -39,7 +43,7 @@ public class Requirement {
 	
 	private Set<User> userSpeciality = new HashSet<>();
 	
-	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="requirements",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public Set<Job> getJobRequirement() {
 		return jobRequirement;
 	}
@@ -48,7 +52,7 @@ public class Requirement {
 		this.jobRequirement = jobRequirement;
 	}
 	
-	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@XmlTransient
 	public Set<User> getUserSpeciality() {
 		return userSpeciality;

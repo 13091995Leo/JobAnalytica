@@ -27,21 +27,24 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-//@Component
+@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs") // declaring the table name for the class
 @NamedQueries({
 	@NamedQuery( name = "Job.findBySearchParam",
-			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') or j.location like concat('%', :searchParam, '%') or j.salary like concat('%', :searchParam, '%')" //JPA Query language
+			query = "select j from Job j where j.jobTitle like concat('%', :searchParam, '%') " //JPA Query language
 			), // LIKE CONCAT('%' , :searchParam , '%')
 	@NamedQuery(name = "Job.findAverageJobSalaryByJobTitle",
-			query = "select avg(j.salary) from Job j where job_title = :jobTitle")
+			query = "select avg(j.salary) from Job j where job_title = :jobTitle"),
+	@NamedQuery(name = "Job.fetchJobByCompanyId",
+			query = "select j FROM Job j where fk_company_number = :companyId")
 })
 @XmlRootElement
 public class Job implements Serializable{
 
 	@Value("-1")
+	@FormParam("jobId")
 	private int jobId;
 	
 	@Value("Default Value")
@@ -57,6 +60,7 @@ public class Job implements Serializable{
 	private String location;
 
 /// Many to One relationship between jobs and company	
+	@FormParam("companyId")
 	private Company currentCompany;
 	
 	@ManyToOne
@@ -86,7 +90,7 @@ public class Job implements Serializable{
 /// Many to many relationship between job and users.
 	private Set<User> assignments = new HashSet<>();
 	 
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "ASSIGNMENTS",joinColumns = @JoinColumn(name = "FK_JOBID"),inverseJoinColumns = @JoinColumn(name="FK_USERID"))
 	@XmlTransient
 	public Set<User> getAssignments() {
@@ -140,16 +144,5 @@ public class Job implements Serializable{
 	public Job() {
 		System.out.println("Job Created");
 	}
-
-
-	
-	
-	
-	
-	 
-	
-	
-	
-	
 
 }

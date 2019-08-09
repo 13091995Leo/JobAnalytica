@@ -37,7 +37,12 @@ public class JobService {
 	@Autowired
 	private RequirementService requirementService;
 	
-	@Autowired UserService userService;
+	@Autowired
+	private UserService userService;
+	
+	private Requirement requirement;
+	
+	private Job job;
 	
 	public JobService() {
 		System.out.println("Job Service Created");
@@ -69,6 +74,15 @@ public class JobService {
 	@Path("/delete/{jobId}")
 	public String deleteJobById(@PathParam("jobId") int jobId) {
 		 try {
+	            job = findByJobId(jobId);
+	            
+	            Set<Requirement> jobRequirements = job.getRequirements();
+	            job.getRequirements().removeAll(jobRequirements);
+	           
+	            Set<User> users = job.getAssignments();
+	            job.getAssignments().removeAll(users);
+	           
+	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
@@ -88,7 +102,6 @@ public class JobService {
 	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-
 	
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")
@@ -121,12 +134,19 @@ public class JobService {
 		}
 	}
 	
+	@GET
+	@Path("/fetchJobsByCompanyId")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
+		return jobRepository.fetchJobByCompanyId(companyId);
+	}
+	
 	@Transactional
 	@POST
 	@Path("/assign/users")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<User> assignJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+	public Set<User> assignJobsToUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
 		try {
 			Job job = findByJobId(jobId);
 			User user = userService.findByUserId(userId);
@@ -145,7 +165,7 @@ public class JobService {
 	@Path("/remove/users")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<User> removeJob(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+	public Set<User> removeJobsFromUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
 		try {
 			Job job = findByJobId(jobId);
 			User user = userService.findByUserId(userId);
@@ -159,11 +179,5 @@ public class JobService {
 		}
 	}
 	
-/*	
-	@GET
-	@Path("/fetchByRequirement")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Job> fetchJobsByRequirement(@QueryParam("requirements") int requirements){
-        return jobRepository.findByRequirement(requirements);
-    }
-*/}
+
+}
