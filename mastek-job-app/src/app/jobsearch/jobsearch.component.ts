@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../job.service';
 import { JobsearchService } from '../jobsearch.service';
+import { Company } from '../company';
 
 @Component({
   selector: 'app-jobsearch',
@@ -9,74 +10,88 @@ import { JobsearchService } from '../jobsearch.service';
 })
 export class JobsearchComponent implements OnInit {
 
+  items = [];
+  pageOfItems: Array<any>;
+
+
+
   searchParam: String
 
   jobId: number
   jobTitle: String
   location: String
   salary: number
+  salaryParam: number
+  averageSalary: number
+
+  start: number
+  end:number
+
 
   jobsObj: JobsearchComponent[]
+  jobs1: JobsearchComponent[]
+  jobs2: JobsearchComponent[]
   filterBySalaryParam: number;
   filterByLocationParam: String;
   filterByCompanyNameParam: String;
   isEditable: boolean;
 
+  currentCompany: Company
+  resultsLength: number;
+
   constructor(private jsrchSvc: JobsearchService) {
-    this.searchParam = "Search Jobs"
+    this.searchParam = ""
     this.salary = 0
     this.location = ""
   }
 
   ngOnInit() {
     this.fetchJobsBySearchParam()
+
   }
 
   toggleEdits() {
     this.isEditable = !this.isEditable
   }
 
-  fetchJobsBySearchParam(){
+  fetchJobsBySearchParam() {
     this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
       response => {
         this.jobsObj = response
+        this.resultsLength = response.length
       }
     )
 
   }
 
-  filterBySalary() {
-    this.jsrchSvc.findJobsBySearchParam(this.filterBySalaryParam).subscribe(
+  filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) {
+
+    this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
       response => {
         this.jobsObj = response
+          .filter(response => filterBySalaryParam == null || (response.salary == filterBySalaryParam || response.salary > filterBySalaryParam-1) )
+          .filter(response => filterByLocationParam == null || response.location == filterByLocationParam)
+          .filter(response => filterByCompanyNameParam == null || response.currentCompany.companyName == filterByCompanyNameParam)
+        this.resultsLength = response.length
       }
     )
+    filterBySalaryParam = null 
+    filterByLocationParam = null
+    filterByCompanyNameParam = null
   }
 
-  filterByLocation() {
-    this.jsrchSvc.findJobsBySearchParam(this.filterByLocationParam).subscribe(
-      response => {
-        this.jobsObj = response
-      }
-    )
-  }
 
-  filterByCompanyName() {
-    this.jsrchSvc.findJobsBySearchParam(this.filterByCompanyNameParam).subscribe(
-      response => {
-        this.jobsObj = response
-      }
-    )
-  }
   addJobToUser(jid) {
-    this.jsrchSvc.assignJobToUser(Number(localStorage.getItem("userId")),jid).subscribe(
+    this.jsrchSvc.assignJobToUser(Number(localStorage.getItem("userId")), jid).subscribe(
       // response => {
       //   this.fetchCurrentUsersFromService()
       // }
     )
   }
 
- 
+  paginationIncrease(pageOfItems: Array<any>){
+    this.pageOfItems = pageOfItems
+  }
 
 
 

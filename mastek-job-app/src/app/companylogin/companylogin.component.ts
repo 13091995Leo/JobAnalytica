@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyloginService } from '../companylogin.service';
 
 @Component({
   selector: 'app-companylogin',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyloginComponent implements OnInit {
 
-  constructor() { }
+  companyId: Number
+  companyName: String
+  companyPassword: String
+  industry: String
+  location: String
+
+  invalidFormMessage: String
+
+  isEditable: boolean
+
+  constructor(private compSvc:CompanyloginService) { }
 
   ngOnInit() {
+    this.isEditable = false
+  }
+
+  toggleEdits() {
+    this.isEditable = !this.isEditable
+  }
+
+  selectCompanyId(compName) {
+    this.companyId = compName
+    sessionStorage.setItem("companyId", String(compName))
+  }
+
+  addNewCompany(companyName, companyLocation, companyIndustry, companyPassword) {
+    
   }
 
 }
