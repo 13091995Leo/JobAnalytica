@@ -234,7 +234,7 @@ public class JobappApplicationTests {
 	        Job job2 = new Job();
 	        job2.setJobTitle(jobTitleArr[k]);
 	        job2.setLocation(locArr[k]);
-	        job2.setSalary((i+1.15)*10000);
+	        job2.setSalary((v+1.15)*10000);
 		  
 	        User user1 = new User();
 	        user1.setUserName(firstNameArr[v]+middleNameArr[j]+lastNameArr[k]);
@@ -293,5 +293,7 @@ public class JobappApplicationTests {
 			jobService.registerOrUpdateJob(job);
 		}
 	}
+	
+	
 	
 }

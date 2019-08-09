@@ -42,6 +42,8 @@ public class JobService {
 	
 	private Requirement requirement;
 	
+	private Job job;
+	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -72,6 +74,15 @@ public class JobService {
 	@Path("/delete/{jobId}")
 	public String deleteJobById(@PathParam("jobId") int jobId) {
 		 try {
+	            job = findByJobId(jobId);
+	            
+	            Set<Requirement> jobRequirements = job.getRequirements();
+	            job.getRequirements().removeAll(jobRequirements);
+	           
+	            Set<User> users = job.getAssignments();
+	            job.getAssignments().removeAll(users);
+	           
+	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
@@ -167,5 +178,6 @@ public class JobService {
 			return null;
 		}
 	}
+	
 
 }
