@@ -12,7 +12,9 @@
         </td>
         <!-- <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit User"}}</button></td> -->
         <td><button (click)="editClick()" *ngIf="!isEditable">Edit User</button></td>
-        <td><button (click)="saveClick(inputUName.value, inputLocPref.value)" *ngIf="isEditable">Save</button></td>
+        <!-- <td><button (click)="saveClick(uName.value, locPref.value)" *ngIf="isEditable">Save</button></td> -->
+        <td><button (click)="toggleEdits()" *ngIf="isEditable">Save</button></td>
+        <td><a routerLink="/userLogin"><button (click)="deleteUser()" *ngIf="isEditable">Delete User</button></a></td>
     </tr>
     <tr>
         <td>User Name: </td>
@@ -20,7 +22,7 @@
         <td *ngIf="isEditable">
             <!-- <form action="/action_page.php"> -->
                 <!-- <div class="form-control"> -->
-                    <input type="text" [(ngModel)]="uName" value={{userName}} #inputUName>
+                    <input type="name" [(ngModel)]="uName" value={{userName}} #inputUName>
                 <!-- </div> -->
             <!-- </form> -->
         </td>
@@ -31,7 +33,7 @@
         <td *ngIf="isEditable">
             <!-- <form action="/action_page.php">
                 <div class="form-control"> -->
-                    <input type="text" [(ngModel)]="locPref" value="{{locationPreference}}" #inputLocPref>
+                    <input type="name" [(ngModel)]="locPref" value="{{locationPreference}}" #inputLocPref>
                 <!-- </div>
             </form> -->
         </td>

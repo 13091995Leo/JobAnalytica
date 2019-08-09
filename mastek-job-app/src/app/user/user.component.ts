@@ -108,6 +108,11 @@ export class UserComponent implements OnInit {
     )
   }
 
+  deleteUser() {
+    this.userSvc.deleteUserOnServer(Number(sessionStorage.getItem("userId"))).subscribe()
+    sessionStorage.setItem("userId", "0")
+  }
+
   loadAllRequirements() {
     this.userSvc.getAllRequirements().subscribe(
       response => {

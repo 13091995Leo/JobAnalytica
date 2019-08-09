@@ -29,10 +29,6 @@ export class UserService {
     )
   }
 
-  // getRecommendedJobs(skill):Observable<UserComponent> {
-  //   return this.http
-  // }
-
   updateUserOnServer(user):Observable<UserComponent> {
     const httpOptions = {
       headers: new HttpHeaders(
@@ -42,6 +38,12 @@ export class UserService {
     var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference + "&userPassword=" + user.password
     return this.httpsvc.post<UserComponent>(
       this.rootURL + "/register", reqBody, httpOptions
+    )
+  }
+
+  deleteUserOnServer(userId):Observable<User> {
+    return this.httpsvc.delete<User>(
+      this.rootURL + "/delete/" + userId
     )
   }
 
