@@ -81,6 +81,8 @@ public class JobService {
 	           
 	            Set<User> users = job.getAssignments();
 	            job.getAssignments().removeAll(users);
+	            
+	            job.setCurrentCompany(null);
 	           
 	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);

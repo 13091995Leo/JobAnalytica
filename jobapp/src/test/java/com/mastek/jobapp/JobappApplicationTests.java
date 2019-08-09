@@ -177,7 +177,7 @@ public class JobappApplicationTests {
 		}
 	}*/
 	
-
+/*
 	// Adds company and requirement entries to the DB - entities only, not the relationships
 	@Test
     public void addCompaniesAndRequirements() {
@@ -279,7 +279,7 @@ public class JobappApplicationTests {
 	        
 	        companyService.registerOrUpdateCompany(comp);       	        
         }
-	}
+	}*/
 	
 	
 	// Adds requirements to jobs using an automated loop

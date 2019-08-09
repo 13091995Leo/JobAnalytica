@@ -89,7 +89,8 @@ public class Job implements Serializable{
 
 /// Many to many relationship between job and users.
 	private Set<User> assignments = new HashSet<>();
-	 
+
+	// Needs changing to LAZY for test cases
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "ASSIGNMENTS",joinColumns = @JoinColumn(name = "FK_JOBID"),inverseJoinColumns = @JoinColumn(name="FK_USERID"))
 	@XmlTransient
