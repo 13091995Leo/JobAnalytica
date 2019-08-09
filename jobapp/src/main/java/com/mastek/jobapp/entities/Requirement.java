@@ -24,13 +24,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="requirements")// declaring the table name for the class
 @XmlRootElement
 public class Requirement {
+	
 	@Value("-1")
+	@FormParam("requirementId")
 	private int requirementId;
 	
 	@Value("Defaualt requirement")
@@ -50,7 +52,7 @@ public class Requirement {
 		this.jobRequirement = jobRequirement;
 	}
 	
-	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="userSpeciality",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@XmlTransient
 	public Set<User> getUserSpeciality() {
 		return userSpeciality;

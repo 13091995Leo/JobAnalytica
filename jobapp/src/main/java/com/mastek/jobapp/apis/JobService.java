@@ -37,6 +37,13 @@ public class JobService {
 	@Autowired
 	private RequirementService requirementService;
 	
+	@Autowired
+	private UserService userService;
+	
+	private Requirement requirement;
+	
+	private Job job;
+	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -67,6 +74,15 @@ public class JobService {
 	@Path("/delete/{jobId}")
 	public String deleteJobById(@PathParam("jobId") int jobId) {
 		 try {
+	            job = findByJobId(jobId);
+	            
+	            Set<Requirement> jobRequirements = job.getRequirements();
+	            job.getRequirements().removeAll(jobRequirements);
+	           
+	            Set<User> users = job.getAssignments();
+	            job.getAssignments().removeAll(users);
+	           
+	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
@@ -86,7 +102,6 @@ public class JobService {
 	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-
 	
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")
@@ -125,5 +140,44 @@ public class JobService {
 	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
 		return jobRepository.fetchJobByCompanyId(companyId);
 	}
+	
+	@Transactional
+	@POST
+	@Path("/assign/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> assignJobsToUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().add(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	@POST
+	@Path("/remove/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> removeJobsFromUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().remove(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 }

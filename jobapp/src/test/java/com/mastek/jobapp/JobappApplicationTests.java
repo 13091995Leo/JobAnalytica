@@ -50,6 +50,8 @@ public class JobappApplicationTests {
 	
 	@Autowired
 	User user;
+	
+
 
 /*	@Test
 	public void addOrUpdateJobUsingService() {
@@ -175,8 +177,9 @@ public class JobappApplicationTests {
 		}
 	}*/
 	
-	
-/*	@Test
+
+	// Adds company and requirement entries to the DB - entities only, not the relationships
+	@Test
     public void addCompaniesAndRequirements() {
 		
     String reqSpecArr[] = {"Java ","JavaScript","Dev Ops","Python","MySQL","PHP","HTML","MongoDB","Angular","CSS"};
@@ -201,7 +204,8 @@ public class JobappApplicationTests {
 	    requirementService.registerOrUpdateRequirement(requirement);
     }
 	}
-	     
+	
+	// Adds user entries to user entity. Adds all relationships apart from those linking job to requirement
 	@Test
     public void addThousandDataEntries() {
 		String firstNameArr[] = {"Matt ","Tom ","John ","Hollie ","Rosie ","Joe ","Fran ","Fred ","Freya ","Sam "};
@@ -210,10 +214,8 @@ public class JobappApplicationTests {
         String locArr[] = {"Leeds","Bradford","Manchester","London","Birmingham","Oxford","Cardiff","Hull","Essex","Cornwall"};
         String jobTitleArr[] = {"Java Developer","JavaScript Developer","Senior Dev Ops Specialist","Python Developer","MySQL Specialist","Senior PHP Developer",
                 "HTML Developer","MongoDB Specialist","Angular Specialist","CSS Assisstant",};
-        
-
  
-	    for (int i = 0; i < 100; i++) {
+	    for (int i = 0; i < 1000; i++) {
 	        	
 	        int v = (int) Math.floor(10*Math.random());
 	        int j = (int) Math.floor(10*Math.random());
@@ -232,7 +234,7 @@ public class JobappApplicationTests {
 	        Job job2 = new Job();
 	        job2.setJobTitle(jobTitleArr[k]);
 	        job2.setLocation(locArr[k]);
-	        job2.setSalary((i+1.15)*10000);
+	        job2.setSalary((v+1.15)*10000);
 		  
 	        User user1 = new User();
 	        user1.setUserName(firstNameArr[v]+middleNameArr[j]+lastNameArr[k]);
@@ -270,19 +272,28 @@ public class JobappApplicationTests {
 	        job1.getAssignments().add(user1);
 	        job1.getAssignments().add(user2);
 	        job2.getAssignments().add(user2);
-		           
-	        // Many To many - jobs to requirements
-//	        job1.getRequirements().add(req1);
-//	        job1.getRequirements().add(req2);
-	           
+		          
 	        // Many To many - users to specialities
 	        user1.getUserSpeciality().add(req1);
 	        user1.getUserSpeciality().add(req2);
 	        
-	        companyService.registerOrUpdateCompany(comp);
-//	        requirementService.registerOrUpdateRequirement(req1);
-//	        requirementService.registerOrUpdateRequirement(req2);	        	        
+	        companyService.registerOrUpdateCompany(comp);       	        
         }
-	}*/
+	}
+	
+	
+	// Adds requirements to jobs using an automated loop
+	@Test
+	public void addJobRequirements () {
+		Iterable<Job> jobs = jobService.fetchAllJobs();
+		int x;
+		for (Job job : jobs) {
+			x = (int) Math.floor(Math.random()*10);
+	        job.getRequirements().add(requirementService.findByRequirementId(x+11));
+			jobService.registerOrUpdateJob(job);
+		}
+	}
+	
+	
 	
 }
