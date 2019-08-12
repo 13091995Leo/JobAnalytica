@@ -6,7 +6,7 @@
         <td>User ID: </td>
         <td *ngIf="!isEditable">{{userId}}</td>
         <td *ngIf="isEditable">
-            <select id="user-select" #selectUser [(ngModel)]="userId" (change)="updateUserSelection(selectUser.value)">
+            <select id="user-select" #selectUser [(ngModel)]="userId" (change)="updateUserSelection(selectUserId.value,selectUserPassword.value)">
                 <option *ngFor="let user of allUsers" value="{{user.userId}}">{{user.userId}}::{{user.userName}}</option>
             </select>
         </td>

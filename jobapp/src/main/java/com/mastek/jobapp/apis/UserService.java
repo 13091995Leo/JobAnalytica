@@ -1,8 +1,11 @@
 package com.mastek.jobapp.apis;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Set;
 
 import javax.print.attribute.standard.Media;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -66,6 +69,28 @@ public class UserService {
 	public User findByUserId(@PathParam("userId") int userId) {
 		try {
 			return userRepository.findById(userId).get();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("/findUser")
+	@GET
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Transactional
+	public User findByUserIdAndPwd(@QueryParam("userId") int userId, @QueryParam("userPassword") String userPassword) {
+		try {
+			user = findByUserId(userId);
+			String pwd = user.getUserPassword();
+			if (userPassword.equals(pwd)) {
+				return user;
+			}
+			else {
+				System.out.println("Invalid login credentials");
+				return "Invalid credentials";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

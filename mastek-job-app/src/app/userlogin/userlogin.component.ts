@@ -32,9 +32,11 @@ export class UserloginComponent implements OnInit {
     this.loadAllRequirements()
   }
 
-  selectUserId(name) {
-    this.userId = name
-    sessionStorage.setItem("userId", String(name))
+  selectUserId(userId,userPassword) {
+    this.userId = userId
+    this.userPassword = userPassword
+    sessionStorage.setItem("userId", String(userId))
+    sessionStorage.setItem("userPassword", String(userPassword))
     // localStorage.setItem("userId", String(name))
   }
 
