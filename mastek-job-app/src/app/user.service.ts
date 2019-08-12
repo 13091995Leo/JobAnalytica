@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { JobComponent } from './job/job.component';
 import { UserComponent } from './user/user.component';
 import { User } from './user';
+import { Requirement } from './requirement';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,6 @@ export class UserService {
     )
   }
 
-  // getRecommendedJobs(skill):Observable<UserComponent> {
-  //   return this.http
-  // }
-
   updateUserOnServer(user):Observable<UserComponent> {
     const httpOptions = {
       headers: new HttpHeaders(
@@ -41,6 +38,12 @@ export class UserService {
     var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference + "&userPassword=" + user.password
     return this.httpsvc.post<UserComponent>(
       this.rootURL + "/register", reqBody, httpOptions
+    )
+  }
+
+  deleteUserOnServer(userId):Observable<User> {
+    return this.httpsvc.delete<User>(
+      this.rootURL + "/delete/" + userId
     )
   }
 
@@ -58,7 +61,7 @@ export class UserService {
     }
     var reqBody = "userId=" + userId + "&jobId=" +jobId
     return this.httpsvc.post<JobComponent[]>(
-      this.rootURL + "/assign/job", reqBody, httpOptions
+      "http://localhost:7705/jobs/assign/users", reqBody, httpOptions
     )
   }
 
@@ -74,7 +77,40 @@ export class UserService {
     )
   }
   
-  findJobByRequirementId() {
-
+  findJobByRequirementId(reqId):Observable<Requirement> {
+    return this.httpsvc.get<Requirement>(
+      "http://localhost:7705/requirements/find/" + reqId
+    )
   }
+
+  getAllRequirements():Observable<Requirement[]> {
+    return this.httpsvc.get<Requirement[]>(
+      "http://localhost:7705/requirements/displayAllRequirements"
+    )
+  }
+
+  assignRequirementToUser(userId, requirementId):Observable<UserComponent[]> {
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "userId=" + userId + "&specialityId=" + requirementId
+    return this.httpsvc.post<UserComponent[]>(
+      "http://localhost:7705/users/assign/speciality", reqBody, httpOptions
+    )
+  }
+
+  removeRequirementFromUser(userId, requirementId):Observable<UserComponent[]> {
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "userId=" + userId + "&specialityId=" + requirementId
+    return this.httpsvc.post<UserComponent[]>(
+      "http://localhost:7705/users/remove/speciality", reqBody, httpOptions
+    )
+  }
+
 }

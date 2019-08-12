@@ -14,7 +14,7 @@ export class UserloginService {
 
   constructor(private httpsvc:HttpClient) { 
 
-    this.rootURL = "http://localhost:7700/userlogin"
+    this.rootURL = "http://localhost:7705/userlogin"
 
   }
 
@@ -24,14 +24,14 @@ export class UserloginService {
     )
   }
 
-  createNewUser(userName, locationPreference, userPassword):Observable<UserComponent[]> {
+  createNewUser(userName, locationPreference, userPassword):Observable<UserComponent> {
     const httpOptions = {
       headers: new HttpHeaders(
         {"Content-Type":"application/x-www-form-urlencoded"}
       )
     }
     var reqBody = "userName=" + userName + "&locationPreference=" + locationPreference + "&userPassword=" + userPassword
-    return this.httpsvc.post<UserComponent[]>(
+    return this.httpsvc.post<UserComponent>(
       "http://localhost:7705/users/register", reqBody, httpOptions
     )
   }

@@ -3,6 +3,7 @@ import { CompanyComponent } from './company/company.component';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Company } from './company';
+import { Job } from './job';
 
 
 @Injectable({
@@ -14,10 +15,40 @@ export class CompanyService {
   
   constructor(private httpsvc:HttpClient) {
 
-    
+    this.rootURL="http://localhost:7705/companies"
 
-  this.rootURL=" http://localhost:7705/jobs"
   }
+
+  loadAllCompaniesFromServer():Observable<Company[]> {
+    return this.httpsvc.get<Company[]>(
+      this.rootURL + "displayAllCompanies"
+    )
+  }
+
+  findCompanyByCompanyId(companyId):Observable<Company> {
+    return this.httpsvc.get<Company>(
+      this.rootURL + "/find/" + companyId
+    )
+  }
+
+  updateCompanyOnServer(comp):Observable<Company> {
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "companyId=" + comp.companyId + "&companyName=" + comp.companyName + "&location=" + comp.location + "&industry=" + comp.industry +  "&companyPassword=" + comp.companyPassword
+    return this.httpsvc.post<Company>(
+      this.rootURL + "/register", reqBody, httpOptions
+    )
+  }
+
+  deleteCompanyOnServer(compId):Observable<Company> {
+    return this.httpsvc.delete<Company>(
+      this.rootURL + "/delete/" + compId
+    )
+  }
+
   // private extractData(res: Response) {
   //   let body = res;
   //   return body || { };
@@ -89,27 +120,25 @@ export class CompanyService {
 
   findJobByJobId(jobId):Observable<CompanyComponent>{
     return this.httpsvc.get<CompanyComponent>(
-                 this.rootURL+"/users/find/"+jobId)
+                 this.rootURL+"/find/"+jobId)
   }
 
  updateJobOnServer(job):Observable<CompanyComponent>{
     const httpOptions= {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-    var reqBody = "jobid="+job.jobId+"&jobTitle="+
-                    job.jobTitle+"&salary="+job.salary+"&location="+job.location
-  
+    var reqBody = "jobid=" + job.jobId + "&jobTitle=" + job.jobTitle + "&salary=" + job.salary + "&location=" + job.location
     // post(URL.body.httpOptionswithHeaders)
     return this.httpsvc.post<CompanyComponent>(
-      this.rootURL+"/register",
-      reqBody, httpOptions)
+      "http://localhost:7705/jobs/register", reqBody, httpOptions)
     }
 
-loadAllJobsFromServer():Observable<Company[]>{
-    return this.httpsvc.get<Company[]>(
-      this.rootURL+"/displayAllJobs"
+  loadAllJobsFromServer():Observable<Job[]>{
+    return this.httpsvc.get<Job[]>(
+      "http://localhost:7705/jobs/displayAllJobs"
     )
   }
+
   assignJobToCompany(jobId):Observable<Company>{
     const httpOptions = {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -118,15 +147,20 @@ loadAllJobsFromServer():Observable<Company[]>{
 
     // post(URL.body.httpOptionswithHeaders)
     return this.httpsvc.post<Company>(
-    this.rootURL+"/register",reqBody, httpOptions)
+      "http://localhost:7705/jobs/register",reqBody, httpOptions)
   
   }
 
   deleteJobOnServer(jobId):Observable<CompanyComponent[]>{
     return this.httpsvc.delete<CompanyComponent[]>(
-      this.rootURL+"/delete/"+jobId)
+      "http://localhost:7705/jobs/delete/"+jobId)
     }
 
+  getJobsByCompanyId(compId):Observable<Job[]>{
+    return this.httpsvc.get<Job[]>(
+      "http://localhost:7705/jobs/fetchJobsByCompanyId?companyId=" + compId
+    )
+  }
   
 
 }

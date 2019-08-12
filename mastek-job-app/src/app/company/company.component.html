@@ -1,62 +1,102 @@
+<h1>Company Page</h1>
+<!-- Display user information -->
+<h2>Company Information</h2>
+<table>
+    <tr>
+        <td>Company ID: </td>
+        <td *ngIf="!isEditable">{{companyId}}</td>
+        <td *ngIf="isEditable">
+            <select id="company-select" #selectCompany [(ngModel)]="companyId" (change)="updatecompanySelection(selectCompany.value)">
+                <option *ngFor="let comp of allCompanies" value="{{comp.companyId}}">{{comp.companyId}}::{{comp.companyName}}</option>
+            </select>
+        </td>
+        <!-- <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit User"}}</button></td> -->
+        <td><button (click)="toggleEdits()" *ngIf="!isEditable">Edit Company</button></td>
+        <!-- <td><button (click)="saveClick(uName.value, locPref.value)" *ngIf="isEditable">Save</button></td> -->
+        <td><button (click)="toggleEdits()" *ngIf="isEditable">Save</button></td>
+        <td><a routerLink="/companyLogin"><button (click)="deleteCompany()" *ngIf="isEditable">Delete Company</button></a></td>
+    </tr>
+    <tr>
+        <td>Company Name: </td>
+        <td *ngIf="!isEditable">{{companyName}}</td>
+        <td *ngIf="isEditable">
+            <!-- <form action="/action_page.php"> -->
+                <!-- <div class="form-control"> -->
+                    <input type="name" [(ngModel)]="cName" value={{companyName}} #inputCName>
+                <!-- </div> -->
+            <!-- </form> -->
+        </td>
+    </tr>
+    <tr>
+        <td>Company Location: </td>
+        <td *ngIf="!isEditable">{{companyLocation}}</td>
+        <td *ngIf="isEditable">
+            <!-- <form action="/action_page.php">
+                <div class="form-control"> -->
+                    <input type="name" [(ngModel)]="loc" value="{{companyLocation}}" #inputLoc>
+                <!-- </div>
+            </form> -->
+        </td>
+    </tr>
+    <td>Industry: </td>
+    <td *ngIf="!isEditable">{{industry}}</td>
+    <td *ngIf="isEditable">
+        <!-- <form action="/action_page.php">
+            <div class="form-control"> -->
+                <input type="name" [(ngModel)]="ind" value="{{industry}}" #inputInd>
+            <!-- </div>
+        </form> -->
+    </td>
+</table>
+
 <h2>Job Post</h2>
-    <table>
+<table>
+    <tr>
+        <th>Job Id</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Location</th>
+    </tr>
+    <tr *ngFor = "let j of allCompanyJobs | slice:0:100; let i = index">
+        <td>{{j.jobId}}</td>
+        <td>{{j.jobTitle}}</td>
+        <td>{{j.salary}}</td>
+        <td>{{j.location}}</td>
+        <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td><button (click)="addJob">Add New Job</button></td>
+    </tr>
+    <div>
         <tr>
-            <th>Job Id</th>
-            <th>Job Title</th>
-            <th>Salary</th>
-            <th>Location</th>
+            <td>JobId:</td>
+            <td>{{jobId}}</td>
+            <td><button (click)="toggleJobEdits()">{{(jobIsEditable)?"Save":"Edit"}}</button></td>
+            <td></td>
         </tr>
-
-        <tr *ngFor = "let j of allJobs | slice:0:100; let i = index">
-            <td>{{j.jobId}}</td>
-            <td>{{j.jobTitle}}</td>
-            <td>{{j.salary}}</td>
-            <td>{{j.location}}</td>
-            <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
+        <tr>
+            <td>Job Title:</td>
+            <td *ngIf="!jobIsEditable">{{jobTitle}}</td>
+            <td *ngIf="jobIsEditable">
+                <div class="form-group">
+                    <input [(ngModel)]="jobTitle" #inputEname="ngModel" minlength="3" maxlength="48">
+                    <span [hidden]="inputEname.valid || inputEname.pristine" class="alert alert-danger">Job Title should not
+                        be less than 3 characters</span>
+                </div>
+            </td>
         </tr>
- 
-    </table>
-
-    
-        <br>
-            <table>
-                <tr>
-                        <td>JobId:</td>
-                        <td>{{jobId}}</td>
-                        <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
-                        <td></td>
-                </tr>
-                <tr>
-                        <td>Job Title:</td>
-                        <td *ngIf="!isEditable">{{jobTitle}}</td>
-                        <td *ngIf="isEditable">
-                        <div class ="form-group">
-                            <input [(ngModel)]="jobTitle"
-                                #inputEname="ngModel"
-                                minlength="3"
-                                maxlength="48">
-                
-                            <span [hidden]="inputEname.valid || inputEname.pristine"
-                            class="alert alert-danger">
-                            Job Title should not be less than 3 characters</span>
-                        </div>
-                        </td>
-                </tr>
-                <tr>
-                        <td>Salary:</td>
-                        <td *ngIf="!isEditable">{{salary}}</td>
-                        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>
-                </tr>
-                <tr>
-                        <td>Location:</td>
-                        <td *ngIf="!isEditable">{{location}}</td>
-                        <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
-                </tr>
-                <tr>
-                        <td><button (click)="addJob">Add New Job</button></td>
-                </tr>
-
-                
-
-
-            </table>
+        <tr>
+            <td>Salary:</td>
+            <td *ngIf="!jobIsEditable">{{salary}}</td>
+            <td *ngIf="jobIsEditable"><input [(ngModel)]="salary"></td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <td *ngIf="!jobIsEditable">{{location}}</td>
+            <td *ngIf="jobIsEditable"><input [(ngModel)]="location"></td>
+        </tr>
+    </div>
+</table>

@@ -1,45 +1,52 @@
-<!-- <h1>Company Login</h1>
-<table>
-    <tr>
-        <td>Company Name</td>
-        <td>
-            <input [(ngModel)]="name">
-        </td>
-    </tr>
-    <tr>
-        <td>Password</td>
-        <td>
-            <input [(ngModel)]="password">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="submit">
-        </td>
-    </tr>
-</table>
-<br>
-<br>
-<br>
-<button href="job.component.html">Back</button> -->
-
-
-
-
 <div class="container">
-        <h2>Company Login</h2>
-        <form action="/action_page.php">
-          <div class="form-group">
-            <label for="company name">Company Name:</label>
-            <input type="company name" class="form-control" id="company name" placeholder="Enter company name" name="company name">
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Remember me</label>
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-</div>
+    <h2>Company Login</h2>
+    <form action="/action_page.php">
+      <button class="btn btn-default" (click)="toggleEdits()">{{(isEditable)?"Login":"Register"}}</button>
+      
+      <!-- Login -->
+      <form *ngIf="!isEditable">
+        <div class="form-group">
+          <label for="name">Company Name:</label>
+          <input type="name" class="form-control" id="name" placeholder="Enter Company Name" name="name" [(ngModel)]="name" #inputCName>
+          <!-- <span [hidden]="inputUName.valid || inputUName.pristine" class="alert alert-danger">Name should not have less than 6 characters</span> -->
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="password" #inputCPassword>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+        <div class="form-group">
+          <a routerLink="/companyPage"><button type="submit" class="btn btn-default" (click)="selectCompanyId(inputCName.value)">Submit</button></a>
+        </div>
+      </form>
+  
+      <!-- Register -->
+      <form *ngIf="isEditable">
+        <div class="form-group">
+          <label for="newName">Enter Name:</label>
+          <input type="name" class="form-control" id="newname" placeholder="Enter Name" name="newname" [(ngModel)]="newname" #inputNName>
+        </div>
+        <div class="form-group">
+          <label for="newLoc">Enter Location:</label>
+          <input type="name" class="form-control" id="loc" placeholder="Enter Location" name="newloc" [(ngModel)]="newloc" #inputNLoc>
+        </div>
+        <div class="form-group">
+          <label for="newInd">Choose Industry</label>
+          <!-- <select id="ind-select" #selectInd [(ngModel)]="indName">
+            <option *ngFor="let ind of allIndustries" value="{{ind}}">{{ind}}</option>
+          </select>   -->
+          <input type="name" class="form-control" id="ind" placeholder="Enter Industry" name="newind" [(ngModel)]="newind" #inputNInd>
+        </div>
+        <div class="form-group">
+          <label for="newPwd">Enter Password:</label>
+          <input type="password" class="form-control" id="newPwd" placeholder="Enter Password" name="newPwd" [(ngModel)]="newpassword" #inputNPassword>
+        </div>
+        <div class="form-group">
+          <a routerLink="/userPage"><button type="submit" class="btn btn-default" (click)="addNewCompany(inputNName.value, inputNLoc.value, inputNInd.value, inputNPassword.value)">Register</button></a>
+        </div>
+      </form>
+    </form>
+  </div>
+
