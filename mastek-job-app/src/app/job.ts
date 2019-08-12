@@ -5,5 +5,4 @@ export interface Job {
     jobTitle: String
     location: String
     salary: number
-    currentCompany: Company
 }
