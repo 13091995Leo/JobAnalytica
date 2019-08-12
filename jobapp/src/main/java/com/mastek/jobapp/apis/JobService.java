@@ -82,19 +82,20 @@ public class JobService {
 	            Set<User> users = job.getAssignments();
 	            job.getAssignments().removeAll(users);
 	           
+	            job.setCurrentCompany(null);
+	            
 	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
 	            return statement;
-	        } catch (Exception e) {
+		 } catch (Exception e) {
 	            e.printStackTrace();
 	            String statement = "Job with job ID = " + jobId + " does not exist";
 	            System.out.println(statement);
 	            return statement;
-	        }
-
-		}
+	     }
+	}
 	
 	@GET
 	@Path("/fetchBySearchParam")
@@ -137,7 +138,7 @@ public class JobService {
 	@GET
 	@Path("/fetchJobsByCompanyId")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
+	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") int companyId){
 		return jobRepository.fetchJobByCompanyId(companyId);
 	}
 	
