@@ -54,7 +54,5 @@ export class UserloginComponent implements OnInit {
         // localStorage.setItem("userId", String(response.userId))
       }
     )
-
   }
-
 }

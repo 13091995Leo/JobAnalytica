@@ -68,19 +68,13 @@
 <br>
 <table>
     <tr>
-        <td><button (click)="addJob">Add New Job</button></td>
+        <td><button (click)="toggleJobEdits()">{{(jobIsEditable)?"Cancel":"Add New Jobs"}}</button></td>
     </tr>
-    <div>
-        <tr>
-            <td>JobId:</td>
-            <td>{{jobId}}</td>
-            <td><button (click)="toggleJobEdits()">{{(jobIsEditable)?"Save":"Edit"}}</button></td>
-            <td></td>
-        </tr>
+    <div *ngIf="jobIsEditable">
         <tr>
             <td>Job Title:</td>
-            <td *ngIf="!jobIsEditable">{{jobTitle}}</td>
-            <td *ngIf="jobIsEditable">
+            <!-- <td>{{jobTitle}}</td> -->
+            <td>
                 <div class="form-group">
                     <input [(ngModel)]="jobTitle" #inputEname="ngModel" minlength="3" maxlength="48">
                     <span [hidden]="inputEname.valid || inputEname.pristine" class="alert alert-danger">Job Title should not
@@ -90,13 +84,16 @@
         </tr>
         <tr>
             <td>Salary:</td>
-            <td *ngIf="!jobIsEditable">{{salary}}</td>
-            <td *ngIf="jobIsEditable"><input [(ngModel)]="salary"></td>
+            <!-- <td>{{salary}}</td> -->
+            <td><input [(ngModel)]="salary"></td>
         </tr>
         <tr>
             <td>Location:</td>
-            <td *ngIf="!jobIsEditable">{{location}}</td>
-            <td *ngIf="jobIsEditable"><input [(ngModel)]="location"></td>
+            <!-- <td>{{location}}</td> -->
+            <td><input [(ngModel)]="location"></td>
+        </tr>
+        <tr>
+            <td><button (click)="addNewJob()">Save</button></td>
         </tr>
     </div>
 </table>

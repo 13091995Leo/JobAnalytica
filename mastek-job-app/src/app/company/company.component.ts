@@ -3,7 +3,6 @@ import { Company } from '../company';
 import { CompanyService } from '../company.service';
 import { Job } from '../job';
 import { Observable } from 'rxjs';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 
 @Component({
