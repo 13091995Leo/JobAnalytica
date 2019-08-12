@@ -48,7 +48,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllRequirements()
-    console.log(this.userId)
     this.userId = Number(sessionStorage.getItem("userId"))
     // this.userId = Number(localStorage.getItem("userId"))
 
@@ -68,7 +67,6 @@ export class UserComponent implements OnInit {
         //this.recommendations = response.recommendations
         this.group = response.group
         this.userSpeciality = response.userSpeciality
-        console.log("Ryan's special" + this.userSpeciality);
         this.recommendations = []
         this.getRecommendedJobs()
         
