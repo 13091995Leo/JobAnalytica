@@ -4,6 +4,8 @@ import { Job } from '../job';
 import { Company } from '../company';
 import { User } from '../user';
 import { Requirement } from '../requirement';
+import { RequirementComponent } from '../requirement/requirement.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -14,38 +16,38 @@ export class AdminComponent implements OnInit {
 
   userId: number
   userName: string
-  isUserFormVisible:boolean
+  isUserFormVisible: boolean
 
   users: User[]
 
   jobId: number
   jobTitle: string
-  isJobFormVisible:boolean
+  isJobFormVisible: boolean
 
   jobs: Job[]
 
   companyId: number
   companyName: string
-  isCompanyFormVisible:boolean
+  isCompanyFormVisible: boolean
 
   companies: Company[]
 
   requirementId: number
   requirement: string
-  isRequirementFormVisible:boolean
+  isRequirementFormVisible: boolean
 
   requirements: Requirement[]
 
-  isEditable:boolean
+  isEditable: boolean
 
-  
 
-  constructor(private adminsvc:AdminService) { 
-  this.isEditable=false
-  this.isUserFormVisible=false
-  this.isJobFormVisible=false
-  this.isCompanyFormVisible=false
-  this.isRequirementFormVisible=false
+
+  constructor(private adminsvc: AdminService) {
+    this.isEditable = false
+    this.isUserFormVisible = false
+    this.isJobFormVisible = false
+    this.isCompanyFormVisible = false
+    this.isRequirementFormVisible = false
   }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class AdminComponent implements OnInit {
     this.loadAllJobs()
     this.loadAllCompanies()
     this.loadAllRequirements()
- 
+
   }
 
   loadAllUsers() {
@@ -92,29 +94,35 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  deleteUser(index, userId){
+  deleteUser(index, userId) {
     //deletes 1 element from the index specified 
-    this.users.splice(index,1)
+    this.users.splice(index, 1)
     this.adminsvc.deleteUserOnServer(userId).subscribe()
   }
 
-  deleteJob(index, jobId){
+  deleteJob(index, jobId) {
     //deletes 1 element from the index specified 
-    this.jobs.splice(index,1)
+    this.jobs.splice(index, 1)
     this.adminsvc.deleteJobOnServer(jobId).subscribe()
   }
 
-  deleteCompany(index, companyId){
+  deleteCompany(index, companyId) {
     //deletes 1 element from the index specified 
-    this.companies.splice(index,1)
+    this.companies.splice(index, 1)
     this.adminsvc.deleteCompanyOnServer(companyId).subscribe()
   }
 
-  deleteRequirement(index, requirementId){
+  deleteRequirement(index, requirementId) {
     //deletes 1 element from the index specified 
-    this.requirements.splice(index,1)
+    this.requirements.splice(index, 1)
     this.adminsvc.deleteRequirementOnServer(requirementId).subscribe()
   }
+
+
+
+
+
+
 
   // addRequirement() {
   //   this.adminsvc.addRequirementOnServer(req)

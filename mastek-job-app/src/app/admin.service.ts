@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job } from './job';
 import { User } from './user';
@@ -63,6 +63,8 @@ export class AdminService {
     return this.httpsvc.delete<RequirementComponent[]>(
       this.rootURL+"/requirements/delete/"+requirementId)
   }
+
+
 
   // addRequirementOnServer(req):Observable<RequirementComponent[]>{
   //   return this.httpsvc.post<RequirementComponent[]>(

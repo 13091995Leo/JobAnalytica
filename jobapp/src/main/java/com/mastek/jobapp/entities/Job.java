@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //Used for Services only, needs to be commented out for Postman to work
-@Component
+//@Component
 @Scope("prototype") //one copy for each test case
 @Entity //declares the class as an Entity
 @Table(name="Jobs") // declaring the table name for the class
@@ -60,7 +60,6 @@ public class Job implements Serializable{
 	private String location;
 
 /// Many to One relationship between jobs and company	
-	@FormParam("companyId")
 	private Company currentCompany;
 	
 	@ManyToOne

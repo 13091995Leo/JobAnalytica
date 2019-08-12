@@ -89,7 +89,7 @@ public class UserService {
 			}
 			else {
 				System.out.println("Invalid login credentials");
-				return "Invalid credentials";
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
