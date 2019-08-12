@@ -20,6 +20,6 @@ public interface JobRepository extends CrudRepository<Job, Integer> {
 	
 
 	@Autowired
-	public List<Job> fetchJobByCompanyId(@Param("companyId") String companyId);
+	public List<Job> fetchJobByCompanyId(@Param("companyId") int companyId);
 
 }
