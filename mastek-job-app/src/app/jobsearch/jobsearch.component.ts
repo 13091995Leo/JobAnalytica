@@ -69,15 +69,13 @@ export class JobsearchComponent implements OnInit {
     this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
       response => {
         this.jobsObj = response
-          .filter(response => filterBySalaryParam == null || (response.salary == filterBySalaryParam || response.salary > filterBySalaryParam-1) )
+          .filter(response => filterBySalaryParam == null || response.salary == filterBySalaryParam )
           .filter(response => filterByLocationParam == null || response.location == filterByLocationParam)
           .filter(response => filterByCompanyNameParam == null || response.currentCompany.companyName == filterByCompanyNameParam)
         this.resultsLength = response.length
       }
     )
-    filterBySalaryParam = null 
-    filterByLocationParam = null
-    filterByCompanyNameParam = null
+    
   }
 
 

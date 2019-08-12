@@ -13,7 +13,7 @@
     <div>
         <h4>Salary</h4>
         <select [(ngModel)]="filterBySalaryParam" >
-            <option value="null">⇩⇩ Salary Range ⇩⇩</option>
+            <!-- <option value="null">⇩⇩ Salary Range ⇩⇩</option>
             <option value="100000">100000 +</option>
             <option value="90000">90000 +</option>
             <option value="80000">80000 +</option>
@@ -24,7 +24,7 @@
             <option value="30000">30000 +</option>
             <option value="20000">20000 +</option>
             <option value="10000">10000 +</option>
-            <option value="null">⇩⇩ Existing Results ⇩⇩</option>
+            <option value="null">⇩⇩ Existing Results ⇩⇩</option> -->
             <option *ngFor="let j of jobsObj  " value="{{j.salary}}">{{j.salary}}</option>
         </select>
     </div>
@@ -42,23 +42,22 @@
         <h4>Company</h4>
         <select [(ngModel)]="filterByCompanyNameParam">
             <option value=""></option>
-            <option *ngFor="let j of jobsObj | filter : filterByLocationParam | filter : filterBySalaryParam "
+            <option *ngFor="let j of jobsObj | filter : filterBySalaryParam | filter : filterByLocationParam  "
                 value="{{j.currentCompany.companyName}}">{{j.currentCompany.companyName}}</option>
         </select>
-    </div>
+    </div> 
 
     <div>
-        <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply
-            Filters</button>
+        <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply Filters</button>
     </div>
 
     <div class="card text-center m-3">
-            <p>&nbsp;  </p> 
+            <p>&nbsp;</p> 
             <h3>Search your filtered results </h3>
             <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
                 (keyup.enter)="fetchJobsBySearchParam(searchParam)">
             <button
-                (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
+                (click)=" fetchJobsBySearchParam(searchParam) ; filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
             <hr>
     </div>
     <hr>
