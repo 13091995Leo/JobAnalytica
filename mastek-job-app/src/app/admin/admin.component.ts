@@ -116,5 +116,8 @@ export class AdminComponent implements OnInit {
     this.adminsvc.deleteRequirementOnServer(requirementId).subscribe()
   }
 
+  // addRequirement() {
+  //   this.adminsvc.addRequirementOnServer(req)
+  // }
 
 }

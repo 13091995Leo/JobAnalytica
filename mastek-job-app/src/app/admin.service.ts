@@ -8,6 +8,7 @@ import { Requirement } from './requirement';
 import { JobComponent } from './job/job.component';
 import { UserComponent } from './user/user.component';
 import { CompanyComponent } from './company/company.component';
+import { RequirementComponent } from './requirement/requirement.component';
 
 @Injectable({
   providedIn: 'root'
@@ -58,9 +59,14 @@ export class AdminService {
       this.rootURL+"/companies/delete/"+companyId)
   }
 
-  deleteRequirementOnServer(requirementId):Observable<RequirementCompany[]>{
-    return this.httpsvc.delete<RequimentComponent[]>(
+  deleteRequirementOnServer(requirementId):Observable<RequirementComponent[]>{
+    return this.httpsvc.delete<RequirementComponent[]>(
       this.rootURL+"/requirements/delete/"+requirementId)
   }
 
+  // addRequirementOnServer(req):Observable<RequirementComponent[]>{
+  //   return this.httpsvc.post<RequirementComponent[]>(
+  //     this.rootURL+"/requirements/delete/"+req)
+  //   )
+  // }
 }
