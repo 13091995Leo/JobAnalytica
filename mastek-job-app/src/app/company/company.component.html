@@ -5,6 +5,7 @@
             <th>Job Title</th>
             <th>Salary</th>
             <th>Location</th>
+            <th>Company Id</th>
         </tr>
 
         <tr *ngFor = "let j of allJobs | slice:0:100; let i = index">
@@ -12,6 +13,7 @@
             <td>{{j.jobTitle}}</td>
             <td>{{j.salary}}</td>
             <td>{{j.location}}</td>
+            <td>{{j.companyId}}</td>
             <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
         </tr>
  
@@ -51,6 +53,11 @@
                         <td>Location:</td>
                         <td *ngIf="!isEditable">{{location}}</td>
                         <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
+                </tr>
+                <tr>
+                        <td>Company Id:</td>
+                        <td *ngIf="!isEditable">{{companyId}}</td>
+                        <td *ngIf="isEditable"><input [(ngModel)]="companyId"></td>
                 </tr>
                 <tr>
                         <td><button (click)="addJob">Add New Job</button></td>

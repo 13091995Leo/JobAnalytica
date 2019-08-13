@@ -15,6 +15,7 @@ export class CompanyComponent implements OnInit {
   jobTitle: string
   location: string
   salary: number
+  companyId: number
   isEditable:boolean
   assignments: Job[]
   isJobFormVisible:boolean
@@ -34,6 +35,7 @@ export class CompanyComponent implements OnInit {
   this.jobTitle = "IT Admin Assistant"
   this.salary = 14000
   this.location = "London"
+  this.companyId = 1
 
   this.assignments = [
     {jobId:15, jobTitle: "Senior Java Developer", salary: 40000, location:"London"},
