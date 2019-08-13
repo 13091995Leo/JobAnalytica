@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RequirementService } from '../requirement.service';
 
 @Component({
   selector: 'app-requirement',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequirementComponent implements OnInit {
 
-  constructor() { }
+  requirementId: number
+
+  constructor(private reqSvc:RequirementService) { }
 
   ngOnInit() {
   }

@@ -64,7 +64,17 @@ export class AdminService {
       this.rootURL+"/requirements/delete/"+requirementId)
   }
 
-
+  createNewRequirement(requirement):Observable<RequirementComponent>{
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {"Content-Type":"application/x-www-form-urlencoded"}
+      )
+    }
+    var reqBody = "requirement=" + requirement
+    return this.httpsvc.post<RequirementComponent>(
+      this.rootURL+"/requirements/register", reqBody, httpOptions
+    )
+  }
 
   // addRequirementOnServer(req):Observable<RequirementComponent[]>{
   //   return this.httpsvc.post<RequirementComponent[]>(

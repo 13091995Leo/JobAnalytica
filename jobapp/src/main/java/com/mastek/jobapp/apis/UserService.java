@@ -73,16 +73,11 @@ public class UserService {
 		String userName = user.getUserName();
 		String locationPreference = user.getLocationPreference();
 		String userPassword = user.getUserPassword();
-	//	Set<Requirement> existingUserSpecialities = existingUser.getUserSpeciality();
 		
 		existingUser.setUserName(userName);
 		existingUser.setLocationPreference(locationPreference);
 		existingUser.setUserPassword(userPassword);
-		//userRepository.save(user);
-/*		for (Requirement requirement : existingUserSpecialities) {
-			user.getUserSpeciality().add(requirement);
-		}*/
-		
+
 		userRepository.save(existingUser);
 		System.out.println("User Registered " + user);
 		return existingUser;

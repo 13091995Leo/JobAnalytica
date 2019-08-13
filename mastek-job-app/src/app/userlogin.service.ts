@@ -24,6 +24,12 @@ export class UserloginService {
     )
   }
 
+  getUserPassword(userId):Observable<String[]> {
+    return this.httpsvc.get<String[]>(
+      "http://localhost:7705/users/findUserPassword/" + userId
+    )
+  }
+
   createNewUser(userName, locationPreference, userPassword):Observable<UserComponent> {
     const httpOptions = {
       headers: new HttpHeaders(
