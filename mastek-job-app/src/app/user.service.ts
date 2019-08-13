@@ -35,11 +35,7 @@ export class UserService {
     )
   }
 
-  getUserPassword(userId):Observable<String[]> {
-    return this.httpsvc.get<String[]>(
-      this.rootURL + "/findUserPassword/" + userId
-    )
-  }
+
 
   updateUserOnServer(user):Observable<UserComponent> {
     const httpOptions = {
