@@ -10,6 +10,9 @@ import { FeatComponent } from './feat/feat.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { AdminComponent } from './admin/admin.component';
+import { StatsComponent } from './stats/stats.component';
 
 
 
@@ -20,7 +23,10 @@ const routes: Routes = [
   { path: 'companyLogin', component: CompanyloginComponent},
   { path: 'userPage', component: UserComponent},
   { path: 'userLogin', component: UserloginComponent},
-  { path: 'feat', component: FeatComponent}
+  { path: 'feat', component: FeatComponent},
+  { path: 'adminLogin', component: AdminloginComponent},
+  { path: 'adminPage', component: AdminComponent},
+  { path: 'stats' , component: StatsComponent}
 ];
 
 @NgModule({

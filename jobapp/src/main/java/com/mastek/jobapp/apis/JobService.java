@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
@@ -37,6 +38,18 @@ public class JobService {
 	@Autowired
 	private RequirementService requirementService;
 	
+	@Autowired
+	private CompanyService companyService;
+	
+	@Autowired
+	private UserService userService;
+	
+	private Requirement requirement;
+	
+	private Job job;
+	
+	private Company currentCompany;
+	
 	public JobService() {
 		System.out.println("Job Service Created");
 	}
@@ -47,6 +60,19 @@ public class JobService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Job registerOrUpdateJob(@BeanParam Job job) {
 		job = jobRepository.save(job);
+		System.out.println("Job Registered "+job);
+		return job;
+	}
+	
+	@POST
+	@Path("/register/{companyId}")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Job registerOrUpdateJobWithCompany(@BeanParam Job job, @PathParam("companyId") int companyId) {
+		registerOrUpdateJob(job);
+		currentCompany = companyService.findByCompanyId(companyId);
+		job.setCurrentCompany(currentCompany);
+		registerOrUpdateJob(job);
 		System.out.println("Job Registered "+job);
 		return job;
 	}
@@ -63,22 +89,36 @@ public class JobService {
 		}
 	}
 	
+	
+	
 	@DELETE
 	@Path("/delete/{jobId}")
 	public String deleteJobById(@PathParam("jobId") int jobId) {
 		 try {
+	            job = findByJobId(jobId);
+	            
+	            Set<Requirement> jobRequirements = job.getRequirements();
+	            job.getRequirements().removeAll(jobRequirements);
+	           
+	            Set<User> users = job.getAssignments();
+	            job.getAssignments().removeAll(users);
+	            
+	            job.setCurrentCompany(null);
+	           
+	            job.setCurrentCompany(null);
+	            
+	            registerOrUpdateJob(job);
 	            jobRepository.deleteById(jobId);
 	            String statement = "Job with Job ID = " + jobId + " sucessfully deleted";
 	            System.out.println(statement);
 	            return statement;
-	        } catch (Exception e) {
+		 } catch (Exception e) {
 	            e.printStackTrace();
 	            String statement = "Job with job ID = " + jobId + " does not exist";
 	            System.out.println(statement);
 	            return statement;
-	        }
-
-		}
+	     }
+	}
 	
 	@GET
 	@Path("/fetchBySearchParam")
@@ -86,7 +126,6 @@ public class JobService {
 	public List<Job> fetchJobUsingSearchBar(@QueryParam("searchParam") String searchParam){
 		return jobRepository.findBySearchParam(searchParam);
 	}
-
 	
 	@GET
 	@Path("/fetchAverageJobSalaryByJobTitle")
@@ -122,8 +161,47 @@ public class JobService {
 	@GET
 	@Path("/fetchJobsByCompanyId")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") String companyId){
+	public List<Job> fetchJobsByCompanyId(@QueryParam("companyId") int companyId){
 		return jobRepository.fetchJobByCompanyId(companyId);
 	}
+	
+	@Transactional
+	@POST
+	@Path("/assign/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> assignJobsToUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().add(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	@POST
+	@Path("/remove/users")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<User> removeJobsFromUser(@FormParam("userId") int userId, @FormParam("jobId") int jobId) {
+		try {
+			Job job = findByJobId(jobId);
+			User user = userService.findByUserId(userId);
+			job.getAssignments().remove(user);
+			job = registerOrUpdateJob(job);
+			return job.getAssignments();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 }

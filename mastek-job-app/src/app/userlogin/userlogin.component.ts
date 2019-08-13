@@ -32,9 +32,12 @@ export class UserloginComponent implements OnInit {
     this.loadAllRequirements()
   }
 
-  selectUserId(name) {
-    this.userId = name
-    localStorage.setItem("userId", String(name))
+  selectUserId(userId,userPassword) {
+    this.userId = userId
+    this.userPassword = userPassword
+    sessionStorage.setItem("userId", String(userId))
+    sessionStorage.setItem("userPassword", String(userPassword))
+    // localStorage.setItem("userId", String(name))
   }
 
   loadAllRequirements() {
@@ -49,7 +52,8 @@ export class UserloginComponent implements OnInit {
     console.log(userName)
     this.userSvc.createNewUser(userName, locationPreference, userPassword).subscribe(
       response => {
-        localStorage.setItem("userId", String(response.userId))
+        sessionStorage.setItem("userId", String(response.userId))
+        // localStorage.setItem("userId", String(response.userId))
       }
     )
 

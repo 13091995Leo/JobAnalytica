@@ -1,3 +1,5 @@
+import { Company } from './company';
+
 export interface Job {
     jobId: number
     jobTitle: String

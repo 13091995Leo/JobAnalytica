@@ -14,6 +14,11 @@ import { JobsearchComponent } from './jobsearch/jobsearch.component';
 import { FeatComponent } from './feat/feat.component';
 import { CompanyService } from './company.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { AdminComponent } from './admin/admin.component';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { StatsComponent } from './stats/stats.component';
+import { RequirementComponent } from './requirement/requirement.component';
 
 
 @NgModule({
@@ -25,7 +30,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CompanyloginComponent,
     CompanyComponent,
     JobsearchComponent,
-    FeatComponent
+    FeatComponent,
+    AdminloginComponent,
+    AdminComponent,
+    JwPaginationComponent,
+    StatsComponent,
+    RequirementComponent
   ],
   imports: [
     BrowserModule,

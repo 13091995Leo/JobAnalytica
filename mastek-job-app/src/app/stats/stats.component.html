@@ -1,0 +1,21 @@
+<table>
+        <th>Hottest Skill</th>
+        <th></th>
+        <th></th>
+        <tr *ngFor="let pop of popularSkill">
+                <td>{{pop.skill}}|</td>
+                <td>{{pop.avgSalaryBySkill}}|</td>
+                <td>{{pop.skillFreq}}|</td>
+        </tr>
+</table>
+
+<table style="display: inline-block;">
+        <th> Skill</th>
+        <th>Average Salary by Skill</th>
+        <th>Jobs Available for Skill</th>
+        <tr *ngFor="let s of statsArr">
+                <td>{{s.skill}}</td>
+                <td>{{s.avgSalaryBySkill}}</td>
+                <td>{{s.skillFreq}}</td>
+        </tr>
+</table>

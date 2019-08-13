@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,6 +32,7 @@ import org.springframework.stereotype.Component;
 public class User implements Serializable{
 	
 	@Value("-1")
+	@FormParam("userId")
 	private int userId;
 	
 	@Value("Default User Name")
@@ -115,5 +115,6 @@ public class User implements Serializable{
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
 
 }

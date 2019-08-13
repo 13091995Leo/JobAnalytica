@@ -22,6 +22,7 @@ import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.repository.CompanyRepository;
+import com.mastek.jobapp.repository.JobRepository;
 
 @Component
 @Scope("singleton")
@@ -32,7 +33,14 @@ public class CompanyService {
 	private CompanyRepository companyRepository;
 	
 	@Autowired
+	private JobRepository jobRepository;
+	
+	@Autowired
 	private JobService jobService;
+	
+	private Company company;
+	
+	private Job job;
 	
 	public CompanyService() {
 		System.out.println("Company Service Created");
@@ -59,12 +67,15 @@ public class CompanyService {
 			return null;
 		}
 	}
-	
+
 	@DELETE
 	@Path("/delete/{companyId}")
 	public String deleteCompanyById(@PathParam("companyId") int companyId) {
 		 try {
 	            companyRepository.deleteById(companyId);
+	            for (Job job:jobService.fetchJobsByCompanyId(companyId)) {
+	            	jobService.deleteJobById(job.getJobId());
+	            }
 	            String statement = "Company with Company ID = " + companyId + " sucessfully deleted";
 	            System.out.println(statement);
 	            return statement;
@@ -103,4 +114,5 @@ public class CompanyService {
 		public Iterable<Company> fetchAllCompanies(){
 		return companyRepository.findAll();
 	}
+
 }
