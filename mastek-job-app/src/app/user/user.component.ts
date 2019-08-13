@@ -5,6 +5,7 @@ import { Job } from '../job';
 import { Requirement } from '../requirement';
 import { User } from '../user';
 import { Observable } from 'rxjs';
+import { UserloginService } from '../userlogin.service';
 
 @Component({
   selector: 'app-user',
@@ -25,6 +26,7 @@ export class UserComponent implements OnInit {
   userSpeciality: Requirement[]
   specialityStorage: Requirement[]
   selectUserId: number
+  selectUserPassword: string
 
   recommendations: Job[]
   jobRequirement: Job[]
@@ -34,7 +36,9 @@ export class UserComponent implements OnInit {
 
   isEditable: boolean
 
-  constructor(private userSvc:UserService) {
+
+
+  constructor(private userSvc: UserService) {
     this.userId = Number(sessionStorage.getItem("userId"))
     // this.userId = Number(localStorage.getItem("userId"))
     // this.userName = localStorage.getItem("userName")
@@ -44,37 +48,40 @@ export class UserComponent implements OnInit {
     //   // {jobId:9, jobTitle:"Angular Specialist", location:"Essex", salary:80000}
     // ]
     // this.recommendations = this.loadAllJobs()
-   }
+  }
 
   ngOnInit() {
     this.loadAllRequirements()
     this.userId = Number(sessionStorage.getItem("userId"))
     // this.userId = Number(localStorage.getItem("userId"))
-
+    this.userPassword = String(sessionStorage.getItem("userPassword"))
     this.fetchCurrentUserFromService()
     // localStorage.setItem("userId", "21")
     // localStorage.setItem("userName", "Hollie Jules Reed")
     // localStorage.setItem("locationPref", "London")
+
   }
 
-  fetchCurrentUserFromService():Observable<User> {
-    this.userSvc.findUserByUserId(this.userId).subscribe(
+  fetchCurrentUserFromService(): Observable<User> {
+    this.userSvc.findUserByUserIdAndPwd(this.userId, this.userPassword).subscribe(
       response => {
+
         this.userId = response.userId
         this.userName = response.userName
         this.locationPreference = response.locationPreference
-        // this.userPassword = response.userPassword
+        this.userPassword = response.userPassword
         //this.recommendations = response.recommendations
         this.group = response.group
         this.userSpeciality = response.userSpeciality
         this.recommendations = []
         this.getRecommendedJobs()
-        
+      
+        this.fetchCurrentUserFromService
+      
         //this.jobRequirement = response.jobRequirement
       }
     )
-    // console.log(this.userSpeciality)
-    return 
+    return
   }
 
   toggleEdits() {
@@ -90,11 +97,15 @@ export class UserComponent implements OnInit {
     )
   }
 
-  updateUserSelection(id) {
+  updateUserSelection(id, pwd) {
     this.selectUserId = id
     // localStorage.setItem("userId", String(id))
     this.userId = id
+    this.selectUserPassword = pwd
+    this.userPassword = pwd
+    
     this.fetchCurrentUserFromService()
+  
   }
 
   updateUserDetails(uName, locPref) {
@@ -107,7 +118,7 @@ export class UserComponent implements OnInit {
     this.specialityStorage = this.userSpeciality
     // console.log(this.userSpeciality)
     this.userSvc.updateUserOnServer({
-      userId:this.userId, userName:this.userName, userPassword:this.userPassword, locationPreference:this.locationPreference
+      userId: this.userId, userName: this.userName, userPassword: this.userPassword, locationPreference: this.locationPreference
     }).subscribe(
       response => {
         this.fetchCurrentUserFromService
@@ -212,7 +223,7 @@ export class UserComponent implements OnInit {
   }
 
   getRecommendedJobs() {
-    this.userSpeciality.forEach( u => {
+    this.userSpeciality.forEach(u => {
       // this.recommendations.push((this.loadJobsByRequirement(u.requirementId)))
       this.loadJobsByRequirement(u.requirementId)
     })
@@ -221,7 +232,7 @@ export class UserComponent implements OnInit {
 
   addJobToUser(jid) {
     // this.userSvc.assignJobToUser(Number(localStorage.getItem("userId")),jid).subscribe(
-    this.userSvc.assignJobToUser(Number(sessionStorage.getItem("userId")),jid).subscribe(
+    this.userSvc.assignJobToUser(Number(sessionStorage.getItem("userId")), jid).subscribe(
 
       // response => {
       //   this.fetchCurrentUsersFromService()
@@ -232,7 +243,7 @@ export class UserComponent implements OnInit {
 
   editClick() {
     this.toggleEdits()
-  }  
+  }
 
   saveClick(uName, locPref) {
     this.toggleEdits()

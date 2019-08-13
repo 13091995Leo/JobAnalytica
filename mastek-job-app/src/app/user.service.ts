@@ -23,9 +23,15 @@ export class UserService {
     )
   }
 
-  findUserByUserId(userId):Observable<User> {
-    return this.httpsvc.get<User>(
-      this.rootURL + "/find/" + userId
+  // findUserByUserId(userId):Observable<UserComponent> {
+  //   return this.httpsvc.get<UserComponent>(
+  //     this.rootURL + "/find/" + userId
+  //   )
+  // }
+
+  findUserByUserIdAndPwd(userId,userPassword):Observable<UserComponent> {
+    return this.httpsvc.get<UserComponent>(
+      this.rootURL + "/findUser?userId=" + userId + "&userPassword=" + userPassword
     )
   }
 

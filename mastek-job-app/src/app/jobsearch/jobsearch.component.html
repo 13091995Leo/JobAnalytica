@@ -1,7 +1,7 @@
 <div class="card text-center m-3">
     <hr>
     <h2>Search all Jobs </h2>
-    <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value='{{}}'"
+    <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
         (keyup.enter)="fetchJobsBySearchParam(searchParam)">
     <button
         (click)="fetchJobsBySearchParam(searchParam) ">Search</button>

@@ -1,0 +1,56 @@
+<h1>Admin Page</h1>
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Delete?</th>
+    </tr>
+
+    <tr *ngFor="let u of users | slice:0:5; let i = index">
+        <td>{{u.userId}}</td>
+        <td>{{u.userName}}</td>
+        <td><button (click)="deleteUser(i, u.userId)">x</button></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <th>Job ID</th>
+        <th>Job Title</th>
+        <th>Delete?</th>
+    </tr>
+
+    <tr *ngFor="let j of jobs | slice:0:5; let i = index">
+        <td>{{j.jobId}}</td>
+        <td>{{j.jobTitle}}</td>
+        <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <th>Company ID</th>
+        <th>Company Name</th>
+        <th>Delete?</th>
+    </tr>
+
+    <tr *ngFor="let c of companies | slice:0:5; let i = index">
+        <td>{{c.companyId}}</td>
+        <td>{{c.companyName}}</td>
+        <td><button (click)="deleteCompany(i, c.companyId)">x</button></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <th>Requirement/Skill ID</th>
+        <th>Requirement/Skill</th>
+        <th>Delete?</th>
+    </tr>
+
+    <tr *ngFor="let r of requirements | slice:0:5; let i = index">
+        <td>{{r.requirementId}}</td>
+        <td>{{r.requirement}}</td>
+        <td><button (click)="deleteRequirement(i, r.requirementId)">x</button></td>
+    </tr>
+</table>
