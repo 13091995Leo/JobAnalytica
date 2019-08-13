@@ -12,6 +12,9 @@ export class UserloginComponent implements OnInit {
   userId: number
   userName: String
   userPassword: String
+  userPwd: String[]
+
+  httpOption: String
 
   allRequirements: Requirement[]
 
@@ -25,6 +28,8 @@ export class UserloginComponent implements OnInit {
 
   ngOnInit() {
     this.isEditable = false
+    this.userPwd = []
+    this.userPassword = ""
   }
 
   toggleEdits() {
@@ -38,6 +43,17 @@ export class UserloginComponent implements OnInit {
     sessionStorage.setItem("userId", String(userId))
     sessionStorage.setItem("userPassword", String(userPassword))
     // localStorage.setItem("userId", String(name))
+    this.userSvc.getUserPassword(userId).subscribe(
+      response => {
+        this.userPwd = response
+      }
+    )
+    if (this.userPassword == this.userPwd[0]) {
+      this.httpOption = "/userPage"
+    }
+    else {
+      this.httpOption = "/userLogin"
+    }
   }
 
   loadAllRequirements() {
@@ -56,5 +72,7 @@ export class UserloginComponent implements OnInit {
         // localStorage.setItem("userId", String(response.userId))
       }
     )
+
   }
+
 }
