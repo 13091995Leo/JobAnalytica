@@ -93,14 +93,24 @@ export class CompanyComponent implements OnInit {
     this.fetchCurrentCompanyFromService()
   }
 
-  updateCompanyDetails() {
-    this.companysvc.updateCompanyOnServer({
-      companyId:this.companyId, companyName:this.companyName, companyPassword:this.companyPassword, companyLocation:this.companyLocation, industry:this.industry
-    }).subscribe(
+  updateCompanyDetails(compName, compLocation, compIndustry) {
+    this.companyName = compName
+    this.companyLocation = compLocation
+    this.industry = compIndustry
+    this.companysvc.updateCompanyOnServer(this.companyId, this.companyName, this.companyLocation, this.industry, this.companyPassword
+    ).subscribe(
       response => {
         this.fetchCurrentCompanyFromService
       }
     )
+  }
+
+  saveCompanyDetails(compName, compLocation, compIndustry) {
+    console.log(compName)
+    console.log(compLocation)
+    console.log(compIndustry)
+    this.toggleEdits()
+    this.updateCompanyDetails(compName, compLocation, compIndustry)
   }
 
   deleteCompany() {
@@ -134,14 +144,14 @@ export class CompanyComponent implements OnInit {
     this.selectJobId=jbid
   }
 
-  assignNewJob(){
-    this.companysvc.assignJobToCompany(this.jobId).subscribe(
-      response =>{
-        this.fetchCurrentJobFromService()
-      }
-    )
-    this.isJobFormVisible=false
-  }
+  // assignNewJob(){
+  //   this.companysvc.assignJobToCompany(this.jobId).subscribe(
+  //     response =>{
+  //       this.fetchCurrentJobFromService()
+  //     }
+  //   )
+  //   this.isJobFormVisible=false
+  // }
 
   showJobForm(){
     this.isJobFormVisible=true
@@ -183,6 +193,16 @@ export class CompanyComponent implements OnInit {
             this.fetchCurrentJobFromService()
           })
       })
+  }
+
+  createNewJob(jobTitle, salary, location) {
+    this.companysvc.createNewJob(jobTitle, salary, location, Number(sessionStorage.getItem("companyId"))).subscribe(
+      response => {
+        this.fetchCurrentCompanyFromService()
+      }
+    )
+    this.toggleJobEdits()
+    window.location.reload() 
   }
 
 }

@@ -4,7 +4,6 @@ import { UserService } from '../user.service';
 import { Job } from '../job';
 import { Requirement } from '../requirement';
 import { User } from '../user';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -24,6 +23,7 @@ export class UserComponent implements OnInit {
 
   allUsers: User[]
   userSpeciality: Requirement[]
+  specialityStorage: Requirement[]
   selectUserId: number
 
   recommendations: Job[]
@@ -73,6 +73,7 @@ export class UserComponent implements OnInit {
         //this.jobRequirement = response.jobRequirement
       }
     )
+    // console.log(this.userSpeciality)
     return 
   }
 
@@ -96,14 +97,45 @@ export class UserComponent implements OnInit {
     this.fetchCurrentUserFromService()
   }
 
-  updateUserDetails() {
+  updateUserDetails(uName, locPref) {
+    if (uName != null)  {
+      this.userName = uName
+    }
+    if (locPref != null) {
+      this.locationPreference = locPref
+    }
+    this.specialityStorage = this.userSpeciality
+    // console.log(this.userSpeciality)
     this.userSvc.updateUserOnServer({
       userId:this.userId, userName:this.userName, userPassword:this.userPassword, locationPreference:this.locationPreference
     }).subscribe(
       response => {
         this.fetchCurrentUserFromService
+        // this.specialityStorage.forEach( u => {
+        //   // this.recommendations.push((this.loadJobsByRequirement(u.requirementId)))
+        //   this.addSkillToUser(u.requirementId)
+        // })
       }
     )
+    // this.userSpeciality = this.specialityStorage
+    // console.log(this.userSpeciality)
+  }
+
+  saveUserDetails(uName, locPref) {
+    this.updateUserDetails(uName, locPref)
+    console.log("sS " + this.specialityStorage)
+    this.toggleEdits()
+    window.location.reload()
+  }
+
+  saveUser(uName, locPref) {
+    this.saveUserDetails(uName, locPref)
+    console.log("uS1 " + this.userSpeciality)
+    // this.specialityStorage.forEach( u => {
+    //   // this.recommendations.push((this.loadJobsByRequirement(u.requirementId)))
+    //   this.addSkillToUser(u.requirementId)
+    // })
+    console.log("uS2 " + this.userSpeciality)
   }
 
   deleteUser() {
@@ -115,7 +147,7 @@ export class UserComponent implements OnInit {
     this.userSvc.getAllRequirements().subscribe(
       response => {
         this.allRequirements = response
-        console.log(this.allRequirements.length)
+        // console.log(this.allRequirements.length)
         //console.log
       }
     )
@@ -125,7 +157,7 @@ export class UserComponent implements OnInit {
     this.userSvc.assignRequirementToUser(Number(sessionStorage.getItem("userId")), reqId).subscribe(
       response => {
         this.fetchCurrentUserFromService()
-        console.log("req: " + reqId)
+        // console.log("req: " + reqId)
       }
     )
   }
@@ -169,7 +201,7 @@ export class UserComponent implements OnInit {
     return this.userSvc.findJobByRequirementId(reqId).subscribe(
       response => {
         if (response.jobRequirement != null && !this.recommendations.some((obj) => obj.jobId == response.jobRequirement.jobId)) {
-          console.log(response.jobRequirement)
+          // console.log(response.jobRequirement)
           // this.recommendations.push(response.jobRequirement)
           Array.prototype.push.apply(this.recommendations, response.jobRequirement)
         }
@@ -184,7 +216,7 @@ export class UserComponent implements OnInit {
       // this.recommendations.push((this.loadJobsByRequirement(u.requirementId)))
       this.loadJobsByRequirement(u.requirementId)
     })
-    console.log("Recs " + this.recommendations)
+    // console.log("Recs " + this.recommendations)
   }
 
   addJobToUser(jid) {
@@ -195,6 +227,7 @@ export class UserComponent implements OnInit {
       //   this.fetchCurrentUsersFromService()
       // }
     )
+    window.location.reload() 
   }
 
   editClick() {
