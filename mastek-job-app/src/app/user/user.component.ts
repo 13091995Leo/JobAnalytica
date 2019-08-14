@@ -40,6 +40,7 @@ export class UserComponent implements OnInit {
 
   constructor(private userSvc: UserService) {
     this.userId = Number(sessionStorage.getItem("userId"))
+    this.userPassword = String(sessionStorage.getItem("userPassword"))
     // this.userId = Number(localStorage.getItem("userId"))
     // this.userName = localStorage.getItem("userName")
     // this.locationPref = localStorage.getItem("locationPref")
@@ -76,14 +77,13 @@ export class UserComponent implements OnInit {
         this.recommendations = []
         this.getRecommendedJobs()
       
-        this.fetchCurrentUserFromService
       
         //this.jobRequirement = response.jobRequirement
       }
     )
     return
   }
- 
+
   toggleEdits() {
     this.isEditable = !this.isEditable
     this.loadAllUsers()

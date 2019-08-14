@@ -25,9 +25,9 @@ export class CompanyService {
     )
   }
 
-  findCompanyByCompanyId(companyId):Observable<Company> {
-    return this.httpsvc.get<Company>(
-      this.rootURL + "/find/" + companyId
+  findCompanyByCompanyIdAndPwd(companyId,companyPassword):Observable<CompanyComponent> {
+    return this.httpsvc.get<CompanyComponent>(
+      this.rootURL + "/findCompany?companyId=" + companyId + "&companyPassword=" + companyPassword
     )
   }
 

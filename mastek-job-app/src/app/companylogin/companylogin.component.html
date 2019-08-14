@@ -17,8 +17,8 @@
           [(ngModel)]="password" #inputCPassword>
       </div>
       <div class="form-group">
-        <a routerLink="/companyPage"><button type="submit" class="btn btn-default"
-            (click)="selectCompanyId(inputCName.value)">Submit</button></a>
+        <a routerLink="{{httpOption}}"><button type="submit" class="btn btn-default"
+            (click)="selectCompanyId(inputCName.value,inputCPassword.value)">Submit</button></a>
       </div>
     </form>
 

@@ -22,8 +22,8 @@ export class UserloginComponent implements OnInit {
 
   isEditable: boolean
 
-  constructor(private userSvc:UserloginService) {
-    
+  constructor(private userSvc: UserloginService) {
+
   }
 
   ngOnInit() {
@@ -37,23 +37,26 @@ export class UserloginComponent implements OnInit {
     this.loadAllRequirements()
   }
 
-  selectUserId(userId,userPassword) {
+  selectUserId(userId, userPassword) {
     this.userId = userId
     this.userPassword = userPassword
     sessionStorage.setItem("userId", String(userId))
     sessionStorage.setItem("userPassword", String(userPassword))
-    // localStorage.setItem("userId", String(name))
     this.userSvc.getUserPassword(userId).subscribe(
       response => {
         this.userPwd = response
+        if (this.userPassword == this.userPwd[0]) {
+          this.httpOption = "/userPage"
+          sessionStorage.setItem("httpOption1",String(this.httpOption))
+        }
+        else {
+          alert("Please enter valid login details")
+          this.httpOption = "/userLogin"
+          sessionStorage.setItem("httpOption1",String(this.httpOption))
+        }
       }
     )
-    if (this.userPassword == this.userPwd[0]) {
-      this.httpOption = "/userPage"
-    }
-    else {
-      this.httpOption = "/userLogin"
-    }
+    this.httpOption = sessionStorage.getItem("httpOption1")
   }
 
   loadAllRequirements() {

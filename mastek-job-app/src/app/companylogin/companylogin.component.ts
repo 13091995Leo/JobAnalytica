@@ -13,25 +13,49 @@ export class CompanyloginComponent implements OnInit {
   companyPassword: String
   industry: String
   location: String
+  companyPwd: String[]
+
+  httpOption: String
 
   invalidFormMessage: String
 
   isEditable: boolean
 
-  constructor(private compSvc:CompanyloginService) { }
+  constructor(private compSvc: CompanyloginService) { }
 
   ngOnInit() {
     this.isEditable = false
+    this.companyPwd = []
+    this.companyPassword = ""
   }
 
   toggleEdits() {
     this.isEditable = !this.isEditable
   }
 
-  selectCompanyId(compName) {
-    this.companyId = compName
-    sessionStorage.setItem("companyId", String(compName))
+  selectCompanyId(companyId, companyPassword) {
+    this.companyId = companyId
+    this.companyPassword = companyPassword
+    sessionStorage.setItem("companyId", String(companyId))
+    sessionStorage.setItem("companyPassword",String(companyPassword))
+    this.compSvc.getCompanyPassword(companyId).subscribe(
+      response => {
+        this.companyPwd = response
+        if (this.companyPassword == this.companyPwd[0]) {
+          this.httpOption = "/companyPage"
+          sessionStorage.setItem("httpOption2",String(this.httpOption))
+        }
+        else {
+          alert("Please enter valid login details")
+          this.httpOption = "/companyLogin"
+          sessionStorage.setItem("httpOption2",String(this.httpOption))
+        }
+      }
+    )
+    this.httpOption = sessionStorage.getItem("httpOption2")
   }
+
+
 
   addNewCompany(companyName, companyLocation, companyIndustry, companyPassword) {
     console.log(companyName)

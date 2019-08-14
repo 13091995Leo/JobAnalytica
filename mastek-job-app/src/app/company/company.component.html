@@ -1,117 +1,110 @@
 <h1>Company Page</h1>
 <!-- Display user information -->
 <h2>Company Information</h2>
-<form action="/action_page.php">
-    <table>
-        <tr>
-            <td>Company ID: </td>
-            <td>{{companyId}}</td>
-            <!-- <td *ngIf="isEditable">
-            <select id="company-select" #selectCompany [(ngModel)]="companyId" (change)="updatecompanySelection(selectCompany.value)">
-                <option *ngFor="let comp of allCompanies" value="{{comp.companyId}}">{{comp.companyId}}::{{comp.companyName}}</option>
-            </select>
-        </td> -->
-            <!-- <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit User"}}</button></td> -->
-            <td><a routerLink="/companyLogin"><button (click)="deleteCompany()" *ngIf="isEditable">Delete
-                        Company</button></a></td>
-        </tr>
-        <tr>
-            <td>Company Name: </td>
-            <td *ngIf="!isEditable">{{companyName}}</td>
-            <td *ngIf="isEditable">
-                <!-- <form action="/action_page.php"> -->
-                <div class="form-group">
-                    <!-- <input type="name" class="form-control" id="cName" name="cName" [(ngModel)]="cName" value={{companyName}} #inputCName> -->
-                    <input type="name" name="cName" class="form-control" [(ngModel)]="cName" value={{companyName}} #inputCName >
-                </div>
-                <!-- </form> -->
-            </td>
-        </tr>
-        <tr>
-            <td>Company Location: </td>
-            <td *ngIf="!isEditable">{{companyLocation}}</td>
-            <td *ngIf="isEditable">
-                <!-- <form action="/action_page.php"> -->
-                <div class="form-group">
-                    <!-- <input type="name" class="form-control" id="cLoc" name="cLoc" [(ngModel)]="loc" value="{{companyLocation}}" #inputCLoc> -->
-                    <input type="name" id="cLoc" name="Loc" class="form-control" [(ngModel)]="loc" value="{{companyLocation}}" #inputCLoc>
-                </div>
-            <!-- </form> -->
-            </td>
-        </tr>
-        <td>Industry: </td>
-        <td *ngIf="!isEditable">{{industry}}</td>
+<table>
+    <tr>
+        <td>Company ID: </td>
+        <td>{{companyId}}</td>
+        <td><a routerLink="/companyLogin"><button (click)="deleteCompany()" *ngIf="isEditable">Delete
+                    Company</button></a></td>
+    </tr>
+    <tr>
+        <td>Company Name: </td>
+        <td *ngIf="!isEditable">{{companyName}}</td>
         <td *ngIf="isEditable">
             <!-- <form action="/action_page.php"> -->
             <div class="form-group">
-                <!-- <input type="name" class="form-control" id="cInd" name="cInd" [(ngModel)]="ind" value="{{industry}}" #inputCInd> -->
-                <input type="name" name="cInd" class="form-control" [(ngModel)]="ind" value="{{industry}}" #inputCInd>
+                <!-- <input type="name" class="form-control" id="cName" name="cName" [(ngModel)]="cName" value={{companyName}} #inputCName> -->
+                <input type="name" name="cName" class="form-control" [(ngModel)]="cName" value={{companyName}}
+                    #inputCName>
             </div>
-        <!-- </form> -->
+            <!-- </form> -->
         </td>
-        <tr>
-            <td>
-                <button (click)="toggleEdits()" *ngIf="!isEditable">Edit Company</button>
-            </td>
-            <!-- <td><button (click)="saveClick(uName.value, locPref.value)" *ngIf="isEditable">Save</button></td> -->
-        </tr>
-        <tr>
-            <td>
-                <!-- <button (click)="saveCompanyDetails(inputCName.value, inputCLoc.value, inputCInd.value)" *ngIf="isEditable">Save</button> -->
-                <button (click)="saveCompanyDetails(cName, loc, ind)" *ngIf="isEditable">Save</button>
-            </td>
-        </tr>
-    </table>
-
-    <h2>Job Post</h2>
-    <table>
-        <tr>
-            <th>Job Id</th>
-            <th>Job Title</th>
-            <th>Salary</th>
-            <th>Location</th>
-        </tr>
-        <tr *ngFor="let j of allCompanyJobs | slice:0:100; let i = index">
-            <td>{{j.jobId}}</td>
-            <td>{{j.jobTitle}}</td>
-            <td>{{j.salary}}</td>
-            <td>{{j.location}}</td>
-            <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
-        </tr>
-    </table>
-    <br>
-    <table>
-        <tr>
-            <td><button (click)="toggleJobEdits()">{{(jobIsEditable)?"Cancel":"Add New Job"}}</button></td>
-        </tr>
-        <div *ngIf="jobIsEditable">
-            <tr>
-                <td>Job Title:</td>
-                <!-- <td>{{jobTitle}}</td> -->
-                <td>
-                    <div class="form-group">
-                        <input [(ngModel)]="jobTitle" #inputJName>
-                        <!-- <input [(ngModel)]="jobTitle" #inputJName minlength="3" maxlength="48"> -->
-                        <!-- <span [hidden]="inputEname.valid || inputEname.pristine" class="alert alert-danger">Job Title should not
-                        be less than 3 characters</span> -->
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Salary:</td>
-                <!-- <td>{{salary}}</td> -->
-                <td><input [(ngModel)]="salary" #inputJSalary></td>
-            </tr>
-            <tr>
-                <td>Location:</td>
-                <!-- <td>{{location}}</td> -->
-                <td><input [(ngModel)]="location" #inputJLocation></td>
-            </tr>
-            <tr>
-                <td><button
-                        (click)="createNewJob(inputJName.value, inputJSalary.value, inputJLocation.value)">Save</button>
-                </td>
-            </tr>
+    </tr>
+    <tr>
+        <td>Company Location: </td>
+        <td *ngIf="!isEditable">{{companyLocation}}</td>
+        <td *ngIf="isEditable">
+            <!-- <form action="/action_page.php"> -->
+            <div class="form-group">
+                <!-- <input type="name" class="form-control" id="cLoc" name="cLoc" [(ngModel)]="loc" value="{{companyLocation}}" #inputCLoc> -->
+                <input type="name" id="cLoc" name="Loc" class="form-control" [(ngModel)]="loc"
+                    value="{{companyLocation}}" #inputCLoc>
+            </div>
+            <!-- </form> -->
+        </td>
+    </tr>
+    <td>Industry: </td>
+    <td *ngIf="!isEditable">{{industry}}</td>
+    <td *ngIf="isEditable">
+        <!-- <form action="/action_page.php"> -->
+        <div class="form-group">
+            <!-- <input type="name" class="form-control" id="cInd" name="cInd" [(ngModel)]="ind" value="{{industry}}" #inputCInd> -->
+            <input type="name" name="cInd" class="form-control" [(ngModel)]="ind" value="{{industry}}" #inputCInd>
         </div>
-    </table>
-</form>
+        <!-- </form> -->
+    </td>
+    <tr>
+        <td>
+            <button (click)="toggleEdits()" *ngIf="!isEditable">Edit Company</button>
+        </td>
+        <!-- <td><button (click)="saveClick(uName.value, locPref.value)" *ngIf="isEditable">Save</button></td> -->
+    </tr>
+    <tr>
+        <td>
+            <!-- <button (click)="saveCompanyDetails(inputCName.value, inputCLoc.value, inputCInd.value)" *ngIf="isEditable">Save</button> -->
+            <button (click)="saveCompanyDetails(cName, loc, ind)" *ngIf="isEditable">Save</button>
+        </td>
+    </tr>
+</table>
+
+<h2>Job Post</h2>
+<table>
+    <tr>
+        <th>Job Id</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Location</th>
+    </tr>
+    <tr *ngFor="let j of allCompanyJobs | slice:0:100; let i = index">
+        <td>{{j.jobId}}</td>
+        <td>{{j.jobTitle}}</td>
+        <td>{{j.salary}}</td>
+        <td>{{j.location}}</td>
+        <td><button (click)="deleteJob(i, j.jobId)">x</button></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td><button (click)="toggleJobEdits()">{{(jobIsEditable)?"Cancel":"Add New Job"}}</button></td>
+    </tr>
+    <div *ngIf="jobIsEditable">
+        <tr>
+            <td>Job Title:</td>
+            <!-- <td>{{jobTitle}}</td> -->
+            <td>
+                <div class="form-group">
+                    <input [(ngModel)]="jobTitle" #inputJName>
+                    <!-- <input [(ngModel)]="jobTitle" #inputJName minlength="3" maxlength="48"> -->
+                    <!-- <span [hidden]="inputEname.valid || inputEname.pristine" class="alert alert-danger">Job Title should not
+                        be less than 3 characters</span> -->
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Salary:</td>
+            <!-- <td>{{salary}}</td> -->
+            <td><input [(ngModel)]="salary" #inputJSalary></td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <!-- <td>{{location}}</td> -->
+            <td><input [(ngModel)]="location" #inputJLocation></td>
+        </tr>
+        <tr>
+            <td><button (click)="createNewJob(inputJName.value, inputJSalary.value, inputJLocation.value)">Save</button>
+            </td>
+        </tr>
+    </div>
+</table>
