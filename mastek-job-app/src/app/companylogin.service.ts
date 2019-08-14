@@ -26,4 +26,10 @@ export class CompanyloginService {
     )
   }
 
+  getCompanyPassword(companyId):Observable<String[]> {
+    return this.httpsvc.get<String[]>(
+      "http://localhost:7705/companies/findCompanyPassword/" + companyId
+    )
+  }
+
 }

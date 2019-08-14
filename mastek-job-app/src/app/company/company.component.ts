@@ -35,6 +35,7 @@ export class CompanyComponent implements OnInit {
   allJobs: Job[]
   selectJobId:number
   selectCompanyId: number
+  selectCompanyPassword: string
   jobIsEditable: boolean;
 
   // constructor(private companysvc:CompanyService) {
@@ -72,18 +73,20 @@ export class CompanyComponent implements OnInit {
     //this.fetchCurrentJobFromService()
     this.loadAllCompanyJobs()
     this.companyId = Number(sessionStorage.getItem("companyId"))
+    this.companyPassword = String(sessionStorage.getItem("companyPassword"))
     this.fetchCurrentCompanyFromService()
-    console.log(this.companyLocation)
   }
 
   fetchCurrentCompanyFromService():Observable<Company> {
-    this.companysvc.findCompanyByCompanyId(this.companyId).subscribe(
+    this.companysvc.findCompanyByCompanyIdAndPwd(this.companyId,this.companyPassword).subscribe(
       response => {
         this.companyId = response.companyId
         this.companyName = response.companyName
         this.companyLocation = response.location
         this.industry = response.industry
         this.companyPassword = response.companyPassword
+
+        this.fetchCurrentCompanyFromService
       }
     )
     return
@@ -97,17 +100,28 @@ export class CompanyComponent implements OnInit {
     )
   }
 
-  updateCompanySelection(id) {
+  updateCompanySelection(id,pwd) {
     this.selectCompanyId = id
     // localStorage.setItem("userId", String(id))
     this.companyId = id
+    this.selectCompanyPassword = pwd
+    this.companyPassword = pwd
     this.fetchCurrentCompanyFromService()
   }
 
   updateCompanyDetails(compName, compLocation, compIndustry) {
-    this.companyName = compName
-    this.companyLocation = compLocation
-    this.industry = compIndustry
+    if (compName != null)  {
+      this.companyName = compName
+    }
+    if (compLocation != null) {
+      this.companyLocation = compLocation
+    }
+    if (compIndustry != null) {
+      this.industry = compIndustry
+    }
+    // this.companyName = compName
+    // this.companyLocation = compLocation
+    // this.industry = compIndustry
     this.companysvc.updateCompanyOnServer(this.companyId, this.companyName, this.companyLocation, this.industry, this.companyPassword
     ).subscribe(
       response => {
@@ -122,6 +136,7 @@ export class CompanyComponent implements OnInit {
     console.log(compIndustry)
     this.toggleEdits()
     this.updateCompanyDetails(compName, compLocation, compIndustry)
+    window.location.reload()
   }
 
   deleteCompany() {
