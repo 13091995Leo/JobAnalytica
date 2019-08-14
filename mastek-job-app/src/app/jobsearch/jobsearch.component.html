@@ -1,18 +1,27 @@
 <div class="card text-center m-3">
     <hr>
-    <h2>Search all Jobs </h2>
+    <h2>SEARCH FOR JOBS </h2>
+    <p>&nbsp;</p>
     <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
         (keyup.enter)="fetchJobsBySearchParam(searchParam)">
-    <button
-        (click)="fetchJobsBySearchParam(searchParam) ">Search</button>
+    <button (click)="fetchJobsBySearchParam(searchParam) ">Search</button>
     <hr>
 </div>
 
 <div class="card text-center m-3">
-    <h3>Filter your search results </h3>
+    <h3>{{errorMessage}}</h3>
+    <p> Results Count: {{resultsLength}}  </p>
+    <p>*Scroll Down To See Results*</p>
+</div>
+<hr>
+
+<div class="card text-center m-3">
+    <h3>FILTER </h3>
+    <div></div>
     <div>
         <h4>Salary</h4>
-        <select [(ngModel)]="filterBySalaryParam" >
+        <select [(ngModel)]="filterBySalaryParam">
+            <option value=""></option>
             <!-- <option value="null">⇩⇩ Salary Range ⇩⇩</option>
             <option value="100000">100000 +</option>
             <option value="90000">90000 +</option>
@@ -45,52 +54,53 @@
             <option *ngFor="let j of jobsObj | filter : filterBySalaryParam | filter : filterByLocationParam  "
                 value="{{j.currentCompany.companyName}}">{{j.currentCompany.companyName}}</option>
         </select>
-    </div> 
-
-    <div>
-        <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply Filters</button>
     </div>
 
-    <div class="card text-center m-3">
-            <p>&nbsp;</p> 
-            <h3>Search your filtered results </h3>
-            <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
-                (keyup.enter)="fetchJobsBySearchParam(searchParam)">
-            <button
-                (click)=" fetchJobsBySearchParam(searchParam) ; filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
-            <hr>
+    <div>
+        <p>&nbsp;</p>
+        <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply
+            Filters</button>
     </div>
     <hr>
-    <div>
-            <p> Number of search results : {{resultsLength}}</p>
+    <div class="card text-center m-3">
+        <p>&nbsp;</p>
+        <h3>SEARCH FILTERED RESULTS</h3>
+        <p>&nbsp;</p>
+        <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
+            (keyup.enter)="fetchJobsBySearchParam(searchParam)">
+        <button
+            (click)=" fetchJobsBySearchParam(searchParam) ; filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
+        <hr>
     </div>
+
 </div>
 
 <hr>
 
+
+
 <div class="card text-center m-3" class="container">
     <h3 class="card-header">Search Results</h3>
     <div class="card-body">
-        <div *ngFor="let j of pageOfItems">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+        <div *ngFor="let j of pageOfItems" >
+            <table class="table">
                 <tbody>
                     <tr>
-                        <th>JOB TITLE </th>
-                        <th>SALARY </th>
-                        <th>LOCATION</th>
-                        <th>COMPANY</th>
-                        <th>LOCATION</th>
-                        <th>INDUSTRY</th>
+                        <th scope="col">JOB TITLE </th>
+                        <th scope="col">SALARY </th>
+                        <th scope="col">LOCATION</th>
+                        <th scope="col">COMPANY</th>
+                        <th scope="col">LOCATION</th>
+                        <th scope="col">INDUSTRY</th>
                     </tr>
                     <tr>
-                        <td>{{j.jobTitle}}</td>
+                        <td scope="row">{{j.jobTitle}}</td>
                         <td>{{j.salary}}</td>
                         <td>{{j.location}}</td>
                         <td>{{j.currentCompany.companyName}}</td>
                         <td>{{j.currentCompany.location}}</td>
                         <td>{{j.currentCompany.industry}}</td>
-                        <td> <a
-                                href="https://www.totaljobs.com/jobs/{{j.jobTitle}}/in-{{j.location}}?radius=10&searchlocation=lee&s=header">Jobsite</a>
+                        <td> <a>Jobsite</a>
                         </td>
                         <td><a
                                 href="https://www.totaljobs.com/jobs/{{j.jobTitle}}/in-{{j.location}}?radius=10&s=header">Totaljobs</a>
@@ -109,3 +119,4 @@
         <jw-pagination [items]="jobsObj" (changePage)="paginationIncrease($event)"></jw-pagination>
     </div>
 </div>
+

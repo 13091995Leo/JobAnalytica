@@ -17,8 +17,8 @@ export class UserService {
     this.rootURL="http://localhost:7705/users"
   }
 
-  loadAllUsersFromServer():Observable<User[]> {
-    return this.httpsvc.get<User[]>(
+  loadAllUsersFromServer():Observable<String[]> {
+    return this.httpsvc.get<String[]>(
       "http://localhost:7705/users/displayAllUsers"
     )
   }

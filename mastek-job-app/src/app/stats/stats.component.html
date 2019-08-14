@@ -1,21 +1,66 @@
-<table>
-        <th>Hottest Skill</th>
-        <th></th>
-        <th></th>
-        <tr *ngFor="let pop of popularSkill">
-                <td>{{pop.skill}}|</td>
-                <td>{{pop.avgSalaryBySkill}}|</td>
-                <td>{{pop.skillFreq}}|</td>
-        </tr>
-</table>
+<div class="card text-center m-3" class="container">
+        <hr>
+        <h3 class="card-header" class="card text-center m-3">HOT JOB STATS</h3>
+        <hr>
+        <div class="card-header">
+                <table class="table">
+                        <th scope="col">Most Popular Skill</th>
+                        <th scope="col">Average Salary </th>
+                        <th scope="col"> Number of Jobs Available </th>
+                        <tr *ngFor="let pop of popularSkill">
+                                <td>{{pop.skill}}</td>
+                                <td>{{pop.avgSalaryBySkill}}</td>
+                                <td>{{pop.skillFreq}}</td>
+                        </tr>
+                </table>
+        </div>
+</div>
 
-<table style="display: inline-block;">
-        <th> Skill</th>
-        <th>Average Salary by Skill</th>
-        <th>Jobs Available for Skill</th>
-        <tr *ngFor="let s of statsArr">
-                <td>{{s.skill}}</td>
-                <td>{{s.avgSalaryBySkill}}</td>
-                <td>{{s.skillFreq}}</td>
-        </tr>
-</table>
+<div class="card text-center m-3" class="container">
+        <div class="card-header">
+                <table class="table">
+                        <th scope="col">Average Highest Earning Skill </th>
+                        <th scope="col">Highest Average Salary </th>
+                        <th scope="col">Number of Jobs Available</th>
+                        <tr *ngFor="let rich of richSkill">
+                                <td>{{rich.skill}}</td>
+                                <td>{{rich.avgSalaryBySkill}}</td>
+                                <td>{{rich.skillFreq}}</td>
+                        </tr>
+                </table>
+        </div>
+</div>
+
+<div class="card text-center m-3" class="container">
+                <div class="card-header" >
+                        <table class="table">
+                                <th scope="col">100K+ Job Club</th>
+                                <th scope="col">Salary</th>
+                                <th scope="col">Location</th>
+                                <tr *ngFor="let rich of richJob">
+                                <td>{{rich.jobTitle}}</td>
+                                <td>{{rich.salary}}</td>
+                                <td>{{rich.location}}</td>
+                                </tr>
+                        </table>
+                </div>
+        
+        </div>
+
+<div class="card text-center m-3" class="container">
+        <hr>
+        <h3 class="card-header" class="card text-center m-3"> S T A T S</h3>
+        <hr>
+        <div class="card-body">
+                <table class="table">
+                        <th scope="col"> Skill</th>
+                        <th scope="col">Average Salary by Skill</th>
+                        <th scope="col">Jobs Available for Skill</th>
+                        <tr *ngFor="let s of statsArr">
+                                <td>{{s.skill}}</td>
+                                <td>{{s.avgSalaryBySkill}}</td>
+                                <td>{{s.skillFreq}}</td>
+                        </tr>
+                </table>
+        </div>
+</div>

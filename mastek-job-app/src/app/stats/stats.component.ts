@@ -15,6 +15,7 @@ export class StatsComponent implements OnInit {
   jobRequirement: Job[]
   statsArr: Stats[]
   stats: Stats
+  richJob: Job[]
   
   reqIds: number[]
   requirementNameArray: String[]
@@ -22,9 +23,12 @@ export class StatsComponent implements OnInit {
   sumSalary: number
   individualCounter: number;
   individualCounter1: number;
-  max: number;
+  maxJ: number
+  maxS: number
   indexPoint: number
-  popularSkill: Stats[];
+  popularSkill: Stats[]
+  richSkill: Stats[]
+  indexPoint1: number;
 
   constructor(private reqServ: StatsService) {
 
@@ -61,36 +65,49 @@ export class StatsComponent implements OnInit {
             this.individualCounter += 1
           }
           )
-            this.stats = {skill: element.requirement, avgSalaryBySkill: this.sumSalary / this.individualCounter , skillFreq: this.individualCounter, avgSalaryByIndustry: 0, mostSoughtAfterSkill: 0}
+            this.stats = {skill: element.requirement, avgSalaryBySkill: this.sumSalary / this.individualCounter , skillFreq: this.individualCounter,salaryIndex: 0, avgSalaryByIndustry: 0 }
             this.statsArr.push(this.stats)
         })
-
-        this.statsArr = this.statsArr
         
-        this.max = this.statsArr[0].skillFreq;
-        this.indexPoint = 0;
+        // Working out the max number of jobs in a skill
+        this.maxJ = this.statsArr[0].skillFreq
 
         for (let index = 1; index < this.statsArr.length; index++) {
-          const element = this.statsArr[index].skillFreq;
-          if (element > this.max) {
-            this.max = element
-            // this.indexPoint = index
+          const element = this.statsArr[index].skillFreq
+          if (element > this.maxJ) {
+            this.maxJ = element
           }
           else {
-            this.max = this.max
-            // this.indexPoint = this.indexPoint
+            this.maxJ = this.maxJ
           }
         
         }
         console.log(this.statsArr)
-        this.popularSkill = this.statsArr.filter(response => response.skillFreq == this.max)
-        // this.popularSkill = this.stats[this.indexPoint]
-        // console.log(this.popularSkill)
-        
+        this.popularSkill = this.statsArr.filter(response => response.skillFreq == this.maxJ)
 
-        
-        // response => filterByLocationParam == null || response.location == filterByLocationParam
-        
+        // Working out the max salary for a skill
+        this.maxS = this.statsArr[0].avgSalaryBySkill
+
+        for (let index = 0; index < this.statsArr.length; index++) {
+          const element = this.statsArr[index].avgSalaryBySkill
+          if(element > this.maxS){
+            this.maxS = element
+          }
+          else{
+            this.maxS = this.maxS
+          }
+        }
+
+        this.richSkill = this.statsArr.filter(response => response.avgSalaryBySkill == this.maxS)
+
+        // Working out the highest paid Jobs
+        response.forEach(
+          response => 
+            this.richJob = response.jobRequirement.filter(
+            element => 
+            element.salary > 100000
+          )
+          )
       }
     )
 

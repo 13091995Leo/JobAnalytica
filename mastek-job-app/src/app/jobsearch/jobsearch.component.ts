@@ -23,14 +23,12 @@ export class JobsearchComponent implements OnInit {
   salary: number
   salaryParam: number
   averageSalary: number
+  errorMessage: String
 
-  start: number
-  end:number
 
 
   jobsObj: JobsearchComponent[]
-  jobs1: JobsearchComponent[]
-  jobs2: JobsearchComponent[]
+
   filterBySalaryParam: number;
   filterByLocationParam: String;
   filterByCompanyNameParam: String;
@@ -43,6 +41,7 @@ export class JobsearchComponent implements OnInit {
     this.searchParam = ""
     this.salary = 0
     this.location = ""
+    this.errorMessage = ""
   }
 
   ngOnInit() {
@@ -55,26 +54,33 @@ export class JobsearchComponent implements OnInit {
   }
 
   fetchJobsBySearchParam() {
+    this.errorMessage = ""
+    
     this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
       response => {
-        this.jobsObj = response
-        this.resultsLength = response.length
+          this.jobsObj = response
+          this.resultsLength = response.length
+          if (this.resultsLength == 0) {
+            this.errorMessage = "No results - Please try a valid job field."
+          } else {
+            this.jobsObj = response
+          }
       }
     )
 
-  }
+}
 
   filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) {
 
-    this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
-      response => {
-        this.jobsObj = response
-          .filter(response => filterBySalaryParam == null || response.salary == filterBySalaryParam )
-          .filter(response => filterByLocationParam == null || response.location == filterByLocationParam)
-          .filter(response => filterByCompanyNameParam == null || response.currentCompany.companyName == filterByCompanyNameParam)
-        this.resultsLength = response.length
-      }
-    )
+      this.jsrchSvc.findJobsBySearchParam(this.searchParam).subscribe(
+        response => {
+          this.jobsObj = response
+            .filter(response => filterBySalaryParam == null || response.salary == filterBySalaryParam )
+            .filter(response => filterByLocationParam == null || response.location == filterByLocationParam)
+            .filter(response => filterByCompanyNameParam == null || response.currentCompany.companyName == filterByCompanyNameParam)
+            this.resultsLength = this.jobsObj.length
+        }
+      )
     
   }
 

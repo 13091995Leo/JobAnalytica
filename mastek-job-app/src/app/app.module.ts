@@ -18,6 +18,7 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
 import { StatsComponent } from './stats/stats.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
