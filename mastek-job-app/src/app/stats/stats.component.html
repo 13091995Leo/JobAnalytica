@@ -1,11 +1,26 @@
+<!-- <div class="row-text-center" -->
+                <hr>
+<hr>
+<div class="container">
+        <img src="https://www.betterteam.com/i/job-descriptions-960x480-20171117.png" class="img-circle" alt="TechP1"
+                width="353" height="236">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="https://assets.entrepreneur.com/content/3x2/2000/20190513085430-Cogo-People-Analytics-Presents-Rectech-19-Bigstock-4000pxW-X-2670pxH-copy-Recovered.jpeg"
+                class="img-circle" alt="TechP1" width="353" height="236">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="https://www.shu.ac.uk/~/media/home/business/develop-your-people/higher-and-degree-apprenticeships/images/hda-digital-and-technology-solutions-specialist.jpg"
+                class="img-circle" alt="TechP1" width="353" height="236">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<hr>
 <div class="card text-center m-3" class="container">
-        <hr>
-        <h3 class="card-header" class="card text-center m-3">HOT JOB STATS</h3>
+
+        <h3>H O T &nbsp; J O B &nbsp; S T A T S |</h3>
         <hr>
         <div class="card-header">
                 <table class="table">
                         <th scope="col">Most Popular Skill</th>
-                        <th scope="col">Average Salary </th>
+                        <th scope="col">Average Salary (£/Year)</th>
                         <th scope="col"> Number of Jobs Available </th>
                         <tr *ngFor="let pop of popularSkill">
                                 <td>{{pop.skill}}</td>
@@ -20,7 +35,7 @@
         <div class="card-header">
                 <table class="table">
                         <th scope="col">Average Highest Earning Skill </th>
-                        <th scope="col">Highest Average Salary </th>
+                        <th scope="col">Highest Average Salary (£/Year) </th>
                         <th scope="col">Number of Jobs Available</th>
                         <tr *ngFor="let rich of richSkill">
                                 <td>{{rich.skill}}</td>
@@ -32,29 +47,29 @@
 </div>
 
 <div class="card text-center m-3" class="container">
-                <div class="card-header" >
-                        <table class="table">
-                                <th scope="col">100K+ Job Club</th>
-                                <th scope="col">Salary</th>
-                                <th scope="col">Location</th>
-                                <tr *ngFor="let rich of richJob">
+        <div class="card-header">
+                <table class="table">
+                        <th scope="col">100K+ Job Club</th>
+                        <th scope="col">Salary (£/Year)</th>
+                        <th scope="col">Location</th>
+                        <tr *ngFor="let rich of richJob">
                                 <td>{{rich.jobTitle}}</td>
                                 <td>{{rich.salary}}</td>
                                 <td>{{rich.location}}</td>
-                                </tr>
-                        </table>
-                </div>
-        
+                        </tr>
+                </table>
         </div>
+
+</div>
 
 <div class="card text-center m-3" class="container">
         <hr>
-        <h3 class="card-header" class="card text-center m-3"> S T A T S</h3>
+        <h3> M O R E &nbsp; S T A T S |</h3>
         <hr>
         <div class="card-body">
                 <table class="table">
                         <th scope="col"> Skill</th>
-                        <th scope="col">Average Salary by Skill</th>
+                        <th scope="col">Average Salary by Skill (£/Year)</th>
                         <th scope="col">Jobs Available for Skill</th>
                         <tr *ngFor="let s of statsArr">
                                 <td>{{s.skill}}</td>
@@ -63,4 +78,15 @@
                         </tr>
                 </table>
         </div>
+</div>
+
+<div class="card text-center m-3" class="container">
+        <hr>
+        <h3> C H A R T S |</h3>
+        <hr>
+
+        <div class="card text-center m-3" id="barC">
+                <img class="card text-center m-3" src="https://i.ibb.co/XjrcKvZ/SSCHART.jpg" alt="">
+        </div>
+        <hr>
 </div>

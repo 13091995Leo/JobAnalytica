@@ -6,3 +6,25 @@ table {
     width: 25% ;
   }
 
+  h3 {
+    width: 100%;
+    background-color: black;
+    color:white;
+  }
+
+  .barC {
+    width: 100%;
+
+    
+  }
+
+hr { 
+  margin-top: 0px;
+}
+
+th {
+  text-align: center;
+}
+td {
+  text-align: center;
+}

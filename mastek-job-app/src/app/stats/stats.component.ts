@@ -65,7 +65,7 @@ export class StatsComponent implements OnInit {
             this.individualCounter += 1
           }
           )
-            this.stats = {skill: element.requirement, avgSalaryBySkill: this.sumSalary / this.individualCounter , skillFreq: this.individualCounter,salaryIndex: 0, avgSalaryByIndustry: 0 }
+            this.stats = {skill: element.requirement, avgSalaryBySkill: Math.round(this.sumSalary / this.individualCounter) , skillFreq: this.individualCounter,salaryIndex: 0, avgSalaryByIndustry: 0 }
             this.statsArr.push(this.stats)
         })
         
@@ -98,7 +98,7 @@ export class StatsComponent implements OnInit {
           }
         }
 
-        this.richSkill = this.statsArr.filter(response => response.avgSalaryBySkill == this.maxS)
+        this.richSkill = this.statsArr.filter(response => response.avgSalaryBySkill == Math.round(this.maxS))
 
         // Working out the highest paid Jobs
         response.forEach(

@@ -1,0 +1,22 @@
+h1 {
+    background: black;
+    color: white;
+}
+li{
+    background: black;
+    color: white;
+    /* text-emphasis-color: white; */
+}
+
+a {
+    color: white;
+    
+}
+
+a:hover {
+    color: rgb(14, 16, 129);
+}
+
+.container-fluid {
+    background: black;
+}
