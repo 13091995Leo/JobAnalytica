@@ -11,6 +11,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
+import com.mastek.jobapp.entities.User;
 import com.mastek.jobapp.repository.CompanyRepository;
 import com.mastek.jobapp.repository.JobRepository;
 
@@ -76,6 +78,28 @@ public class CompanyService {
 			company = findByCompanyId(companyId);
 			String[] password = {company.getCompanyPassword()};
 			return password;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("/findCompany")
+	@GET
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Transactional
+	public Company findByCompanyIdAndPwd(@QueryParam("companyId") int companyId, @QueryParam("companyPassword") String companyPassword) {
+		try {
+			company = findByCompanyId(companyId);
+			String pwd = company.getCompanyPassword();
+			if (companyPassword.equals(pwd)) {
+				return company;
+			}
+			else {
+				System.out.println("Invalid login credentials");
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
