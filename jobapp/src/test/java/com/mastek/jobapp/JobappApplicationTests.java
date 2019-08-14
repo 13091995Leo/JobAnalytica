@@ -279,7 +279,7 @@ public class JobappApplicationTests {
 	        
 	        companyService.registerOrUpdateCompany(comp);       	        
         }
-	}*/
+	}
 	
 	
 	// Adds requirements to jobs using an automated loop
@@ -292,7 +292,7 @@ public class JobappApplicationTests {
 	        job.getRequirements().add(requirementService.findByRequirementId(x+11));
 			jobService.registerOrUpdateJob(job);
 		}
-	}
+	}*/
 	
 	
 	

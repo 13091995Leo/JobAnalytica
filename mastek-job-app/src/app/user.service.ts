@@ -43,7 +43,7 @@ export class UserService {
     }
     var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference + "&userPassword=" + user.password
     return this.httpsvc.post<UserComponent>(
-      this.rootURL + "/register", reqBody, httpOptions
+      this.rootURL + "/update", reqBody, httpOptions
     )
   }
 
