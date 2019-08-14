@@ -34,7 +34,12 @@ export class CompanyloginComponent implements OnInit {
   }
 
   addNewCompany(companyName, companyLocation, companyIndustry, companyPassword) {
-    
+    console.log(companyName)
+    this.compSvc.createNewCompany(companyName, companyLocation, companyIndustry, companyPassword).subscribe(
+      response => {
+        sessionStorage.setItem("companyId", String(response.companyId))
+      }
+    )
   }
 
 }

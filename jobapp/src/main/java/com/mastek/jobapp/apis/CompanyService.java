@@ -67,6 +67,20 @@ public class CompanyService {
 			return null;
 		}
 	}
+	
+	@Path("/findCompanyPassword/{companyId}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public String[] getCompanyPassword(@PathParam("companyId") int companyId) {
+		try {
+			company = findByCompanyId(companyId);
+			String[] password = {company.getCompanyPassword()};
+			return password;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@DELETE
 	@Path("/delete/{companyId}")

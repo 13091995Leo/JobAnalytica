@@ -1,8 +1,11 @@
 package com.mastek.jobapp.apis;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Set;
 
 import javax.print.attribute.standard.Media;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -54,10 +57,30 @@ public class UserService {
 	@Path("/register")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User registerOrUpdateUser(@BeanParam User user) {
+	public User registerUser(@BeanParam User user) {
 		user = userRepository.save(user);
+		return user;		
+	}
+	
+	@POST
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User updateUser(@BeanParam User user) {
+		int userId = user.getUserId();
+		User existingUser = findByUserId(userId);
+
+		String userName = user.getUserName();
+		String locationPreference = user.getLocationPreference();
+		String userPassword = user.getUserPassword();
+		
+		existingUser.setUserName(userName);
+		existingUser.setLocationPreference(locationPreference);
+		existingUser.setUserPassword(userPassword);
+
+		userRepository.save(existingUser);
 		System.out.println("User Registered " + user);
-		return user;
+		return existingUser;
 	}
 
 	@Path("/find/{userId}")
@@ -66,6 +89,42 @@ public class UserService {
 	public User findByUserId(@PathParam("userId") int userId) {
 		try {
 			return userRepository.findById(userId).get();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("/findUserPassword/{userId}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public String[] getUserPassword(@PathParam("userId") int userId) {
+		try {
+			user = findByUserId(userId);
+			String[] password = {user.getUserPassword()};
+			return password;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("/findUser")
+	@GET
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Transactional
+	public User findByUserIdAndPwd(@QueryParam("userId") int userId, @QueryParam("userPassword") String userPassword) {
+		try {
+			user = findByUserId(userId);
+			String pwd = user.getUserPassword();
+			if (userPassword.equals(pwd)) {
+				return user;
+			}
+			else {
+				System.out.println("Invalid login credentials");
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -84,7 +143,7 @@ public class UserService {
            
             user.getUserSpeciality().remove(speciality);
            
-            registerOrUpdateUser(user);
+            registerUser(user);
     
             return user.getUserSpeciality();
         } catch (Exception e) {
@@ -125,7 +184,7 @@ public class UserService {
 			Set<Requirement> userSpecialities = user.getUserSpeciality();
 			user.getUserSpeciality().removeAll(userSpecialities);
 			
-			registerOrUpdateUser(user);
+			registerUser(user);
 						
 			userRepository.deleteById(userId);
 						
@@ -145,13 +204,13 @@ public class UserService {
 	@Path("/assign/speciality")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<Requirement> assignSpeciality(@FormParam("userId") int userId, @FormParam("specialityId") int specialityId) {
+	public User assignSpeciality(@FormParam("userId") int userId, @FormParam("specialityId") int specialityId) {
 		try {
 			user = findByUserId(userId);
 			speciality = specialityService.findByRequirementId(specialityId);
 			user.getUserSpeciality().add(speciality);
-			user = registerOrUpdateUser(user);
-			return user.getUserSpeciality();
+			//user = userRepository.save(user);
+			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -168,7 +227,7 @@ public class UserService {
 			User user = findByUserId(userId);
 			Requirement spec = specialityService.findByRequirementId(specialityId);
 			user.getUserSpeciality().remove(spec);
-			user = registerOrUpdateUser(user);
+			user = registerUser(user);
 			return user.getUserSpeciality();
 		} catch (Exception e) {
 			e.printStackTrace();

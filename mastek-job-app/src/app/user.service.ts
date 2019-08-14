@@ -23,9 +23,15 @@ export class UserService {
     )
   }
 
-  findUserByUserId(userId):Observable<UserComponent> {
+  // findUserByUserId(userId):Observable<UserComponent> {
+  //   return this.httpsvc.get<UserComponent>(
+  //     this.rootURL + "/find/" + userId
+  //   )
+  // }
+
+  findUserByUserIdAndPwd(userId,userPassword):Observable<UserComponent> {
     return this.httpsvc.get<UserComponent>(
-      this.rootURL + "/find/" + userId
+      this.rootURL + "/findUser?userId=" + userId + "&userPassword=" + userPassword
     )
   }
 
@@ -37,7 +43,7 @@ export class UserService {
     }
     var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference + "&userPassword=" + user.password
     return this.httpsvc.post<UserComponent>(
-      this.rootURL + "/register", reqBody, httpOptions
+      this.rootURL + "/update", reqBody, httpOptions
     )
   }
 

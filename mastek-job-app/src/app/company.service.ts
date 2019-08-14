@@ -31,13 +31,13 @@ export class CompanyService {
     )
   }
 
-  updateCompanyOnServer(comp):Observable<Company> {
+  updateCompanyOnServer(companyId, companyName, location, industry, companyPassword):Observable<Company> {
     const httpOptions = {
       headers: new HttpHeaders(
         {"Content-Type":"application/x-www-form-urlencoded"}
       )
     }
-    var reqBody = "companyId=" + comp.companyId + "&companyName=" + comp.companyName + "&location=" + comp.location + "&industry=" + comp.industry +  "&companyPassword=" + comp.companyPassword
+    var reqBody = "companyId=" + companyId + "&companyName=" + companyName + "&location=" + location + "&industry=" + industry +  "&companyPassword=" + companyPassword
     return this.httpsvc.post<Company>(
       this.rootURL + "/register", reqBody, httpOptions
     )
@@ -139,17 +139,28 @@ export class CompanyService {
     )
   }
 
-  assignJobToCompany(jobId):Observable<Company>{
+  createNewJob(jobTitle, salary, location, companyId):Observable<Job>{
     const httpOptions = {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-    var reqBody = "jobId="+jobId
+    var reqBody = "jobTitle=" + jobTitle + "&salary=" + salary + "&location=" + location
 
-    // post(URL.body.httpOptionswithHeaders)
-    return this.httpsvc.post<Company>(
-      "http://localhost:7705/jobs/register",reqBody, httpOptions)
-  
+    return this.httpsvc.post<Job>(
+      "http://localhost:7705/jobs/register/" + companyId, reqBody, httpOptions
+    )
   }
+
+  // assignJobToCompany(companyId, jobId):Observable<Job>{
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+  //   }
+  //   var reqBody = "companyId=" + companyId + "&jobId="+jobId
+
+  //   // post(URL.body.httpOptionswithHeaders)
+  //   return this.httpsvc.post<Job>(
+  //     this.rootURL + "/assign/jobs",reqBody, httpOptions)
+  
+  // }
 
   deleteJobOnServer(jobId):Observable<CompanyComponent[]>{
     return this.httpsvc.delete<CompanyComponent[]>(

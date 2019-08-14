@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mastek.jobapp.entities.Company;
 import com.mastek.jobapp.entities.Job;
 import com.mastek.jobapp.entities.Requirement;
 import com.mastek.jobapp.entities.User;
@@ -38,11 +39,16 @@ public class JobService {
 	private RequirementService requirementService;
 	
 	@Autowired
+	private CompanyService companyService;
+	
+	@Autowired
 	private UserService userService;
 	
 	private Requirement requirement;
 	
 	private Job job;
+	
+	private Company currentCompany;
 	
 	public JobService() {
 		System.out.println("Job Service Created");
@@ -54,6 +60,19 @@ public class JobService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Job registerOrUpdateJob(@BeanParam Job job) {
 		job = jobRepository.save(job);
+		System.out.println("Job Registered "+job);
+		return job;
+	}
+	
+	@POST
+	@Path("/register/{companyId}")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Job registerOrUpdateJobWithCompany(@BeanParam Job job, @PathParam("companyId") int companyId) {
+		registerOrUpdateJob(job);
+		currentCompany = companyService.findByCompanyId(companyId);
+		job.setCurrentCompany(currentCompany);
+		registerOrUpdateJob(job);
 		System.out.println("Job Registered "+job);
 		return job;
 	}
@@ -70,6 +89,8 @@ public class JobService {
 		}
 	}
 	
+	
+	
 	@DELETE
 	@Path("/delete/{jobId}")
 	public String deleteJobById(@PathParam("jobId") int jobId) {
@@ -81,6 +102,8 @@ public class JobService {
 	           
 	            Set<User> users = job.getAssignments();
 	            job.getAssignments().removeAll(users);
+	            
+	            job.setCurrentCompany(null);
 	           
 	            job.setCurrentCompany(null);
 	            
