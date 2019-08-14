@@ -83,7 +83,7 @@ export class UserComponent implements OnInit {
     )
     return
   }
-
+ 
   toggleEdits() {
     this.isEditable = !this.isEditable
     this.loadAllUsers()
