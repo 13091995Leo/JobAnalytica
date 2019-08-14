@@ -23,7 +23,6 @@ export class CompanyComponent implements OnInit {
   jobTitle: string
   location: string
   salary: number
-  companyId: number
   isEditable:boolean
   assignments: Job[]
   isJobFormVisible:boolean
@@ -36,18 +35,19 @@ export class CompanyComponent implements OnInit {
   allJobs: Job[]
   selectJobId:number
   selectCompanyId: number
+  jobIsEditable: boolean;
 
-  constructor(private companysvc:CompanyService) {
-  this.isEditable=false
-  this.isJobFormVisible=false
-  this.isJobFormValid=true
-  this.jobId = 3883
-  this.jobTitle = "IT Admin Assistant"
-  this.salary = 14000
-  this.location = "London"
-  this.companyId = 1
-  this.isEditable: boolean
-  jobIsEditable: boolean
+  // constructor(private companysvc:CompanyService) {
+  // this.isEditable=false
+  // this.isJobFormVisible=false
+  // this.isJobFormValid=true
+  // this.jobId = 3883
+  // this.jobTitle = "IT Admin Assistant"
+  // this.salary = 14000
+  // this.location = "London"
+  // this.companyId = 1
+  // this.isEditable: boolean
+  // jobIsEditable: boolean
 
   constructor(private companysvc:CompanyService) {
     this.companyId = Number(sessionStorage.getItem("companyId"))
