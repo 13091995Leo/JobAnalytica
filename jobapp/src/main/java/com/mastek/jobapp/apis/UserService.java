@@ -69,14 +69,20 @@ public class UserService {
 	public User updateUser(@BeanParam User user) {
 		int userId = user.getUserId();
 		User existingUser = findByUserId(userId);
-
+		
 		String userName = user.getUserName();
 		String locationPreference = user.getLocationPreference();
 		String userPassword = user.getUserPassword();
 		
-		existingUser.setUserName(userName);
-		existingUser.setLocationPreference(locationPreference);
-		existingUser.setUserPassword(userPassword);
+		if (userName != null) {
+			existingUser.setUserName(userName);
+		}		
+		if (locationPreference != null) {
+			existingUser.setLocationPreference(locationPreference);
+		}
+		if (userPassword != null) {
+			existingUser.setUserPassword(userPassword);
+		}		
 
 		userRepository.save(existingUser);
 		System.out.println("User Registered " + user);

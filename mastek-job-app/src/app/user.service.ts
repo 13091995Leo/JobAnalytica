@@ -41,7 +41,7 @@ export class UserService {
         {"Content-Type":"application/x-www-form-urlencoded"}
       )
     }
-    var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference + "&userPassword=" + user.password
+    var reqBody = "userId=" + user.userId + "&userName=" + user.userName + "&locationPreference=" + user.locationPreference
     return this.httpsvc.post<UserComponent>(
       this.rootURL + "/update", reqBody, httpOptions
     )
