@@ -1,0 +1,31 @@
+table {
+    table-layout: fixed ;
+    width: 100% ;
+  }
+
+  th{
+    background: rgb(223, 218, 218);
+    color: black;
+    text-align: center;
+  }
+
+  td {
+    width: 25% ;
+    background: rgb(248, 245, 245);
+    color: black;
+    text-align: center;
+  }
+  
+  h2 {
+    width: 100%;
+    background-color: black;
+    color:white;
+  }
+
+  h3 {
+    width: 100%;
+    background-color: black;
+    color:white;
+  }
+
+

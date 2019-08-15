@@ -27,6 +27,8 @@ export class CompanyloginComponent implements OnInit {
     this.isEditable = false
     this.companyPwd = []
     this.companyPassword = ""
+
+
   }
 
   toggleEdits() {

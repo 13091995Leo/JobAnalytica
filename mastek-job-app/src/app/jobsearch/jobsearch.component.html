@@ -1,81 +1,13 @@
-<div class="card text-center m-3">
+<div class="card text-center m-3" class="container">
     <hr>
-    <h2>SEARCH FOR JOBS </h2>
+    <h3>SEARCH FOR JOBS </h3>
     <p>&nbsp;</p>
     <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
         (keyup.enter)="fetchJobsBySearchParam(searchParam)">
     <button (click)="fetchJobsBySearchParam(searchParam) ">Search</button>
+    <p>&nbsp;</p>
     <hr>
 </div>
-
-<div class="card text-center m-3">
-    <h3>{{errorMessage}}</h3>
-    <p> Results Count: {{resultsLength}}  </p>
-    <p>*Scroll Down To See Results*</p>
-</div>
-<hr>
-
-<div class="card text-center m-3">
-    <h3>FILTER </h3>
-    <div></div>
-    <div>
-        <h4>Salary</h4>
-        <select [(ngModel)]="filterBySalaryParam">
-            <option value=""></option>
-            <!-- <option value="null">⇩⇩ Salary Range ⇩⇩</option>
-            <option value="100000">100000 +</option>
-            <option value="90000">90000 +</option>
-            <option value="80000">80000 +</option>
-            <option value="70000">70000 +</option>
-            <option value="60000">60000 +</option>
-            <option value="50000">50000 +</option>
-            <option value="40000">40000 +</option>
-            <option value="30000">30000 +</option>
-            <option value="20000">20000 +</option>
-            <option value="10000">10000 +</option>
-            <option value="null">⇩⇩ Existing Results ⇩⇩</option> -->
-            <option *ngFor="let j of jobsObj  " value="{{j.salary}}">{{j.salary}}</option>
-        </select>
-    </div>
-
-    <div>
-        <h4>Location</h4>
-        <select [(ngModel)]="filterByLocationParam">
-            <option value=""></option>
-            <option *ngFor="let j of jobsObj | filter : filterBySalaryParam" value="{{j.location}}">{{j.location}}
-            </option>
-        </select>
-    </div>
-
-    <div>
-        <h4>Company</h4>
-        <select [(ngModel)]="filterByCompanyNameParam">
-            <option value=""></option>
-            <option *ngFor="let j of jobsObj | filter : filterBySalaryParam | filter : filterByLocationParam  "
-                value="{{j.currentCompany.companyName}}">{{j.currentCompany.companyName}}</option>
-        </select>
-    </div>
-
-    <div>
-        <p>&nbsp;</p>
-        <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply
-            Filters</button>
-    </div>
-    <hr>
-    <div class="card text-center m-3">
-        <p>&nbsp;</p>
-        <h3>SEARCH FILTERED RESULTS</h3>
-        <p>&nbsp;</p>
-        <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
-            (keyup.enter)="fetchJobsBySearchParam(searchParam)">
-        <button
-            (click)=" fetchJobsBySearchParam(searchParam) ; filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
-        <hr>
-    </div>
-
-</div>
-
-<hr>
 
 
 
@@ -86,7 +18,7 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <th scope="col">JOB TITLE </th>
+                        <th scope="col" >JOB TITLE </th>
                         <th scope="col">SALARY </th>
                         <th scope="col">LOCATION</th>
                         <th scope="col">COMPANY</th>
@@ -94,13 +26,13 @@
                         <th scope="col">INDUSTRY</th>
                     </tr>
                     <tr>
-                        <td scope="row">{{j.jobTitle}}</td>
-                        <td>{{j.salary}}</td>
+                        <td scope="row" style="font-weight: bold"> <a href="">{{j.jobTitle}}</a></td>
+                        <td>  {{j.salary}}</td>
                         <td>{{j.location}}</td>
                         <td>{{j.currentCompany.companyName}}</td>
                         <td>{{j.currentCompany.location}}</td>
                         <td>{{j.currentCompany.industry}}</td>
-                        <td> <a>Jobsite</a>
+                        <td> <a href="https://www.jobsite.co.uk/jobs/{{j.jobTitle}}/in-{{j.location}}?radius=20">Jobsite</a>
                         </td>
                         <td><a
                                 href="https://www.totaljobs.com/jobs/{{j.jobTitle}}/in-{{j.location}}?radius=10&s=header">Totaljobs</a>
@@ -120,3 +52,68 @@
     </div>
 </div>
 
+
+
+<div class="card text-center m-3" class="container">
+        <h3>FILTER </h3>
+        <div class="card text-center m-3">
+                <h3>{{errorMessage}}</h3>
+                <p> Results Count: {{resultsLength}}  </p>
+            </div>
+        <hr>
+        <div></div>
+        <div>
+            <h4>Salary</h4>
+            <select [(ngModel)]="filterBySalaryParam">
+                <option value=""></option>
+                <!-- <option value="null">⇩⇩ Salary Range ⇩⇩</option>
+                <option value="100000">100000 +</option>
+                <option value="90000">90000 +</option>
+                <option value="80000">80000 +</option>
+                <option value="70000">70000 +</option>
+                <option value="60000">60000 +</option>
+                <option value="50000">50000 +</option>
+                <option value="40000">40000 +</option>
+                <option value="30000">30000 +</option>
+                <option value="20000">20000 +</option>
+                <option value="10000">10000 +</option>
+                <option value="null">⇩⇩ Existing Results ⇩⇩</option> -->
+                <option *ngFor="let j of jobsObj  " value="{{j.salary}}">{{j.salary}}</option>
+            </select>
+        </div>
+    
+        <div>
+            <h4>Location</h4>
+            <select [(ngModel)]="filterByLocationParam">
+                <option value=""></option>
+                <option *ngFor="let j of jobsObj | filter : filterBySalaryParam" value="{{j.location}}">{{j.location}}
+                </option>
+            </select>
+        </div>
+    
+        <div>
+            <h4>Company</h4>
+            <select [(ngModel)]="filterByCompanyNameParam">
+                <option value=""></option>
+                <option *ngFor="let j of jobsObj | filter : filterBySalaryParam | filter : filterByLocationParam  "
+                    value="{{j.currentCompany.companyName}}">{{j.currentCompany.companyName}}</option>
+            </select>
+        </div>
+    
+        <div>
+            <p>&nbsp;</p>
+            <button (click)=" filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam)">Apply
+                Filters</button>
+        </div>
+    
+    
+        
+            <p>&nbsp;</p>
+            <h4>SEARCH FILTERED RESULTS</h4>
+    
+            <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
+                (keyup.enter)="fetchJobsBySearchParam(searchParam)">
+            <button
+                (click)=" fetchJobsBySearchParam(searchParam) ; filter(filterBySalaryParam, filterByLocationParam, filterByCompanyNameParam) ">Search</button>
+        <p>&nbsp; </p>
+    </div>

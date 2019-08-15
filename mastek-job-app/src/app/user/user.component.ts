@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { JobComponent } from '../job/job.component';
 import { UserService } from '../user.service';
@@ -41,6 +42,7 @@ export class UserComponent implements OnInit {
   constructor(private userSvc: UserService) {
     this.userId = Number(sessionStorage.getItem("userId"))
     this.userPassword = String(sessionStorage.getItem("userPassword"))
+    this.updateUserSelection
     // this.userId = Number(localStorage.getItem("userId"))
     // this.userName = localStorage.getItem("userName")
     // this.locationPref = localStorage.getItem("locationPref")
@@ -86,7 +88,7 @@ export class UserComponent implements OnInit {
 
   toggleEdits() {
     this.isEditable = !this.isEditable
-    this.loadAllUsers()
+    // this.loadAllUsers()
   }
 
   loadAllUsers() {
@@ -136,7 +138,7 @@ export class UserComponent implements OnInit {
     this.updateUserDetails(uName, locPref)
     console.log("sS " + this.specialityStorage)
     this.toggleEdits()
-    window.location.reload()
+  //  window.location.reload()
   }
 
   saveUser(uName, locPref) {

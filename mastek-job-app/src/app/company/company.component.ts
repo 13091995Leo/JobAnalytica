@@ -77,7 +77,7 @@ export class CompanyComponent implements OnInit {
     this.fetchCurrentCompanyFromService()
   }
 
-  fetchCurrentCompanyFromService():Observable<Company> {
+  fetchCurrentCompanyFromService() {
     this.companysvc.findCompanyByCompanyIdAndPwd(this.companyId,this.companyPassword).subscribe(
       response => {
         this.companyId = response.companyId
@@ -89,7 +89,6 @@ export class CompanyComponent implements OnInit {
         this.fetchCurrentCompanyFromService
       }
     )
-    return
   }
 
   loadAllUsers() {
@@ -136,7 +135,7 @@ export class CompanyComponent implements OnInit {
     console.log(compIndustry)
     this.toggleEdits()
     this.updateCompanyDetails(compName, compLocation, compIndustry)
-    window.location.reload()
+//    window.location.reload()
   }
 
   deleteCompany() {
@@ -203,7 +202,12 @@ export class CompanyComponent implements OnInit {
   
   toggleEdits(){
     this.isEditable = !this.isEditable
-    this.updateJobDetails()
+    if (this.jobId == null && this.jobTitle == null && this.salary == null && this.location == null) {
+      
+    }
+    else {
+      this.updateJobDetails()
+    }
     this.loadAllJobs()
   }
 

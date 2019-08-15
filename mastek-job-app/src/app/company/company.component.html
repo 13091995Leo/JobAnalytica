@@ -1,3 +1,4 @@
+
 <h1>Company Page</h1>
 <!-- Display user information -->
 <h2>Company Information</h2>
@@ -66,7 +67,7 @@
         <th>Salary</th>
         <th>Location</th>
     </tr>
-    <tr *ngFor="let j of allCompanyJobs | slice:0:100; let i = index">
+    <tr *ngFor="let j of allCompanyJobs | slice:0:10000; let i = index">
         <td>{{j.jobId}}</td>
         <td>{{j.jobTitle}}</td>
         <td>{{j.salary}}</td>
