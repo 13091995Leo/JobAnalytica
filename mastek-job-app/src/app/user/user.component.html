@@ -1,6 +1,7 @@
-<h1>User Page</h1>
+<div class  = "container">
 <!-- Display user information -->
 <h2>User Information</h2>
+<hr>
 <table>
     <tr>
         <td>User ID: </td>
@@ -53,9 +54,10 @@
         <td><button (click)="saveUser(uName,locPref)" *ngIf="isEditable">Save</button></td>
     </tr>
 </table>
-
+<hr>
 <!-- Table to display saved jobs -->
 <h2>Saved Jobs</h2>
+<hr>
 <table>
     <tr>
         <th>Title</th>
@@ -68,10 +70,12 @@
         <td>{{g.salary}}</td>
         <td><button (click)="deleteSaveJob(i, g.jobId)">Delete</button></td>
     </tr>
+<hr>
 </table>
 
 <!-- Table to display job recommendations -->
 <h2>Job Recommendations</h2>
+<hr>
 <table>
     <tr>
         <th>Title</th>
@@ -85,3 +89,4 @@
         <td><button (click)="addJobToUser(r.jobId)">Save</button></td>
     </tr>
 </table>
+</div>

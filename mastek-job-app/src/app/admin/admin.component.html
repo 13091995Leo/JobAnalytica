@@ -1,9 +1,10 @@
+<div class = "container">
 <h1>Admin Page</h1>
 <table>
     <tr>
         <th>User ID</th>
         <th>User Name</th>
-        <th>Delete?</th>
+        <th>Delete</th>
     </tr>
 
     <tr *ngFor="let u of users | slice:0:5; let i = index">
@@ -17,7 +18,7 @@
     <tr>
         <th>Job ID</th>
         <th>Job Title</th>
-        <th>Delete?</th>
+        <th>Delete</th>
     </tr>
 
     <tr *ngFor="let j of jobs | slice:0:5; let i = index">
@@ -31,7 +32,7 @@
     <tr>
         <th>Company ID</th>
         <th>Company Name</th>
-        <th>Delete?</th>
+        <th>Delete</th>
     </tr>
 
     <tr *ngFor="let c of companies | slice:0:5; let i = index">
@@ -45,7 +46,7 @@
     <tr>
         <th>Requirement/Skill ID</th>
         <th>Requirement/Skill</th>
-        <th>Delete?</th>
+        <th>Delete</th>
     </tr>
 
     <tr *ngFor="let r of requirements | slice:0:5; let i = index">
@@ -57,7 +58,8 @@
 
 <form>
     <div class="form-group">
-        <label for="newRequirement">Enter Requirement:</label>
+        <hr>
+    <label for="newRequirement">REGISTER REQUIREMENT</label>
         <input type="name" class="form-control" id="newRequirement" placeholder="Enter Requirement"
             name="newRequirement" [(ngModel)]="newRequirement" #inputNRequirement>
     </div>
@@ -66,3 +68,4 @@
                 (click)="addNewRequirement(inputNRequirement.value)">Register</button></a>
     </div>
 </form>
+</div>

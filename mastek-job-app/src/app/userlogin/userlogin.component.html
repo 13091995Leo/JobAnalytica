@@ -1,18 +1,18 @@
 <div class="container">
-  <h2>User Login</h2>
+  <h2>USER LOGIN</h2>
   <form action="/action_page.php">
-    <button class="btn btn-default" (click)="toggleEdits()">{{(isEditable)?"Login":"Register"}}</button>
+    
 
     <!-- Login -->
     <form *ngIf="!isEditable">
       <div class="form-group">
-        <label for="name">User Name:</label>
+        <label for="name">USER ID</label>
         <input type="name" class="form-control" id="name" placeholder="Enter Username" name="name" [(ngModel)]="name"
           #inputUName>
         <!-- <span [hidden]="inputUName.valid || inputUName.pristine" class="alert alert-danger">Name should not have less than 6 characters</span> -->
       </div>
       <div class="form-group">
-        <label for="pwd">Password:</label>
+        <label for="pwd">PASSWORD</label>
         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"
           [(ngModel)]="password" #inputUPassword>
       </div>
@@ -27,17 +27,17 @@
     <!-- Register -->
     <form *ngIf="isEditable">
       <div class="form-group">
-        <label for="newName">Enter Name:</label>
+        <label for="newName">REGISTER NAME</label>
         <input type="name" class="form-control" id="newname" placeholder="Enter Name" name="newname"
           [(ngModel)]="newname" #inputNName>
       </div>
       <div class="form-group">
-        <label for="newLocPref">Enter Location Preference:</label>
+        <label for="newLocPref">LOCATION PREFERENCE</label>
         <input type="name" class="form-control" id="locpref" placeholder="Enter Location Preference" name="newlocpref"
           [(ngModel)]="newlocpref" #inputNLocPref>
       </div>
       <div class="form-group">
-        <label for="newPwd">Enter Password:</label>
+        <label for="newPwd">CREATE PASSWORD</label>
         <input type="password" class="form-control" id="newPwd" placeholder="Enter Password" name="newPwd"
           [(ngModel)]="newpassword" #inputNPassword>
       </div>
@@ -46,5 +46,8 @@
             (click)="addNewUser(inputNName.value, inputNLocPref.value, inputNPassword.value)">Register</button></a>
       </div>
     </form>
+    <hr>
+    <button class="btn btn-default" (click)="toggleEdits()">{{(isEditable)?"Back To Login":"Register"}}</button>
+    <hr>
   </form>
 </div>

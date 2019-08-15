@@ -1,6 +1,6 @@
 <div class="card text-center m-3" class="container">
     <hr>
-    <h3>SEARCH FOR JOBS </h3>
+    <h3>SEARCH FOR JOBS | </h3>
     <p>&nbsp;</p>
     <input type="text" placeholder="Search" [(ngModel)]="searchParam" onfocus="this.value=''"
         (keyup.enter)="fetchJobsBySearchParam(searchParam)">
@@ -12,9 +12,9 @@
 
 
 <div class="card text-center m-3" class="container">
-    <h3 class="card-header">Search Results</h3>
+    <h3 class="card-header">SEARCH RESULTS |</h3>
     <div class="card-body">
-        <div *ngFor="let j of pageOfItems" >
+        <div *ngFor="let j of pageOfItems | slice : 0 : 5 " >
             <table class="table">
                 <tbody>
                     <tr>
@@ -55,7 +55,7 @@
 
 
 <div class="card text-center m-3" class="container">
-        <h3>FILTER </h3>
+        <h3>FILTER |</h3>
         <div class="card text-center m-3">
                 <h3>{{errorMessage}}</h3>
                 <p> Results Count: {{resultsLength}}  </p>
