@@ -52,7 +52,7 @@
                         <th scope="col">100K+ Job Club</th>
                         <th scope="col">Salary (£/Year)</th>
                         <th scope="col">Location</th>
-                        <tr *ngFor="let rich of richJob">
+                        <tr *ngFor="let rich of richJob | slice : 0 : 5">
                                 <td>{{rich.jobTitle}}</td>
                                 <td>{{rich.salary}}</td>
                                 <td>{{rich.location}}</td>

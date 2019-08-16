@@ -38,6 +38,7 @@ export class StatsComponent implements OnInit {
     this.sumSalary = 0
     this.individualCounter = 0
     this.statsArr = []
+    this.richJob = []
 
 
   }
@@ -84,7 +85,7 @@ export class StatsComponent implements OnInit {
           }
         
         }
-        console.log(this.statsArr)
+        
         this.popularSkill = this.statsArr.filter(response => response.skillFreq == this.maxJ)
 
         // Working out the max salary for a skill
@@ -103,13 +104,17 @@ export class StatsComponent implements OnInit {
         this.richSkill = this.statsArr.filter(response => response.avgSalaryBySkill == Math.round(this.maxS))
 
         // Working out the highest paid Jobs
-        response.forEach(
-          response => 
-            this.richJob = response.jobRequirement.filter(
-            element => 
-            element.salary > 100000
-          )
-          )
+        response.forEach( element => {
+          element.jobRequirement.forEach(element => {
+            if(element.salary > 100000){
+              this.richJob.push(element)
+            }
+            
+        }
+        )
+        
+      })
+        
       }
     )
 
