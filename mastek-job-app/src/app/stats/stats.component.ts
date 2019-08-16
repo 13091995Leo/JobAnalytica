@@ -60,13 +60,15 @@ export class StatsComponent implements OnInit {
         })
 
         response.forEach( element => {
-          element.jobRequirement.forEach(element => {
-            this.sumSalary += element.salary
-            this.individualCounter += 1
+            element.jobRequirement.forEach(element => {
+              this.sumSalary += element.salary
+              this.individualCounter += 1
           }
           )
             this.stats = {skill: element.requirement, avgSalaryBySkill: Math.round(this.sumSalary / this.individualCounter) , skillFreq: this.individualCounter,salaryIndex: 0, avgSalaryByIndustry: 0 }
             this.statsArr.push(this.stats)
+            this.individualCounter = 0
+            this.sumSalary = 0
         })
         
         // Working out the max number of jobs in a skill
